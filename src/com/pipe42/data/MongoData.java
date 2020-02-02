@@ -2,7 +2,7 @@ package com.pipe42.data;
 
 import java.util.HashMap;
 
-public class JsonData implements DataRepository {
+public class MongoData implements DataRepository {
 
 	@Override
 	public Object getEntryByID(String id) {

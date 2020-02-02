@@ -14,7 +14,8 @@ public class WindowMain extends Application {
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("WindowMain.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("WindowMain.css").toExternalForm());
+			root.getStyleClass().add("border-pane");
+			scene.getStylesheets().add(getClass().getResource("pipe42_default.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

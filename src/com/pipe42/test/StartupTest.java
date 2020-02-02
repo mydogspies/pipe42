@@ -4,7 +4,7 @@ import org.python.util.PythonInterpreter;
 import com.pipe42.gui.WindowMain;
 import com.pipe42.console.ConsoleOut;
 
-public class Test {
+public class StartupTest {
 	
 	private static PythonInterpreter pyInterp;
 

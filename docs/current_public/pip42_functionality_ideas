@@ -1,0 +1,90 @@
+PIPE42 Functionality Ideas & Wishlist
+
+SETUP
+
+Check each time at startup that default preferences are existing, if not, set program to default first settings
+Establish database and project location on setup
+
+JAVA PREFERENCES
+
+x) application author, version number and notes
+
+GENERAL
+
+a) Autosensing changes to files when runing - if changes are made to the structure, it should poke us for action
+b) Filehandler should distinguish between creation and change stamps
+c) IMPORTANT! Is Json really enough for the amount of data we can theoretically produce? What about a non-relational db?
+d) A render queue?
+e) Store project structure templates in XML... Seems the easiest.
+
+FEATURES
+
+New Project		a) Add a new project with folder structure and default files within
+				b) Initialise, populate and save default Maya or Houdini project
+					1) Initialise default render engine
+					2) Add default textures into project
+				c) Make a new database entry and populate with default values
+				
+Open Project	a) Opens project overview withing PIPE42
+				b) Has the option to open project in the main project software too
+				
+Edit Project	a) Open a project and edit details
+					1) if necessary, change folder structure and/or default files within
+					2) if necessary open Maya/Houdini and makes changes to file/textures/settings
+					
+Update Project	a) Should look into a file and update database with whatever has been added
+					This is not trivial since we probably can no get hold of enough data outside of Maya and Houdini
+					Will have to research this topic beforehand and see who it can possibly be implemented
+					NOTE! The database (Json as default) MUST be open ended enough to keep adding this granularity
+					
+Export Project	a) Export single/multiple projects into a backup format
+					1) Embedd necessary database entries
+					2) Export into a backup friendly format (tbd)
+					
+Import Project	a) Import single/multiple projects including embedded database entries into current setup
+					1) Overwrite or smart merge (eg. assign new name/id to duplicates
+					
+					
+Project listing	a) List project with filters
+					1) Either a file tree or a nice list... Look into Houdini for clever ideas for the UI
+					2) Filters should be granular enough down to single textures
+					
+Connect to database	a) Set up a connection when there is none
+					b) Edit the existing connection
+					c) Import an existing db
+					d) Export internal db
+					
+Settings		a) Built-in editor for the XML file that defines the local file/folder structure
+				b) General prefs for new projects (tbd)
+				c) change style of GUI via imported style sheet
+				d) save GUI style by exporting style sheet
+				e) see PREF PARAMETERS
+				
+					
+					
+					
+THIS TO GET STORED IN THE DB
+
+x) Overal project name (string)
+x) Project prefix (string)
+x) Project owner (array)
+x) Datetime of creation (datetime)
+x) Datetime of latest change (datetime)
+x) Project package, eg. Maya, Houdini, etc (string)
+x) Render engine (string)
+x) Project notes (string)
+x) 
+
+x) Helper 
+
+PREF PARAMETERS
+
+x) CSS theme file
+x) absolute path to projects location
+
+
+
+
+
+					
+					
