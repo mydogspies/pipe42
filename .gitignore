@@ -1,5 +1,5 @@
 bin/
-docs/current_private/*
+docs/dev/*
 docs/archive/*
 .classpath
 .project
