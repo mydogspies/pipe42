@@ -1,3 +1,11 @@
-.border-pane {
-  -fx-background-color: red;
+/* Default CSS settings for PIPE42 */
+
+/* Makes the divider in the SplitPane invisible */
+.split-pane *.split-pane-divider {
+    -fx-padding: 1 0 1 0;
+}
+
+/* Overall window color scheme */
+.split-pane {
+	-fx-background-color: #b0bab0;
 }
