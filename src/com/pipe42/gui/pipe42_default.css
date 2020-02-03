@@ -6,6 +6,23 @@
 }
 
 /* Overall window color scheme */
-.split-pane {
+#splitPane_center {
 	-fx-background-color: #b0bab0;
+}
+#vbox_top_menuBar {
+	-fx-background-color: #828c7c;
+}
+.menu .label {
+    -fx-text-fill: #ffffff;
+}
+.menu-item .label {
+    -fx-text-fill: #111111;
+}
+#toolBar_top, #hbox_bottom {
+	-fx-background-color: #626a5d;
+}
+
+/* Content windows */
+#newProject_leftContent {
+	-fx-background-color: yellow;
 }
