@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="M:/30_CODING/01_MIXENV/pipe42/src/libs/jython-standalone-2.7.1.jar"/>
+	<classpathentry kind="lib" path="M:/30_CODING/01_MIXENV/pipe42/src/libs/jackson-databind-2.10.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

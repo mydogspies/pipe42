@@ -3,47 +3,48 @@ package com.pipe42.data;
 import java.util.HashMap;
 
 /**
- * Implementation of mongoDB Java driver
+ * Implementation of Jackson bindings for Json
  * @author Mydogspies
  *
  */
-public class MongoData implements DataRepository {
+public class JsonData implements DataRepository {
 
 	@Override
 	public Object getEntryByID(String id) {
-		// TODO - MongoData - add getEntryByID
+		// TODO - JsonData - add getEntryByID
 		return null;
 	}
 
 	@Override
 	public Object getEntryByName(String name) {
-		// TODO - MongoData - add getEntryByName
+		// TODO - JsonData - add getEntryByName
 		return null;
 	}
 
 	@Override
 	public HashMap<String, Object> getEntryByProject(String project) {
-		// TODO - MongoData - add getEntryByProject
+		// TODO - JsonData - add getEntryByProject
 		return null;
 	}
 
 	@Override
 	public HashMap<String, Object> listAllEntries() {
-		// TODO - MongoData - add listAllEntries
+		// TODO - JsonData - add listAllEntries
 		return null;
 	}
 
 	@Override
 	public void updateEntry(Project project) {
-		// TODO - MongoData - add updateEntry
+		// TODO - JsonData - add updateEntry
 		
 	}
 
 	@Override
 	public void deleteEntry(String id) {
-		// TODO - MongoData - add deleteEntry
+		// TODO - JsonData - add deleteEntry
 		
 	}
 
+	
 	
 }

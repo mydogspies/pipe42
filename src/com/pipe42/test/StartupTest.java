@@ -4,6 +4,12 @@ import org.python.util.PythonInterpreter;
 import com.pipe42.gui.WMain;
 import com.pipe42.console.ConsoleOut;
 
+
+/**
+ * General startup test
+ * @author Mydogspies
+ *
+ */
 public class StartupTest {
 	
 	private static PythonInterpreter pyInterp;
@@ -12,7 +18,7 @@ public class StartupTest {
 		
 		// fix for the pesky UnsupportedCharsetException message
 		System.setProperty("python.console.encoding", "UTF-8");
-		// and pre-load a Jython interpreter
+		// and preload a Jython interpreter
 		pyInterp = new PythonInterpreter();
 		
 		// say hello from default main start method
@@ -31,8 +37,14 @@ public class StartupTest {
 	 */
 	private static void testPy() {
 		 	
+		try {
 			pyInterp.exec("print('Hello from Jython!')");
 			pyInterp.close();
+		} catch(Exception e) {
+			ConsoleOut.printCons("JYTHON ERROR: ", "something went berserk");
+			e.printStackTrace();
+		}
+			
 	}
 
 }

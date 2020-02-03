@@ -2,6 +2,13 @@ package com.pipe42.main;
 
 import com.pipe42.gui.WMain;
 
+
+/**
+ * Default startup method for PIPE42
+ * @author Mydogspies
+ * @version
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
