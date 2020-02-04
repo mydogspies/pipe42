@@ -41,7 +41,7 @@ public class StartupTest {
 			pyInterp.exec("print('Hello from Jython!')");
 			pyInterp.close();
 		} catch(Exception e) {
-			ConsoleOut.printCons("JYTHON ERROR: ", "something went berserk");
+			ConsoleOut.printCons("Jython error");
 			e.printStackTrace();
 		}
 			

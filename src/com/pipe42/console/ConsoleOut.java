@@ -10,13 +10,5 @@ public class ConsoleOut {
 		System.out.println("PIPE42> " + string);
 	}
 
-	/**
-	 * 
-	 * @param prefix prefixes the output string below
-	 * @param string any string as valid argument
-	 */
-	public static void printCons(String prefix, String string) {
-		System.out.println(prefix + string);
-	}
 	
 }

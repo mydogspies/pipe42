@@ -25,26 +25,46 @@ public final class Application {
 		this.notes = notes;
 	}
 
-	/* METHODS */
+	/* GETTERS AND SETTERS */
 	
 	public String getAppName() {
 		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
 	}
 
 	public String getAppVersion() {
 		return appVersion;
 	}
 
+	public void setAppVersion(String appVersion) {
+		this.appVersion = appVersion;
+	}
+
 	public String getPathToExecutable() {
 		return pathToExecutable;
+	}
+
+	public void setPathToExecutable(String pathToExecutable) {
+		this.pathToExecutable = pathToExecutable;
 	}
 
 	public String getExecParams() {
 		return execParams;
 	}
 
+	public void setExecParams(String execParams) {
+		this.execParams = execParams;
+	}
+
 	public String getNotes() {
 		return notes;
 	}
-	
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 }

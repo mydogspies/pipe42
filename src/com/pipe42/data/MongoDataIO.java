@@ -1,5 +1,6 @@
 package com.pipe42.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -7,43 +8,42 @@ import java.util.HashMap;
  * @author Mydogspies
  *
  */
-public class MongoData implements DataRepository {
+public class MongoDataIO implements DataIO {
 
 	@Override
-	public Object getEntryByID(String id) {
+	public Object getProjectByID(String id) {
 		// TODO - MongoData - add getEntryByID
 		return null;
 	}
 
 	@Override
-	public Object getEntryByName(String name) {
+	public Object getProjectByName(String name) {
 		// TODO - MongoData - add getEntryByName
 		return null;
 	}
 
 	@Override
-	public HashMap<String, Object> getEntryByProject(String project) {
-		// TODO - MongoData - add getEntryByProject
-		return null;
-	}
-
-	@Override
-	public Project listAllEntries() {
+	public ArrayList<Project> getAllProjects() {
 		// TODO - MongoData - add listAllEntries
 		return null;
 	}
 
 	@Override
-	public void writeEntry(Project project, String flag) {
+	public void writeAllProjects(Data data) {
 		// TODO - MongoData - add updateEntry
 		
 	}
 
 	@Override
-	public void deleteEntry(String id) {
+	public void writeSingleProject(Project project) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void deleteProject(String id) {
 		// TODO - MongoData - add deleteEntry
 		
 	}
 
-	
 }

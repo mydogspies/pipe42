@@ -25,28 +25,46 @@ public final class Renderengine {
 		this.notes = notes;
 	}
 
-	/* METHODS */
+	/* GETTERS AND SETTERS */
 	
 	public String getEngine() {
 		return engine;
+	}
+
+	public void setEngine(String engine) {
+		this.engine = engine;
 	}
 
 	public String getPathToExecutable() {
 		return pathToExecutable;
 	}
 
+	public void setPathToExecutable(String pathToExecutable) {
+		this.pathToExecutable = pathToExecutable;
+	}
+
 	public String getExecParams() {
 		return execParams;
+	}
+
+	public void setExecParams(String execParams) {
+		this.execParams = execParams;
 	}
 
 	public String getEngineVersion() {
 		return engineVersion;
 	}
 
+	public void setEngineVersion(String engineVersion) {
+		this.engineVersion = engineVersion;
+	}
+
 	public String getNotes() {
 		return notes;
 	}
-	
-	
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 
 }

@@ -98,7 +98,7 @@ public class WMainC {
 			Pane p1 = FXMLLoader.load(getClass().getResource("WProjectNew.fxml"));
 			splitPane_center_leftPane.getChildren().add(p1);
 		} catch (IOException e) {
-			ConsoleOut.printCons("LOAD ERROR: ", "Not able to load WProjectNew.fxml");
+			ConsoleOut.printCons("Not able to load WProjectNew.fxml");
 			e.printStackTrace();
 		}
 	}

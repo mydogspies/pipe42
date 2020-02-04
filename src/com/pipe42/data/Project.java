@@ -1,7 +1,5 @@
 package com.pipe42.data;
 
-import java.time.LocalDateTime;
-
 /**
  * The Project POJO
  * @author Mydogspies
@@ -39,42 +37,78 @@ public final class Project {
 		this.projectNotes = projectnotes;
 	}
 
-	/* METHODS */
+	/* GETTERS AND SETTERS */
 	
 	public String getProjectId() {
 		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
 	}
 
 	public String getProjectName() {
 		return projectName;
 	}
 
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
 	public String getProjectPrefix() {
 		return projectPrefix;
+	}
+
+	public void setProjectPrefix(String projectPrefix) {
+		this.projectPrefix = projectPrefix;
 	}
 
 	public Owner getOwner() {
 		return owner;
 	}
 
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
 	public Renderengine getEngine() {
 		return engine;
+	}
+
+	public void setEngine(Renderengine engine) {
+		this.engine = engine;
 	}
 
 	public Application getApplication() {
 		return application;
 	}
 
+	public void setApplication(Application application) {
+		this.application = application;
+	}
+
 	public String getCreationTime() {
 		return creationTime;
+	}
+
+	public void setCreationTime(String creationTime) {
+		this.creationTime = creationTime;
 	}
 
 	public String getModifyTime() {
 		return modifyTime;
 	}
 
+	public void setModifyTime(String modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
 	public String getProjectNotes() {
 		return projectNotes;
+	}
+
+	public void setProjectNotes(String projectNotes) {
+		this.projectNotes = projectNotes;
 	}
 
 }

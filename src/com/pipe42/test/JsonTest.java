@@ -1,14 +1,10 @@
 package com.pipe42.test;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import com.pipe42.console.ConsoleOut;
-import com.pipe42.data.Application;
-import com.pipe42.data.JsonData;
-import com.pipe42.data.Owner;
+import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Project;
-import com.pipe42.data.Renderengine;
-
 
 /**
  * Testing Jackson json functionality
@@ -19,18 +15,21 @@ public class JsonTest {
 
 	public static void main(String[] args) {
 		
-		// grab some data from our data objects
+		// grab some data from our data objects and put it together
 		AddTestData data = new AddTestData();
 		
 		/* WRITE INTO FILE */
 		
 		// then do Jackson magic sending it off to our JsonData class
-		JsonData myData = new JsonData();
-		myData.writeEntry(data.testProject1, "append");
+		JsonDataIO myData = new JsonDataIO();
+		myData.writeAllProjects(data.defineTestData());
 		
 		/* READ FROM FILE */
-		Project getProject = myData.listAllEntries();
-		ConsoleOut.printCons(getProject.getProjectName());
+		ArrayList<Project> result = myData.getAllProjects();
+		for (Project project : result) {
+			ConsoleOut.printCons(project.getProjectName());
+		}
+		
 		
 		// say hello from main start method
 		ConsoleOut.printCons("JsonTest finished");

@@ -25,26 +25,46 @@ public final class Owner {
 		this.notes = notes;
 	}
 
-	/* METHODS */
+	/* GETTERS AND SETTERS */
 	
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCompany() {
 		return company;
 	}
 
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
 	public String getDepartment() {
 		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	public String getProjectManager() {
 		return projectManager;
 	}
 
+	public void setProjectManager(String projectManager) {
+		this.projectManager = projectManager;
+	}
+
 	public String getNotes() {
 		return notes;
 	}
-	
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 }
