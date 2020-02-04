@@ -28,13 +28,13 @@ public class MongoData implements DataRepository {
 	}
 
 	@Override
-	public HashMap<String, Object> listAllEntries() {
+	public Project listAllEntries() {
 		// TODO - MongoData - add listAllEntries
 		return null;
 	}
 
 	@Override
-	public void updateEntry(Project project) {
+	public void writeEntry(Project project, String flag) {
 		// TODO - MongoData - add updateEntry
 		
 	}

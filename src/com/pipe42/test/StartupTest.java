@@ -22,7 +22,7 @@ public class StartupTest {
 		pyInterp = new PythonInterpreter();
 		
 		// say hello from default main start method
-		ConsoleOut.printCons("PIPE42: ","Hello from main!");
+		ConsoleOut.printCons("StartupTest says hello");
 		
 		// test a main window call
 		WMain.main(args);
