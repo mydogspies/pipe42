@@ -1,7 +1,6 @@
 package com.pipe42.data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Implementation of mongoDB Java driver

@@ -1,7 +1,6 @@
 package com.pipe42.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.text.TextFlow;
 import javafx.scene.control.TextArea;
 
 /**
