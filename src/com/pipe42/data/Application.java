@@ -7,6 +7,7 @@ package com.pipe42.data;
  */
 public final class Application {
 	
+	private String appID;
 	private String appName;
 	private String appVersion;
 	private String pathToExecutable;
@@ -17,7 +18,8 @@ public final class Application {
 	
 	public Application() {}
 
-	public Application(String appName, String appVersion, String pathToExecutable, String execParams, String notes) {
+	public Application(String id, String appName, String appVersion, String pathToExecutable, String execParams, String notes) {
+		this.appID = id;
 		this.appName = appName;
 		this.appVersion = appVersion;
 		this.pathToExecutable = pathToExecutable;
@@ -26,6 +28,14 @@ public final class Application {
 	}
 
 	/* GETTERS AND SETTERS */
+	
+	public String getAppID() {
+		return appID;
+	}
+
+	public void setAppID(String appID) {
+		this.appID = appID;
+	}
 	
 	public String getAppName() {
 		return appName;

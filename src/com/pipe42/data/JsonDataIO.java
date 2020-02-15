@@ -18,12 +18,12 @@ import com.pipe42.console.ConsoleOut;
  */
 public class JsonDataIO implements DataIO {
 	
-	// NOTE: OS specific path but we will run it through a Path method for sanity
-	// private static String rawPath = "C:/Users/Student/Desktop/pipe42/src/data/test.json"; // TODO - JsonData - Path should come from preferences
-	
-	// LOCAL WZB PATH
-	private static String rawPath = "M:/30_CODING/01_MIXENV/pipe42/src/data/test.json"; // TODO - JsonData - Path should come from preferences
+	// LOCAL workshop path
+	private static String rawPath = "C:/Users/Student/Desktop/pipe42/src/data/test.json"; // TODO - JsonData - Path should come from preferences
 	// TODO - JsonDataIO - remove when workshop over!!
+	
+	// NOTE: OS specific path but we will run it through a Path method for sanity
+	// private static String rawPath = "M:/30_CODING/01_MIXENV/pipe42/src/data/test.json"; // TODO - JsonData - Path should come from preferences
 	
 	
 	// our Jackson json mapper

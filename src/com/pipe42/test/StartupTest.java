@@ -1,7 +1,7 @@
 package com.pipe42.test;
 
 import org.python.util.PythonInterpreter;
-import com.pipe42.gui.WMain;
+import com.pipe42.gui.MainWindow;
 import com.pipe42.console.ConsoleOut;
 
 
@@ -25,7 +25,7 @@ public class StartupTest {
 		ConsoleOut.printCons("StartupTest says hello");
 		
 		// test a main window call
-		WMain.main(args);
+		MainWindow.main(args);
 		
 		// test Jython
 		testPy();

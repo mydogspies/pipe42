@@ -7,6 +7,7 @@ package com.pipe42.data;
  */
 public final class Owner {
 	
+	private String ownerID;
 	private String name;
 	private String company;
 	private String department;
@@ -17,7 +18,8 @@ public final class Owner {
 	
 	public Owner() {}
 	
-	public Owner(String name, String company, String department, String projectManager, String notes) {
+	public Owner(String id, String name, String company, String department, String projectManager, String notes) {
+		this.ownerID = id;
 		this.name = name;
 		this.company = company;
 		this.department = department;
@@ -26,6 +28,14 @@ public final class Owner {
 	}
 
 	/* GETTERS AND SETTERS */
+	
+	public String getOwnerId() {
+		return ownerID;
+	}
+
+	public void setOwnerId(String ownerId) {
+		this.ownerID = ownerId;
+	}
 	
 	public String getName() {
 		return name;

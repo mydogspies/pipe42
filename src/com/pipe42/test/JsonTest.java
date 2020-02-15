@@ -27,6 +27,7 @@ public class JsonTest {
 		/* READ FROM FILE */
 		ArrayList<Project> result = myData.getAllProjects();
 		for (Project project : result) {
+			ConsoleOut.printCons(project.getProjectID());
 			ConsoleOut.printCons(project.getProjectName());
 		}
 		

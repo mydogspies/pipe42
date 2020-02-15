@@ -7,7 +7,7 @@ package com.pipe42.data;
  */
 public final class Project {
 	
-	private String projectId;
+	private String projectID;
 	private String projectName;
 	private String projectPrefix;
 	private Owner owner;
@@ -15,18 +15,18 @@ public final class Project {
 	private Application application;
 	private String creationTime;
 	private String modifyTime;
-	private String projectNotes;
+	private String notes;
 	
 	
 	/* CONSTRUCTORS */
 	
 	public Project() {}
 	
-	public Project(String projectId, String projectName, String projectPrefix,
+	public Project(String id, String projectName, String projectPrefix,
 				Owner owner, Renderengine engine, Application application,
 				String creationTime, String modifyTime, String projectnotes) {
 		
-		this.projectId = projectId;
+		this.projectID = id;
 		this.projectName = projectName;
 		this.projectPrefix = projectPrefix;
 		this.owner = owner;
@@ -34,17 +34,17 @@ public final class Project {
 		this.application = application;
 		this.creationTime = creationTime;
 		this.modifyTime = modifyTime;
-		this.projectNotes = projectnotes;
+		this.notes = projectnotes;
 	}
 
 	/* GETTERS AND SETTERS */
 	
-	public String getProjectId() {
-		return projectId;
+	public String getProjectID() {
+		return projectID;
 	}
 
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public void setProjectID(String projectId) {
+		this.projectID = projectId;
 	}
 
 	public String getProjectName() {
@@ -104,11 +104,11 @@ public final class Project {
 	}
 
 	public String getProjectNotes() {
-		return projectNotes;
+		return notes;
 	}
 
 	public void setProjectNotes(String projectNotes) {
-		this.projectNotes = projectNotes;
+		this.notes = projectNotes;
 	}
 
 }

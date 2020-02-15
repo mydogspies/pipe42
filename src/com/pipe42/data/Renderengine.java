@@ -7,6 +7,7 @@ package com.pipe42.data;
  */
 public final class Renderengine {
 	
+	private String engineID;
 	private String engine;
 	private String pathToExecutable;
 	private String execParams;
@@ -17,7 +18,8 @@ public final class Renderengine {
 	
 	public Renderengine() {}
 	
-	public Renderengine(String engine, String pathToExecutable, String execParams, String engineVersion, String notes) {
+	public Renderengine(String id, String engine, String pathToExecutable, String execParams, String engineVersion, String notes) {
+		this.engineID = id;
 		this.engine = engine;
 		this.pathToExecutable = pathToExecutable;
 		this.execParams = execParams;
@@ -26,6 +28,14 @@ public final class Renderengine {
 	}
 
 	/* GETTERS AND SETTERS */
+	
+	public String getEngineID() {
+		return engineID;
+	}
+
+	public void setEngineID(String engineID) {
+		this.engineID = engineID;
+	}
 	
 	public String getEngine() {
 		return engine;
