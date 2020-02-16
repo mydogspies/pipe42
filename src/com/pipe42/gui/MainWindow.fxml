@@ -30,15 +30,11 @@
         </menus>
       </MenuBar>
       <ToolBar fx:id="toolBar_top" prefHeight="40.0" prefWidth="733.0" />
-      <SplitPane fx:id="splitPane_center" dividerPositions="0.5170340681362725" minHeight="600.0" minWidth="800.0" prefHeight="720.0" prefWidth="1000.0">
+      <SplitPane fx:id="splitPane_center" minHeight="600.0" minWidth="800.0" prefHeight="720.0" prefWidth="1000.0">
         <items>
           <AnchorPane>
                <children>
-                  <Pane fx:id="splitPane_center_leftPane" layoutX="157.0" layoutY="129.0" prefHeight="708.0" prefWidth="513.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children></AnchorPane>
-          <AnchorPane>
-               <children>
-                  <Pane fx:id="splitPane_center_rightPane" layoutX="140.0" layoutY="117.0" prefHeight="708.0" prefWidth="479.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="centerContent" layoutX="157.0" layoutY="129.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

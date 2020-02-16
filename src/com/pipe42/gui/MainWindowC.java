@@ -3,6 +3,7 @@ package com.pipe42.gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -16,9 +17,7 @@ public class MainWindowC {
 	
 	/* Our two dynamic content areas */
 	@FXML
-	private Pane splitPane_center_leftPane;
-	@FXML
-	private Pane splitPane_center_rightPane;
+	private Pane centerContent;
 	
 	@FXML
 	void initialize() {
@@ -41,7 +40,7 @@ public class MainWindowC {
 		switch (menu_id) {
 		
 		case "vbox_top_menuBar_file_newProject":
-			addContentProjectNew();
+			addContentProject();
 			break;
 			
 		case "vbox_top_menuBar_file_exit":
@@ -88,20 +87,20 @@ public class MainWindowC {
 	
 	/* METHODS */
 	
-	private void addContentProjectNew() {
+	
+	/**
+	 * Adds the project menu accordion to the UI
+	 */
+	private void addContentProject() {
 		
-		this.splitPane_center_leftPane.getChildren().clear();
-		this.splitPane_center_rightPane.getChildren().clear();
+		this.centerContent.getChildren().clear();
 		
 		try {
-			// add the right hand pane with the forms
-			Pane p1 = FXMLLoader.load(getClass().getResource("ProjectNew.fxml"));
-			splitPane_center_leftPane.getChildren().add(p1);
-			// then add the left hand info pane
-			Pane p2 = FXMLLoader.load(getClass().getResource("InfoText.fxml"));
-			splitPane_center_rightPane.getChildren().add(p2);
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("Project.fxml"));
+			centerContent.getChildren().add(p1);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load fxml files; ProjectNew or InfoText");
+			ConsoleOut.printCons("Not able to load fxml files; Project");
 			e.printStackTrace();
 		}
 	}
