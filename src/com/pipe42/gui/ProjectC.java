@@ -1,8 +1,7 @@
 package com.pipe42.gui;
 
-import java.net.URL;
-
 import com.pipe42.console.ConsoleOut;
+import com.pipe42.utils.Utils;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
@@ -25,46 +24,42 @@ public class ProjectC {
 		engine = htmlContent.getEngine();
     }
 
+	
 	/* EVENT HANDLERS */
 	
+	/**
+	 * Events from accordion menu in "New Project"
+	 * @param event incoming event from mouse click on top nav menu
+	 */
 	@FXML 
-	public void titledPaneExpand(MouseEvent event) {
+	public void expandNewProject(MouseEvent event) {
+		
+		// get some utils
+		Utils ut = new Utils();
 		
 		TitledPane t = (TitledPane) event.getSource();
 		String url;
 		
 		switch(t.getId()) {
 		case "titledPane_project":
-			url = getLocalURL("/com/pipe42/gui/html/project_project.html");
+			url = ut.getLocalURL("/com/pipe42/gui/html/project_project.html");
 			engine.load(url);
 			break;
 		case "titledPane_owner":
-			url = getLocalURL("/com/pipe42/gui/html/project_owner.html");
+			url = ut.getLocalURL("/com/pipe42/gui/html/project_owner.html");
 			engine.load(url);
 			break;
 		case "titledPane_engine":
-			url = getLocalURL("/com/pipe42/gui/html/project_engine.html");
+			url = ut.getLocalURL("/com/pipe42/gui/html/project_engine.html");
 			engine.load(url);
 			break;
 		case "titledPane_app":
-			url = getLocalURL("/com/pipe42/gui/html/project_app.html");
+			url = ut.getLocalURL("/com/pipe42/gui/html/project_app.html");
 			engine.load(url);
 			break;
 		default:
 			ConsoleOut.printCons("Error in the call method of ProjectC.titledPaneExpand");
 		}
-		
-	}
-	
-	/**
-	 * Translate local path into proper URL
-	 * @param path
-	 * @return formatted URL from local path
-	 */
-	private String getLocalURL(String path) {
-		
-		URL url = this.getClass().getResource(path);
-		return url.toString();
 		
 	}
 	

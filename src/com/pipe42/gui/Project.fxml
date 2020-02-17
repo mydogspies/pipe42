@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -15,14 +18,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-
 <SplitPane fx:id="projectContent" dividerPositions="0.5" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pipe42.gui.ProjectC">
    <items>
       <Pane fx:id="Project_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0">
          <children>
             <Accordion layoutX="-1.0" prefHeight="690.0" prefWidth="500.0">
               <panes>
-                  <TitledPane fx:id="titledPane_project" animated="false" onMouseClicked="#titledPaneExpand" text="Project details">
+                  <TitledPane fx:id="titledPane_project" animated="false" onMouseClicked="#expandNewProject" text="Project details">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
@@ -54,7 +56,7 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
-                <TitledPane fx:id="titledPane_owner" animated="false" onMouseClicked="#titledPaneExpand" text="Project owner">
+                <TitledPane fx:id="titledPane_owner" animated="false" onMouseClicked="#expandNewProject" text="Project owner">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
@@ -89,7 +91,7 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane fx:id="titledPane_engine" animated="false" onMouseClicked="#titledPaneExpand" text="Render engine setup">
+                <TitledPane fx:id="titledPane_engine" animated="false" onMouseClicked="#expandNewProject" text="Render engine setup">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
@@ -124,7 +126,7 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane fx:id="titledPane_app" animated="false" onMouseClicked="#titledPaneExpand" text="Application setup">
+                <TitledPane fx:id="titledPane_app" animated="false" onMouseClicked="#expandNewProject" text="Application setup">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
@@ -163,9 +165,21 @@
             </Accordion>
          </children>
       </Pane>
-      <Pane fx:id="Info_pane" prefHeight="200.0" prefWidth="200.0">
+      <Pane fx:id="Info_pane" prefHeight="634.0" prefWidth="492.0">
          <children>
-            <WebView fx:id="htmlContent" prefHeight="700.0" prefWidth="492.0" />
+            <VBox>
+               <children>
+                  <WebView fx:id="htmlContent" prefHeight="665.0" prefWidth="492.0" />
+                  <ButtonBar prefHeight="32.0" prefWidth="492.0">
+                    <buttons>
+                      <Button fx:id="newProjectSave" mnemonicParsing="false" text="Save New Project" />
+                    </buttons>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+            </VBox>
          </children>
       </Pane>
    </items>
