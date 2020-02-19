@@ -6,7 +6,7 @@ import com.pipe42.gui.MainWindow;
 /**
  * Default startup method for PIPE42
  * @author Mydogspies
- * @version
+ * @version 0.1pre
  *
  */
 public class Main {

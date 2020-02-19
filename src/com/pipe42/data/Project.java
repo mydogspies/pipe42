@@ -15,12 +15,10 @@ public final class Project {
 	private Application application;
 	private String creationTime;
 	private String modifyTime;
-	private String notes;
+	private String projectNotes;
 	
 	
 	/* CONSTRUCTORS */
-	
-	public Project() {}
 	
 	public Project(String id, String projectName, String projectPrefix,
 				Owner owner, Renderengine engine, Application application,
@@ -34,7 +32,7 @@ public final class Project {
 		this.application = application;
 		this.creationTime = creationTime;
 		this.modifyTime = modifyTime;
-		this.notes = projectnotes;
+		this.projectNotes = projectnotes;
 	}
 
 	/* GETTERS AND SETTERS */
@@ -104,11 +102,11 @@ public final class Project {
 	}
 
 	public String getProjectNotes() {
-		return notes;
+		return projectNotes;
 	}
 
 	public void setProjectNotes(String projectNotes) {
-		this.notes = projectNotes;
+		this.projectNotes = projectNotes;
 	}
 
 }

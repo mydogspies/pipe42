@@ -10,21 +10,19 @@ public final class Application {
 	private String appID;
 	private String appName;
 	private String appVersion;
-	private String pathToExecutable;
-	private String execParams;
-	private String notes;
+	private String appPathToExecutable;
+	private String appExecParams;
+	private String appNotes;
 	
 	/* CONSTRUCTORS */
-	
-	public Application() {}
 
-	public Application(String id, String appName, String appVersion, String pathToExecutable, String execParams, String notes) {
+	public Application(String id, String appName, String appVersion, String appPathToExecutable, String appExecParams, String notes) {
 		this.appID = id;
 		this.appName = appName;
 		this.appVersion = appVersion;
-		this.pathToExecutable = pathToExecutable;
-		this.execParams = execParams;
-		this.notes = notes;
+		this.appPathToExecutable = appPathToExecutable;
+		this.appExecParams = appExecParams;
+		this.appNotes = notes;
 	}
 
 	/* GETTERS AND SETTERS */
@@ -53,28 +51,28 @@ public final class Application {
 		this.appVersion = appVersion;
 	}
 
-	public String getPathToExecutable() {
-		return pathToExecutable;
+	public String getAppPathToExecutable() {
+		return appPathToExecutable;
 	}
 
-	public void setPathToExecutable(String pathToExecutable) {
-		this.pathToExecutable = pathToExecutable;
+	public void setAppPathToExecutable(String appPathToExecutable) {
+		this.appPathToExecutable = appPathToExecutable;
 	}
 
-	public String getExecParams() {
-		return execParams;
+	public String getAppExecParams() {
+		return appExecParams;
 	}
 
-	public void setExecParams(String execParams) {
-		this.execParams = execParams;
+	public void setAppExecParams(String appExecParams) {
+		this.appExecParams = appExecParams;
 	}
 
-	public String getNotes() {
-		return notes;
+	public String getAppNotes() {
+		return appNotes;
 	}
 
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public void setAppNotes(String appNotes) {
+		this.appNotes = appNotes;
 	}
 
 }

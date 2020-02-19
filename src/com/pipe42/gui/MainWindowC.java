@@ -3,6 +3,7 @@ package com.pipe42.gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -16,10 +17,11 @@ public class MainWindowC {
 	
 	/* Our two dynamic content areas */
 	@FXML
-	private Pane splitPane_center_leftPane;
-	@FXML
-	private Pane splitPane_center_rightPane;
-	
+	private Pane centerContent;
+
+
+	/* INIT */
+
 	@FXML
 	void initialize() {
 		
@@ -29,7 +31,7 @@ public class MainWindowC {
 	/* CALL HANDLERS */
 	
 	/**
-	 * Handles all the calls from "Projects" in vbox_top_menuBar
+	 * Handles all the calls from "Projects" top menu
 	 * @param event call from menu item
 	 */
 	@FXML 
@@ -40,11 +42,11 @@ public class MainWindowC {
 		
 		switch (menu_id) {
 		
-		case "vbox_top_menuBar_file_newProject":
-			addContentProjectNew();
+		case "projects_newProject":
+			addContentNewProject();
 			break;
 			
-		case "vbox_top_menuBar_file_exit":
+		case "projects_exit":
 			Platform.exit(); // TODO - WindowMainC - add confirmation dialog
 			break;
 		
@@ -52,7 +54,7 @@ public class MainWindowC {
 	}
 	
 	/**
-	 * Handles all the calls from "System" in vbox_top_menuBar
+	 * Handles all the calls from "System" top menu
 	 * @param event call from menu item
 	 */
 	@FXML 
@@ -62,14 +64,20 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
-		case "": // TODO - WindowMainC - populate System menu
-			break;
-		
+			case "system_addRenderengine": // TODO - WindowMainC - populate System menu
+				addContentAddEngine();
+				break;
+			case "system_addProjectOwner":
+				addContentAddProjectOwner();
+				break;
+			case "system_addSoftwareApp":
+				addContentAddSoftware();
+				break;
 		}
 	}
 	
 	/**
-	 * Handles all the calls from "Help" in vbox_top_menuBar
+	 * Handles all the calls from "Help" top menu
 	 * @param event call from menu item
 	 */
 	@FXML 
@@ -79,7 +87,8 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
-		case "": // TODO - WindowMainC - populate Help menu
+		case "help_about": // TODO - WindowMainC - populate Help menu
+			ConsoleOut.printCons("Help-About"); // TODO remove console output
 			break;
 		
 		}
@@ -88,22 +97,76 @@ public class MainWindowC {
 	
 	/* METHODS */
 	
-	private void addContentProjectNew() {
+	
+	/**
+	 * Adds the New Project UI under "Projects" menu
+	 */
+	private void addContentNewProject() {
 		
-		this.splitPane_center_leftPane.getChildren().clear();
-		this.splitPane_center_rightPane.getChildren().clear();
+		this.centerContent.getChildren().clear();
 		
 		try {
-			// add the right hand pane with the forms
-			Pane p1 = FXMLLoader.load(getClass().getResource("ProjectNew.fxml"));
-			splitPane_center_leftPane.getChildren().add(p1);
-			// then add the left hand info pane
-			Pane p2 = FXMLLoader.load(getClass().getResource("InfoText.fxml"));
-			splitPane_center_rightPane.getChildren().add(p2);
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/Project_newProject.fxml"));
+			centerContent.getChildren().add(p1);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load fxml files; ProjectNew or InfoText");
+			ConsoleOut.printCons("Not able to load Project_newProject.fxml");
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Adds the Add Renderengine UI under "Systems" menu
+	 */
+	private void addContentAddEngine() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addRenderengine.fxml"));
+			centerContent.getChildren().add(p1);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load system_addRenderengine.fxml");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Adds the Add Project Software UI under "System" menu
+	 */
+	private void addContentAddSoftware() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addProjectSoftware.fxml"));
+			centerContent.getChildren().add(p1);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load system_addProjectSoftware.fxml");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Adds the Add Project Owner UI under "System" menu
+	 */
+	private void addContentAddProjectOwner() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addProjectOwner.fxml"));
+			centerContent.getChildren().add(p1);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load system_addProjectOwner.fxml");
+			e.printStackTrace();
+		}
+
 	}
 	
 }

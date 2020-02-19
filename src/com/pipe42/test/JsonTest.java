@@ -7,6 +7,10 @@ import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Project;
 
 /**
+ * NOTE!!!! The path for the json file is for testing purposes defined
+ * in JsonData.java, at the top of the JsonData class. Pick the right
+ * path before testing!!! 
+ * 
  * Testing Jackson json functionality
  * @author Mydogspies
  *

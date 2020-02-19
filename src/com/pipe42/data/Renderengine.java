@@ -9,22 +9,20 @@ public final class Renderengine {
 	
 	private String engineID;
 	private String engine;
-	private String pathToExecutable;
-	private String execParams;
+	private String enginePathToExecutable;
+	private String engineExecParams;
 	private String engineVersion;
-	private String notes;
+	private String ownerNotes;
 	
 	/* CONSTRUCTORS */
 	
-	public Renderengine() {}
-	
-	public Renderengine(String id, String engine, String pathToExecutable, String execParams, String engineVersion, String notes) {
+	public Renderengine(String id, String engine, String enginePathToExecutable, String engineExecParams, String engineVersion, String ownerNotes) {
 		this.engineID = id;
 		this.engine = engine;
-		this.pathToExecutable = pathToExecutable;
-		this.execParams = execParams;
+		this.enginePathToExecutable = enginePathToExecutable;
+		this.engineExecParams = engineExecParams;
 		this.engineVersion = engineVersion;
-		this.notes = notes;
+		this.ownerNotes = ownerNotes;
 	}
 
 	/* GETTERS AND SETTERS */
@@ -45,20 +43,20 @@ public final class Renderengine {
 		this.engine = engine;
 	}
 
-	public String getPathToExecutable() {
-		return pathToExecutable;
+	public String getEnginePathToExecutable() {
+		return enginePathToExecutable;
 	}
 
-	public void setPathToExecutable(String pathToExecutable) {
-		this.pathToExecutable = pathToExecutable;
+	public void setEnginePathToExecutable(String enginePathToExecutable) {
+		this.enginePathToExecutable = enginePathToExecutable;
 	}
 
-	public String getExecParams() {
-		return execParams;
+	public String getEngineExecParams() {
+		return engineExecParams;
 	}
 
-	public void setExecParams(String execParams) {
-		this.execParams = execParams;
+	public void setEngineExecParams(String engineExecParams) {
+		this.engineExecParams = engineExecParams;
 	}
 
 	public String getEngineVersion() {
@@ -69,12 +67,12 @@ public final class Renderengine {
 		this.engineVersion = engineVersion;
 	}
 
-	public String getNotes() {
-		return notes;
+	public String getOwnerNotes() {
+		return ownerNotes;
 	}
 
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public void setOwnerNotes(String ownerNotes) {
+		this.ownerNotes = ownerNotes;
 	}
 
 }
