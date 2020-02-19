@@ -71,7 +71,7 @@ public class MainWindowC {
 				ConsoleOut.printCons("System-Add project owner"); // TODO remove console output
 				break;
 			case "system_addSoftwareApp":
-				ConsoleOut.printCons("System-Add software application"); // TODO remove console output
+				addContentAddSoftware();
 				break;
 		}
 	}
@@ -99,7 +99,7 @@ public class MainWindowC {
 	
 	
 	/**
-	 * Adds the New Project UI
+	 * Adds the New Project UI under "Projects" menu
 	 */
 	private void addContentNewProject() {
 		
@@ -107,24 +107,45 @@ public class MainWindowC {
 		
 		try {
 			// add the project menu content
-			SplitPane p1 = FXMLLoader.load(getClass().getResource("Project.fxml"));
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/Project_newProject.fxml"));
 			centerContent.getChildren().add(p1);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load Project.fxml");
+			ConsoleOut.printCons("Not able to load Project_newProject.fxml");
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Adds the Add Renderengine UI under "Systems" menu
+	 */
 	private void addContentAddEngine() {
 
 		this.centerContent.getChildren().clear();
 
 		try {
 			// add the project menu content
-			SplitPane p1 = FXMLLoader.load(getClass().getResource("system_addRenderengine.fxml"));
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addRenderengine.fxml"));
 			centerContent.getChildren().add(p1);
 		} catch (IOException e) {
 			ConsoleOut.printCons("Not able to load system_addRenderengine.fxml");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Adds the Add Project Software UI under "System" menu
+	 */
+	private void addContentAddSoftware() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addProjectSoftware.fxml"));
+			centerContent.getChildren().add(p1);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load system_addProjectSoftware.fxml");
 			e.printStackTrace();
 		}
 

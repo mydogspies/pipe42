@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-public class ProjectC {
+public class Project_newProjectC {
 
 	@FXML
 	private TextField projectName;
