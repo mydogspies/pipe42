@@ -43,7 +43,7 @@ public class MainWindowC {
 		switch (menu_id) {
 		
 		case "projects_newProject":
-			addContentProject();
+			addContentNewProject();
 			break;
 			
 		case "projects_exit":
@@ -65,7 +65,7 @@ public class MainWindowC {
 		
 		switch (menu_id) {
 			case "system_addRenderengine": // TODO - WindowMainC - populate System menu
-				ConsoleOut.printCons("System-Add renderengine"); // TODO remove console output
+				addContentAddEngine();
 				break;
 			case "system_addProjectOwner":
 				ConsoleOut.printCons("System-Add project owner"); // TODO remove console output
@@ -101,7 +101,7 @@ public class MainWindowC {
 	/**
 	 * Adds the New Project UI
 	 */
-	private void addContentProject() {
+	private void addContentNewProject() {
 		
 		this.centerContent.getChildren().clear();
 		
@@ -110,9 +110,24 @@ public class MainWindowC {
 			SplitPane p1 = FXMLLoader.load(getClass().getResource("Project.fxml"));
 			centerContent.getChildren().add(p1);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load fxml files; Project");
+			ConsoleOut.printCons("Not able to load Project.fxml");
 			e.printStackTrace();
 		}
+	}
+
+	private void addContentAddEngine() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("system_addRenderengine.fxml"));
+			centerContent.getChildren().add(p1);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load system_addRenderengine.fxml");
+			e.printStackTrace();
+		}
+
 	}
 	
 }
