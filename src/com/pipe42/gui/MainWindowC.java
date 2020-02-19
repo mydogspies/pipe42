@@ -68,7 +68,7 @@ public class MainWindowC {
 				addContentAddEngine();
 				break;
 			case "system_addProjectOwner":
-				ConsoleOut.printCons("System-Add project owner"); // TODO remove console output
+				addContentAddProjectOwner();
 				break;
 			case "system_addSoftwareApp":
 				addContentAddSoftware();
@@ -146,6 +146,24 @@ public class MainWindowC {
 			centerContent.getChildren().add(p1);
 		} catch (IOException e) {
 			ConsoleOut.printCons("Not able to load system_addProjectSoftware.fxml");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Adds the Add Project Owner UI under "System" menu
+	 */
+	private void addContentAddProjectOwner() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addProjectOwner.fxml"));
+			centerContent.getChildren().add(p1);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load system_addProjectOwner.fxml");
 			e.printStackTrace();
 		}
 
