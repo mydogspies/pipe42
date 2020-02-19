@@ -1,8 +1,8 @@
-package com.pipe42.utils;
+package com.pipe42.util;
 
 import java.net.URL;
 
-public class Utils {
+public class Util {
 	
 	/**
 	 * Sanitize those paths

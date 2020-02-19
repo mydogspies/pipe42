@@ -1,22 +1,96 @@
 package com.pipe42.gui;
 
 import com.pipe42.console.ConsoleOut;
-import com.pipe42.utils.Utils;
+import com.pipe42.util.Util;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 public class ProjectC {
-	
+
+	@FXML
+	private TextField projectName;
+
+	@FXML
+	private TextField projectPrefix;
+
+	@FXML
+	private CheckBox preloadFiles;
+
+	@FXML
+	private TextArea projectNotes;
+
+	@FXML
+	private TitledPane titledPane_owner;
+
+	@FXML
+	private TextField ownerName;
+
+	@FXML
+	private TextField ownerCompany;
+
+	@FXML
+	private TextField ownerDepartment;
+
+	@FXML
+	private TextField projectManager;
+
+	@FXML
+	private TextArea ownerNotes;
+
+	@FXML
+	private TextField engineName;
+
+	@FXML
+	private TextField engineVersion;
+
+	@FXML
+	private TextField engineExecParams;
+
+	@FXML
+	private TextField enginePathToExecutable;
+
+	@FXML
+	private TextArea engineNotes;
+
+	@FXML
+	private TitledPane titledPane_app;
+
+	@FXML
+	private TextField appName;
+
+	@FXML
+	private TextField appVersion;
+
+	@FXML
+	private TextField appExecParams;
+
+	@FXML
+	private TextField appPathToExecutable;
+
+	@FXML
+	private TextArea appNotes;
+
 	@FXML
 	private TitledPane titledPane_project;
 	
 	@FXML
-	private WebView htmlContent;
+	private Button newProjectSave;
 	
+	@FXML
+	private WebView htmlContent;
+
+
+	/* INIT */
+
 	private WebEngine engine;
 	
 	@FXML
@@ -35,7 +109,7 @@ public class ProjectC {
 	public void expandNewProject(MouseEvent event) {
 		
 		// get some utils
-		Utils ut = new Utils();
+		Util ut = new Util();
 		
 		TitledPane t = (TitledPane) event.getSource();
 		String url;
@@ -60,6 +134,13 @@ public class ProjectC {
 		default:
 			ConsoleOut.printCons("Error in the call method of ProjectC.titledPaneExpand");
 		}
+		
+	}
+	
+	@FXML
+	public void savedButtonPressed(ActionEvent event) {
+
+		System.out.println(this.projectName.getText());
 		
 	}
 	

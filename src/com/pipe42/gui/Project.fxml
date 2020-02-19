@@ -43,13 +43,13 @@
                                       </rowConstraints>
                                        <children>
                                           <Label prefHeight="17.0" prefWidth="146.0" text="Project name" />
-                                          <TextField fx:id="newProject_projectNameField" GridPane.columnIndex="1" />
+                                          <TextField fx:id="projectName" GridPane.columnIndex="1" />
                                           <Label text="Project prefix" GridPane.rowIndex="1" />
-                                          <TextField fx:id="newProject_projectPrefix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="195.0" text="Preload default files?" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="projectPrefix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <CheckBox fx:id="preloadFiles" mnemonicParsing="false" prefHeight="17.0" prefWidth="195.0" text="Preload default files?" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
-                                    <TextArea fx:id="newProject_notesField" prefHeight="373.0" prefWidth="379.0" promptText="Add project notes here" text="Add project notes here..." wrapText="true" />
+                                    <TextArea fx:id="projectNotes" prefHeight="373.0" prefWidth="379.0" promptText="Add project notes here" text="Add project notes here..." wrapText="true" />
                                  </children>
                               </VBox>
                            </children>
@@ -74,17 +74,17 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField prefHeight="25.0" prefWidth="311.0" GridPane.columnIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="ownerName" prefHeight="25.0" prefWidth="311.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="ownerCompany" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="ownerDepartment" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="projectManager" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Label text="Name" />
                                           <Label text="Company" GridPane.rowIndex="1" />
                                           <Label text="Department" GridPane.rowIndex="2" />
                                           <Label text="Project Manager" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <TextArea prefHeight="286.0" prefWidth="500.0" promptText="Comments" />
+                                    <TextArea fx:id="ownerNotes" prefHeight="286.0" prefWidth="500.0" promptText="Comments" />
                                  </children>
                               </VBox>
                            </children>
@@ -109,17 +109,17 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField GridPane.columnIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="engineName" GridPane.columnIndex="1" />
+                                          <TextField fx:id="engineVersion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="engineExecParams" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="enginePathToExecutable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Label text="Render engine" />
                                           <Label text="Engine Version" GridPane.rowIndex="1" />
                                           <Label text="Executable parameters" GridPane.rowIndex="2" />
                                           <Label text="Path to executable" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <TextArea prefHeight="316.0" prefWidth="468.0" promptText="Notes" />
+                                    <TextArea fx:id="engineNotes" prefHeight="316.0" prefWidth="468.0" promptText="Notes" />
                                  </children>
                               </VBox>
                            </children>
@@ -144,17 +144,17 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField GridPane.columnIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="appName" GridPane.columnIndex="1" />
+                                          <TextField fx:id="appVersion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="appExecParams" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="appPathToExecutable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Label text="Main project software" />
                                           <Label text="Software version" GridPane.rowIndex="1" />
                                           <Label text="Executable parameters" GridPane.rowIndex="2" />
                                           <Label text="Path to executable" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <TextArea prefHeight="307.0" prefWidth="472.0" promptText="Notes" />
+                                    <TextArea fx:id="appNotes" prefHeight="307.0" prefWidth="472.0" promptText="Notes" />
                                  </children>
                               </VBox>
                            </children>
@@ -172,7 +172,7 @@
                   <WebView fx:id="htmlContent" prefHeight="665.0" prefWidth="492.0" />
                   <ButtonBar prefHeight="32.0" prefWidth="492.0">
                     <buttons>
-                      <Button fx:id="newProjectSave" mnemonicParsing="false" text="Save New Project" />
+                      <Button fx:id="newProjectSave" mnemonicParsing="false" onAction="#savedButtonPressed" text="Save New Project" />
                     </buttons>
                      <padding>
                         <Insets right="10.0" />

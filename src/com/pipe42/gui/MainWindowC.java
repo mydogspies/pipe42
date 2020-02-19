@@ -18,7 +18,10 @@ public class MainWindowC {
 	/* Our two dynamic content areas */
 	@FXML
 	private Pane centerContent;
-	
+
+
+	/* INIT */
+
 	@FXML
 	void initialize() {
 		
@@ -28,7 +31,7 @@ public class MainWindowC {
 	/* CALL HANDLERS */
 	
 	/**
-	 * Handles all the calls from "Projects" in vbox_top_menuBar
+	 * Handles all the calls from "Projects" top menu
 	 * @param event call from menu item
 	 */
 	@FXML 
@@ -39,11 +42,11 @@ public class MainWindowC {
 		
 		switch (menu_id) {
 		
-		case "vbox_top_menuBar_file_newProject":
+		case "projects_newProject":
 			addContentProject();
 			break;
 			
-		case "vbox_top_menuBar_file_exit":
+		case "projects_exit":
 			Platform.exit(); // TODO - WindowMainC - add confirmation dialog
 			break;
 		
@@ -51,7 +54,7 @@ public class MainWindowC {
 	}
 	
 	/**
-	 * Handles all the calls from "System" in vbox_top_menuBar
+	 * Handles all the calls from "System" top menu
 	 * @param event call from menu item
 	 */
 	@FXML 
@@ -61,14 +64,20 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
-		case "": // TODO - WindowMainC - populate System menu
-			break;
-		
+			case "system_addRenderengine": // TODO - WindowMainC - populate System menu
+				ConsoleOut.printCons("System-Add renderengine"); // TODO remove console output
+				break;
+			case "system_addProjectOwner":
+				ConsoleOut.printCons("System-Add project owner"); // TODO remove console output
+				break;
+			case "system_addSoftwareApp":
+				ConsoleOut.printCons("System-Add software application"); // TODO remove console output
+				break;
 		}
 	}
 	
 	/**
-	 * Handles all the calls from "Help" in vbox_top_menuBar
+	 * Handles all the calls from "Help" top menu
 	 * @param event call from menu item
 	 */
 	@FXML 
@@ -78,7 +87,8 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
-		case "": // TODO - WindowMainC - populate Help menu
+		case "help_about": // TODO - WindowMainC - populate Help menu
+			ConsoleOut.printCons("Help-About"); // TODO remove console output
 			break;
 		
 		}
@@ -89,7 +99,7 @@ public class MainWindowC {
 	
 	
 	/**
-	 * Adds the project menu accordion to the UI
+	 * Adds the New Project UI
 	 */
 	private void addContentProject() {
 		

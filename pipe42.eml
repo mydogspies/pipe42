@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="jackson-annotations-2.10.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/libs/jackson-annotations-2.10.2.jar!/"/>
+	</lib>
+	<lib name="jackson-core-2.10.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/libs/jackson-core-2.10.2.jar!/"/>
+	</lib>
+	<lib name="jackson-databind-2.10.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/libs/jackson-databind-2.10.2.jar!/"/>
+	</lib>
+	<lib name="jython-standalone-2.7.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/libs/jython-standalone-2.7.1.jar!/"/>
+	</lib>
+</component>

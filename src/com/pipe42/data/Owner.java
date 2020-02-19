@@ -8,23 +8,21 @@ package com.pipe42.data;
 public final class Owner {
 	
 	private String ownerID;
-	private String name;
-	private String company;
-	private String department;
+	private String ownerName;
+	private String ownerCompany;
+	private String ownerDepartment;
 	private String projectManager;
-	private String notes;
+	private String ownerNotes;
 
 	/* CONSTRUCTORS */
 	
-	public Owner() {}
-	
-	public Owner(String id, String name, String company, String department, String projectManager, String notes) {
+	public Owner(String id, String ownerName, String ownerCompany, String ownerDepartment, String projectManager, String ownerNotes) {
 		this.ownerID = id;
-		this.name = name;
-		this.company = company;
-		this.department = department;
+		this.ownerName = ownerName;
+		this.ownerCompany = ownerCompany;
+		this.ownerDepartment = ownerDepartment;
 		this.projectManager = projectManager;
-		this.notes = notes;
+		this.ownerNotes = ownerNotes;
 	}
 
 	/* GETTERS AND SETTERS */
@@ -37,28 +35,28 @@ public final class Owner {
 		this.ownerID = ownerId;
 	}
 	
-	public String getName() {
-		return name;
+	public String getOwnerName() {
+		return ownerName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 
-	public String getCompany() {
-		return company;
+	public String getOwnerCompany() {
+		return ownerCompany;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setOwnerCompany(String ownerCompany) {
+		this.ownerCompany = ownerCompany;
 	}
 
-	public String getDepartment() {
-		return department;
+	public String getOwnerDepartment() {
+		return ownerDepartment;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setOwnerDepartment(String ownerDepartment) {
+		this.ownerDepartment = ownerDepartment;
 	}
 
 	public String getProjectManager() {
@@ -69,12 +67,12 @@ public final class Owner {
 		this.projectManager = projectManager;
 	}
 
-	public String getNotes() {
-		return notes;
+	public String getOwnerNotes() {
+		return ownerNotes;
 	}
 
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public void setOwnerNotes(String ownerNotes) {
+		this.ownerNotes = ownerNotes;
 	}
 
 }
