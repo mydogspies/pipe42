@@ -1,6 +1,7 @@
 package com.pipe42.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of mongoDB Java driver
@@ -22,16 +23,10 @@ public class MongoDataIO implements DataIO {
 	}
 
 	@Override
-	public ArrayList<Project> getAllProjects() {
-		// TODO - MongoData - add listAllEntries
+	public ArrayList<Object> getAllProjects() {
 		return null;
 	}
 
-	@Override
-	public void writeAllProjects(Data data) {
-		// TODO - MongoData - add updateEntry
-		
-	}
 
 	@Override
 	public void writeSingleProject(Project project) {
@@ -43,6 +38,11 @@ public class MongoDataIO implements DataIO {
 	public void deleteProject(String id) {
 		// TODO - MongoData - add deleteEntry
 		
+	}
+
+	@Override
+	public void writeApplication(Application appdata) {
+		// TODO add writeApplication
 	}
 
 }

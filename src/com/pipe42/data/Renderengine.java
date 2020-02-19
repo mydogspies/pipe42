@@ -28,50 +28,62 @@ public final class Renderengine {
 	/* GETTERS AND SETTERS */
 	
 	public String getEngineID() {
+
 		return engineID;
 	}
 
 	public void setEngineID(String engineID) {
+
 		this.engineID = engineID;
 	}
 	
 	public String getEngine() {
+
 		return engine;
 	}
 
 	public void setEngine(String engine) {
+
 		this.engine = engine;
 	}
 
 	public String getEnginePathToExecutable() {
+
 		return enginePathToExecutable;
 	}
 
 	public void setEnginePathToExecutable(String enginePathToExecutable) {
+
 		this.enginePathToExecutable = enginePathToExecutable;
 	}
 
 	public String getEngineExecParams() {
+
 		return engineExecParams;
 	}
 
 	public void setEngineExecParams(String engineExecParams) {
+
 		this.engineExecParams = engineExecParams;
 	}
 
 	public String getEngineVersion() {
+
 		return engineVersion;
 	}
 
 	public void setEngineVersion(String engineVersion) {
+
 		this.engineVersion = engineVersion;
 	}
 
 	public String getOwnerNotes() {
+
 		return ownerNotes;
 	}
 
 	public void setOwnerNotes(String ownerNotes) {
+
 		this.ownerNotes = ownerNotes;
 	}
 

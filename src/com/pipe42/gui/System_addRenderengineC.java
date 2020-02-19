@@ -1,5 +1,6 @@
 package com.pipe42.gui;
 
+import com.pipe42.data.Renderengine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,8 +47,8 @@ public class System_addRenderengineC {
     @FXML
     public void savedButtonPressed(ActionEvent event) {
 
-        // TODO add action on pressing the save button
-        System.out.println(this.engineName.getText());
+        Renderengine engine = new Renderengine("1", engineName.getText(), enginePathToExecutable.getText(),
+                engineExecParams.getText(), engineVersion.getText(), engineNotes.getText());
 
     }
 

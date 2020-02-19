@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,14 +19,10 @@ import com.pipe42.console.ConsoleOut;
  */
 public class JsonDataIO implements DataIO {
 	
-	// LOCAL workshop path
-	private static String rawPath = "C:/Users/Student/Desktop/pipe42/src/data/test.json"; // TODO - JsonData - Path should come from preferences
-	// TODO - JsonDataIO - remove when workshop over!!
-	
 	// NOTE: OS specific path but we will run it through a Path method for sanity
-	// private static String rawPath = "M:/30_CODING/01_MIXENV/pipe42/src/data/test.json"; // TODO - JsonData - Path should come from preferences
-	
-	
+	// TODO - JsonData - Path should come from preferences and notes must be updated
+	private static String rawPath = "M:/30_CODING/01_MIXENV/pipe42/src/data/data.json";
+
 	// our Jackson json mapper
 	ObjectMapper mapper = new ObjectMapper();
 	
@@ -40,57 +39,8 @@ public class JsonDataIO implements DataIO {
 	}
 
 	@Override
-	public ArrayList<Project> getAllProjects() {
-		
-		Data content = null;
-		ArrayList<Project> listProjects = null;
-		
-		try {
-			content = mapper.readValue(getFileJson(), Data.class);
-			listProjects = (ArrayList<Project>) content.getAllProjects();
-			ConsoleOut.printCons("JsonData.setEntry read from the Json");
-		} catch (JsonParseException e) {
-			ConsoleOut.printCons("Json parser failed");
-			// TODO - JsonData - add logging
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			ConsoleOut.printCons("Json mapper failed");
-			// TODO - JsonData - add logging
-			e.printStackTrace();
-		} catch (IOException e) {
-			ConsoleOut.printCons("Writing to json file failed");
-			// TODO - JsonData - add logging
-			e.printStackTrace();
-		}
-		
-		return listProjects;
-	}
-
-	/**
-	 * 
-	 * Overwrites the json file with a Data POJO
-	 * @author Mydogspies
-	 */
-	@Override
-	public void writeAllProjects(Data data) {
-		
-			try {
-				mapper.writeValue(getFileJson(), data);
-				ConsoleOut.printCons("JsonData.setEntry write the Json");
-			} catch (JsonParseException e) {
-				ConsoleOut.printCons("Json parser failed");
-				// TODO - JsonData - add logging
-				e.printStackTrace();
-			} catch (JsonMappingException e) {
-				ConsoleOut.printCons("Json mapper failed");
-				// TODO - JsonData - add logging
-				e.printStackTrace();
-			} catch (IOException e) {
-				ConsoleOut.printCons("Writing to json file failed");
-				// TODO - JsonData - add logging
-				e.printStackTrace();
-			}
-		
+	public ArrayList<Object> getAllProjects() {
+		return null;
 	}
 
 	@Override
@@ -104,12 +54,82 @@ public class JsonDataIO implements DataIO {
 		// TODO - JsonData - add deleteEntry
 		
 	}
-	
+
+	/**
+	 * Appends an entry of type Application into the data.json file
+	 * @param appData list of entries of type Application
+	 */
+	@Override
+	public void writeApplication(Application appData) {
+
+		System.out.println(appData);
+
+		// get current database from json.data
+		Data database = getJsonData();
+		System.out.println(database);
+
+		List<Object> datalist = new ArrayList<>();
+		datalist.add(appData);
+
+		Data container = new Data(datalist);
+
+
+
+
+		// and write the new Data object to json.data
+		try {
+			mapper.writeValue(getFileJson(), container);
+			ConsoleOut.printCons("JsonData.setEntry write the Json");
+		} catch (JsonParseException e) {
+			ConsoleOut.printCons("Json parser failed");
+			// TODO - JsonData - add logging
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			ConsoleOut.printCons("Json mapper failed");
+			// TODO - JsonData - add logging
+			e.printStackTrace();
+		} catch (IOException e) {
+			ConsoleOut.printCons("Writing to json file failed");
+			// TODO - JsonData - add logging
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Reads the json.data file and returns a Data object with the entire object
+	 * @return an object of type Data
+	 */
+	private Data getJsonData() {
+
+		Data content = null;
+
+		try {
+			content = mapper.readValue(getFileJson(), Data.class);
+			ConsoleOut.printCons("JsonData.setEntry read from the Json");
+		} catch (JsonParseException e) {
+			ConsoleOut.printCons("Json parser failed");
+			// TODO - JsonData - add logging
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			ConsoleOut.printCons("Json mapper failed");
+			// TODO - JsonData - add logging
+			e.printStackTrace();
+		} catch (IOException e) {
+			ConsoleOut.printCons("Reading from json file failed");
+			// TODO - JsonData - add logging
+			e.printStackTrace();
+		}
+
+		return content;
+	}
+
+	// TODO should live in com.pipe42.util
 	/**
 	 * Get file object using a non-system specific path
 	 * @return returns a file object
 	 */
 	private File getFileJson() {
+
 		return Paths.get(JsonDataIO.rawPath).toFile();
 	}
 	

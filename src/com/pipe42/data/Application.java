@@ -28,50 +28,62 @@ public final class Application {
 	/* GETTERS AND SETTERS */
 	
 	public String getAppID() {
+
 		return appID;
 	}
 
 	public void setAppID(String appID) {
+
 		this.appID = appID;
 	}
 	
 	public String getAppName() {
+
 		return appName;
 	}
 
 	public void setAppName(String appName) {
+
 		this.appName = appName;
 	}
 
 	public String getAppVersion() {
+
 		return appVersion;
 	}
 
 	public void setAppVersion(String appVersion) {
+
 		this.appVersion = appVersion;
 	}
 
 	public String getAppPathToExecutable() {
+
 		return appPathToExecutable;
 	}
 
 	public void setAppPathToExecutable(String appPathToExecutable) {
+
 		this.appPathToExecutable = appPathToExecutable;
 	}
 
 	public String getAppExecParams() {
+
 		return appExecParams;
 	}
 
 	public void setAppExecParams(String appExecParams) {
+
 		this.appExecParams = appExecParams;
 	}
 
 	public String getAppNotes() {
+
 		return appNotes;
 	}
 
 	public void setAppNotes(String appNotes) {
+
 		this.appNotes = appNotes;
 	}
 
