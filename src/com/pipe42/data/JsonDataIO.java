@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -19,9 +18,9 @@ import com.pipe42.console.ConsoleOut;
  */
 public class JsonDataIO implements DataIO {
 	
-	// NOTE: OS specific path but we will run it through a Path method for sanity
+	// NOTE: path is relative from root, eg. src/....
 	// TODO - JsonData - Path should come from preferences and notes must be updated
-	private static String rawPath = "M:/30_CODING/01_MIXENV/pipe42/src/data/data.json";
+	private static String rawPath = "src/data/data.json";
 
 	// our Jackson json mapper
 	ObjectMapper mapper = new ObjectMapper();
@@ -62,19 +61,15 @@ public class JsonDataIO implements DataIO {
 	@Override
 	public void writeApplication(Application appData) {
 
-		System.out.println(appData);
-
 		// get current database from json.data
 		Data database = getJsonData();
-		System.out.println(database);
 
-		List<Object> datalist = new ArrayList<>();
-		datalist.add(appData);
+		// and then add it to current list of Application objects
+		List<Application> appList = database.getApplication();
+		appList.add(appData);
 
-		Data container = new Data(datalist);
-
-
-
+		// add all back together
+		Data container = new Data(database.getProject(), appList, database.getOwner());
 
 		// and write the new Data object to json.data
 		try {

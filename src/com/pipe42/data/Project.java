@@ -10,39 +10,39 @@ public final class Project {
 	private String projectID;
 	private String projectName;
 	private String projectPrefix;
-	private Owner owner;
-	private Renderengine engine;
-	private Application application;
+	private String ownerID;
+	private String engineID;
+	private String applicationID;
 	private String creationTime;
 	private String modifyTime;
 	private String projectNotes;
-	
-	
+
+
 	/* CONSTRUCTORS */
-	
+
+	public Project() {}
+
 	public Project(String id, String projectName, String projectPrefix,
-				Owner owner, Renderengine engine, Application application,
-				String creationTime, String modifyTime, String projectnotes) {
-		
+				   String ownerID, String engineID, String applicationID,
+				   String creationTime, String modifyTime, String projectnotes) {
+
 		this.projectID = id;
 		this.projectName = projectName;
 		this.projectPrefix = projectPrefix;
-		this.owner = owner;
-		this.engine = engine;
-		this.application = application;
+		this.ownerID = ownerID;
+		this.engineID = engineID;
+		this.applicationID = applicationID;
 		this.creationTime = creationTime;
 		this.modifyTime = modifyTime;
 		this.projectNotes = projectnotes;
 	}
 
-	/* GETTERS AND SETTERS */
-	
 	public String getProjectID() {
 		return projectID;
 	}
 
-	public void setProjectID(String projectId) {
-		this.projectID = projectId;
+	public void setProjectID(String projectID) {
+		this.projectID = projectID;
 	}
 
 	public String getProjectName() {
@@ -61,28 +61,28 @@ public final class Project {
 		this.projectPrefix = projectPrefix;
 	}
 
-	public Owner getOwner() {
-		return owner;
+	public String getOwnerID() {
+		return ownerID;
 	}
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
+	public void setOwnerID(String ownerID) {
+		this.ownerID = ownerID;
 	}
 
-	public Renderengine getEngine() {
-		return engine;
+	public String getEngineID() {
+		return engineID;
 	}
 
-	public void setEngine(Renderengine engine) {
-		this.engine = engine;
+	public void setEngineID(String engineID) {
+		this.engineID = engineID;
 	}
 
-	public Application getApplication() {
-		return application;
+	public String getApplicationID() {
+		return applicationID;
 	}
 
-	public void setApplication(Application application) {
-		this.application = application;
+	public void setApplicationID(String applicationID) {
+		this.applicationID = applicationID;
 	}
 
 	public String getCreationTime() {

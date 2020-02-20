@@ -16,6 +16,8 @@ public final class Application {
 	
 	/* CONSTRUCTORS */
 
+	public Application() {}
+
 	public Application(String id, String appName, String appVersion, String appPathToExecutable, String appExecParams, String notes) {
 		this.appID = id;
 		this.appName = appName;

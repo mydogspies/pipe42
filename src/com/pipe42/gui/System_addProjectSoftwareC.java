@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class System_addProjectSoftwareC {
@@ -57,7 +58,6 @@ public class System_addProjectSoftwareC {
 
         // send of to json handler
         io.writeApplication(app);
-
 
     }
 
