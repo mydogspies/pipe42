@@ -16,7 +16,9 @@ public interface DataIO {
 	ArrayList<Object> getAllProjects();
 
 	// Owner methods
-	ArrayList<Owner> getAllOwners();
+	List<Owner> getAllOwners();
+	List<Application> getAllApps();
+	List<Renderengine> getAllEngines();
 
 	// write methods
 	void writeProject(Project project);

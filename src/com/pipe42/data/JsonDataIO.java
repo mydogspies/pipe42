@@ -48,18 +48,36 @@ public class JsonDataIO implements DataIO {
 	}
 
 	/**
-	 *
-	 * @return
+	 * Get all Owner objects and return a List thereof
+	 * @return returns a List of type Owner
 	 */
 	@Override
-	public ArrayList<Owner> getAllOwners() {
+	public List<Owner> getAllOwners() {
 
 		Data database = getJsonData();
+		return database.getOwner();
+	}
 
-		List<Owner> ownerList = database.getOwner();
+	/**
+	 * Get all Application objects and return a List thereof
+	 * @return returns List of type Application
+	 */
+	@Override
+	public List<Application> getAllApps() {
 
+		Data database = getJsonData();
+		return database.getApplication();
+	}
 
-		return null;
+	/**
+	 * Get all Renderengine objects and return a List thereof
+	 * @return returns List of type Renderengine
+	 */
+	@Override
+	public List<Renderengine> getAllEngines() {
+
+		Data database = getJsonData();
+		return database.getEngine();
 	}
 
 	@Override

@@ -52,9 +52,8 @@ public class AddTestData {
 		plist.add(proj3);
 
 		// Add it all together in a Data POJO
-		Data data = new Data(plist, applist, ownerlist, enginelist);
 
-		return data;
+		return new Data(plist, applist, ownerlist, enginelist);
 	
 	}
 	
