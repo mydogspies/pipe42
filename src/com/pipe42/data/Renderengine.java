@@ -8,17 +8,20 @@ package com.pipe42.data;
 public final class Renderengine {
 	
 	private String engineID;
-	private String engine;
+	private String engineName;
 	private String enginePathToExecutable;
 	private String engineExecParams;
 	private String engineVersion;
 	private String ownerNotes;
-	
+
+
 	/* CONSTRUCTORS */
-	
-	public Renderengine(String id, String engine, String enginePathToExecutable, String engineExecParams, String engineVersion, String ownerNotes) {
+
+	public Renderengine() {}
+
+	public Renderengine(String id, String engineName, String enginePathToExecutable, String engineExecParams, String engineVersion, String ownerNotes) {
 		this.engineID = id;
-		this.engine = engine;
+		this.engineName = engineName;
 		this.enginePathToExecutable = enginePathToExecutable;
 		this.engineExecParams = engineExecParams;
 		this.engineVersion = engineVersion;
@@ -28,50 +31,62 @@ public final class Renderengine {
 	/* GETTERS AND SETTERS */
 	
 	public String getEngineID() {
+
 		return engineID;
 	}
 
 	public void setEngineID(String engineID) {
+
 		this.engineID = engineID;
 	}
 	
-	public String getEngine() {
-		return engine;
+	public String getEngineName() {
+
+		return engineName;
 	}
 
-	public void setEngine(String engine) {
-		this.engine = engine;
+	public void setEngineName(String engine) {
+
+		this.engineName = engine;
 	}
 
 	public String getEnginePathToExecutable() {
+
 		return enginePathToExecutable;
 	}
 
 	public void setEnginePathToExecutable(String enginePathToExecutable) {
+
 		this.enginePathToExecutable = enginePathToExecutable;
 	}
 
 	public String getEngineExecParams() {
+
 		return engineExecParams;
 	}
 
 	public void setEngineExecParams(String engineExecParams) {
+
 		this.engineExecParams = engineExecParams;
 	}
 
 	public String getEngineVersion() {
+
 		return engineVersion;
 	}
 
 	public void setEngineVersion(String engineVersion) {
+
 		this.engineVersion = engineVersion;
 	}
 
 	public String getOwnerNotes() {
+
 		return ownerNotes;
 	}
 
 	public void setOwnerNotes(String ownerNotes) {
+
 		this.ownerNotes = ownerNotes;
 	}
 

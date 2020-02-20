@@ -1,6 +1,7 @@
 package com.pipe42.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Interface for database integration
@@ -8,12 +9,27 @@ import java.util.ArrayList;
  *
  */
 public interface DataIO {
-	
+
+	// Project methods
 	Object getProjectByID(String id);
 	Object getProjectByName(String name);
-	ArrayList<Project> getAllProjects();
-	void writeAllProjects(Data data);
-	void writeSingleProject(Project project);
+	ArrayList<Object> getAllProjects();
+
+	// Owner methods
+	List<Owner> getAllOwners();
+	List<Application> getAllApps();
+	List<Renderengine> getAllEngines();
+
+	// write methods
+	void writeProject(Project project);
+	void writeApplication(Application appdata);
+	void writeOwner(Owner owner);
+	void writeRenderengine(Renderengine engine);
+
+	// delete methods
 	void deleteProject(String id);
+	void deleteApplication(String id);
+	void deleteQwner(String id);
+	void deleteRenderengine(String id);
 
 }

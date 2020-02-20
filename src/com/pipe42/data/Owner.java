@@ -15,7 +15,9 @@ public final class Owner {
 	private String ownerNotes;
 
 	/* CONSTRUCTORS */
-	
+
+	public Owner() {}
+
 	public Owner(String id, String ownerName, String ownerCompany, String ownerDepartment, String projectManager, String ownerNotes) {
 		this.ownerID = id;
 		this.ownerName = ownerName;

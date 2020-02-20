@@ -1,6 +1,7 @@
 package com.pipe42.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of mongoDB Java driver
@@ -22,27 +23,64 @@ public class MongoDataIO implements DataIO {
 	}
 
 	@Override
-	public ArrayList<Project> getAllProjects() {
-		// TODO - MongoData - add listAllEntries
+	public ArrayList<Object> getAllProjects() {
 		return null;
 	}
 
 	@Override
-	public void writeAllProjects(Data data) {
-		// TODO - MongoData - add updateEntry
-		
+	public ArrayList<Owner> getAllOwners() {
+		return null;
 	}
 
 	@Override
-	public void writeSingleProject(Project project) {
-		// TODO Auto-generated method stub
-		
+	public List<Application> getAllApps() {
+		return null;
 	}
-	
+
+	@Override
+	public List<Renderengine> getAllEngines() {
+		return null;
+	}
+
+	@Override
+	public void writeProject(Project project) {
+
+	}
+
 	@Override
 	public void deleteProject(String id) {
 		// TODO - MongoData - add deleteEntry
 		
+	}
+
+	@Override
+	public void deleteApplication(String id) {
+
+	}
+
+	@Override
+	public void deleteQwner(String id) {
+
+	}
+
+	@Override
+	public void deleteRenderengine(String id) {
+
+	}
+
+	@Override
+	public void writeApplication(Application appdata) {
+		// TODO add writeApplication
+	}
+
+	@Override
+	public void writeOwner(Owner owner) {
+
+	}
+
+	@Override
+	public void writeRenderengine(Renderengine engine) {
+
 	}
 
 }
