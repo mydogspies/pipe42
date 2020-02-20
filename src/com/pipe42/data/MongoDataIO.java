@@ -1,7 +1,6 @@
 package com.pipe42.data;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implementation of mongoDB Java driver
@@ -24,6 +23,11 @@ public class MongoDataIO implements DataIO {
 
 	@Override
 	public ArrayList<Object> getAllProjects() {
+		return null;
+	}
+
+	@Override
+	public ArrayList<Owner> getAllOwners() {
 		return null;
 	}
 

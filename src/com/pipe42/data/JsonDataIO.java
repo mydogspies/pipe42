@@ -47,6 +47,21 @@ public class JsonDataIO implements DataIO {
 		return null;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
+	@Override
+	public ArrayList<Owner> getAllOwners() {
+
+		Data database = getJsonData();
+
+		List<Owner> ownerList = database.getOwner();
+
+
+		return null;
+	}
+
 	@Override
 	public void deleteProject(String id) {
 		// TODO - JsonData - add deleteEntry

@@ -1,14 +1,18 @@
 package com.pipe42.gui;
 
+import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Renderengine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
 
+/**
+ * Controller for the System/Add Rendenengine UI
+ * System_addRenderengine.fxml
+ */
 public class System_addRenderengineC {
 
     @FXML
@@ -25,9 +29,6 @@ public class System_addRenderengineC {
 
     @FXML
     private TextArea engineNotes;
-
-    @FXML
-    private Pane Info_pane;
 
     @FXML
     private WebView htmlContent;
@@ -47,8 +48,12 @@ public class System_addRenderengineC {
     @FXML
     public void savedButtonPressed(ActionEvent event) {
 
-        Renderengine engine = new Renderengine("1", engineName.getText(), enginePathToExecutable.getText(),
+        Renderengine engine = new Renderengine("", engineName.getText(), enginePathToExecutable.getText(),
                 engineExecParams.getText(), engineVersion.getText(), engineNotes.getText());
+
+        JsonDataIO io = new JsonDataIO();
+
+        io.writeRenderengine(engine);
 
     }
 

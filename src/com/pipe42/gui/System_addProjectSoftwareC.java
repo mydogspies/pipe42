@@ -7,13 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+/**
+ * Controller for the System/Add Project Software UI
+ * System_addProjectSoftware.fxml
+ */
 public class System_addProjectSoftwareC {
 
     @FXML
@@ -32,9 +31,6 @@ public class System_addProjectSoftwareC {
     private TextArea appNotes;
 
     @FXML
-    private Pane Info_pane;
-
-    @FXML
     private WebView htmlContent;
 
     @FXML
@@ -50,8 +46,7 @@ public class System_addProjectSoftwareC {
     @FXML
     void savedButtonPressed(ActionEvent event) {
 
-        // TODO fix the hardwired "id" value!!!!
-        Application app = new Application("2", appName.getText(), appVersion.getText(),
+        Application app = new Application("", appName.getText(), appVersion.getText(),
                 appPathToExecutable.getText(), appExecParams.getText(), appNotes.getText());
 
         JsonDataIO io = new JsonDataIO();

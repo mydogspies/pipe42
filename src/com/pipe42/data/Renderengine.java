@@ -13,9 +13,12 @@ public final class Renderengine {
 	private String engineExecParams;
 	private String engineVersion;
 	private String ownerNotes;
-	
+
+
 	/* CONSTRUCTORS */
-	
+
+	public Renderengine() {}
+
 	public Renderengine(String id, String engine, String enginePathToExecutable, String engineExecParams, String engineVersion, String ownerNotes) {
 		this.engineID = id;
 		this.engine = engine;
