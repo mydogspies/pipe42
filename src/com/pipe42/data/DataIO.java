@@ -13,9 +13,15 @@ public interface DataIO {
 	Object getProjectByID(String id);
 	Object getProjectByName(String name);
 	ArrayList<Object> getAllProjects();
-	void writeSingleProject(Project project);
-	void deleteProject(String id);
-	// TODO new methods - delete this line once it's all cleaned up
+
+	void writeProject(Project project);
 	void writeApplication(Application appdata);
+	void writeOwner(Owner owner);
+	void writeRenderengine(Renderengine engine);
+
+	void deleteProject(String id);
+	void deleteApplication(String id);
+	void deleteQwner(String id);
+	void deleteRenderengine(String id);
 
 }

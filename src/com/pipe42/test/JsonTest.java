@@ -1,10 +1,7 @@
 package com.pipe42.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.pipe42.console.ConsoleOut;
-import com.pipe42.data.Application;
+import com.pipe42.data.Data;
 import com.pipe42.data.JsonDataIO;
 
 /**
@@ -20,15 +17,12 @@ public class JsonTest {
 
 	public static void main(String[] args) {
 
-		// grab some data from our data objects and put it together
-		InititateJSON data = new InititateJSON();
-		List content = data.initiateJson();
+		// initiate a json db with some data
+		Data data = AddTestData.defineTestData();
 
-		/* WRITE INTO FILE */
-
-		// then do Jackson magic sending it off to our JsonData class
-		JsonDataIO myData = new JsonDataIO();
-		// myData.writeApplication(content);
+		// call json writer
+		JsonDataIO io = new JsonDataIO();
+		io.writeJsonData(data);
 
 		// say hello from main start method
 		ConsoleOut.printCons("JsonTest finished");

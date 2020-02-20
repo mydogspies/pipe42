@@ -27,13 +27,11 @@ public class MongoDataIO implements DataIO {
 		return null;
 	}
 
-
 	@Override
-	public void writeSingleProject(Project project) {
-		// TODO Auto-generated method stub
-		
+	public void writeProject(Project project) {
+
 	}
-	
+
 	@Override
 	public void deleteProject(String id) {
 		// TODO - MongoData - add deleteEntry
@@ -41,8 +39,33 @@ public class MongoDataIO implements DataIO {
 	}
 
 	@Override
+	public void deleteApplication(String id) {
+
+	}
+
+	@Override
+	public void deleteQwner(String id) {
+
+	}
+
+	@Override
+	public void deleteRenderengine(String id) {
+
+	}
+
+	@Override
 	public void writeApplication(Application appdata) {
 		// TODO add writeApplication
+	}
+
+	@Override
+	public void writeOwner(Owner owner) {
+
+	}
+
+	@Override
+	public void writeRenderengine(Renderengine engine) {
+
 	}
 
 }

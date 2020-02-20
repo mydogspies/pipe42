@@ -1,5 +1,6 @@
 package com.pipe42.data;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pipe42.console.ConsoleOut;
+
 
 /**
  * IO and call logic for json file as database
@@ -24,7 +26,10 @@ public class JsonDataIO implements DataIO {
 
 	// our Jackson json mapper
 	ObjectMapper mapper = new ObjectMapper();
-	
+
+
+	/* IMPLEMENTED METHODS */
+
 	@Override
 	public Object getProjectByID(String id) {
 		// TODO - JsonData - add getEntryByID
@@ -43,15 +48,44 @@ public class JsonDataIO implements DataIO {
 	}
 
 	@Override
-	public void writeSingleProject(Project project) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
 	public void deleteProject(String id) {
 		// TODO - JsonData - add deleteEntry
 		
+	}
+
+	@Override
+	public void deleteApplication(String id) {
+
+	}
+
+	@Override
+	public void deleteQwner(String id) {
+
+	}
+
+	@Override
+	public void deleteRenderengine(String id) {
+
+	}
+
+	/**
+	 * Appends an entry of type Project into the data.json file
+	 * @param project list of entries of type Project
+	 */
+	@Override
+	public void writeProject(Project project) {
+
+		// get current database from json.data
+		Data database = getJsonData();
+
+		// and then add it to current list of Application objects
+		List<Project> projectList = database.getProject();
+		projectList.add(project);
+
+		Data container = new Data(projectList, database.getApplication(), database.getOwner(), database.getEngine());
+
+		writeJsonData(container);
+
 	}
 
 	/**
@@ -68,13 +102,66 @@ public class JsonDataIO implements DataIO {
 		List<Application> appList = database.getApplication();
 		appList.add(appData);
 
-		// add all back together
-		Data container = new Data(database.getProject(), appList, database.getOwner());
+		Data container = new Data(database.getProject(), appList, database.getOwner(), database.getEngine());
+
+		writeJsonData(container);
+
+	}
+
+	/**
+	 * Appends an entry of type Owner into the data.json file
+	 * @param owner list of entries of type Owner
+	 */
+	@Override
+	public void writeOwner(Owner owner) {
+
+		// get current database from json.data
+		Data database = getJsonData();
+
+		// and then add it to current list of Application objects
+		List<Owner> ownerList = database.getOwner();
+		ownerList.add(owner);
+
+		Data container = new Data(database.getProject(), database.getApplication(), ownerList, database.getEngine());
+
+		writeJsonData(container);
+
+	}
+
+	/**
+	 * Appends an entry of type Renderengine into the data.json file
+	 * @param engine list of entries of type Renderengine
+	 */
+	@Override
+	public void writeRenderengine(Renderengine engine) {
+
+		// get current database from json.data
+		Data database = getJsonData();
+
+		// and then add it to current list of Application objects
+		List<Renderengine> engineList = database.getEngine();
+		engineList.add(engine);
+
+		Data container = new Data(database.getProject(), database.getApplication(), database.getOwner(), engineList);
+
+		writeJsonData(container);
+
+	}
+
+
+	/* LOCAL METHODS */
+
+	/**
+	 * Constructs a Json file (overwrites) with data contained in the Data object
+	 * in the path defined by getFileJson
+	 * @param data an object of type Data
+	 */
+	public void writeJsonData(Data data) { // TODO change to private when tests done
 
 		// and write the new Data object to json.data
 		try {
-			mapper.writeValue(getFileJson(), container);
-			ConsoleOut.printCons("JsonData.setEntry write the Json");
+			mapper.writeValue(getFileJson(), data);
+			ConsoleOut.printCons("Data successfully written to Json file");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
 			// TODO - JsonData - add logging
@@ -88,6 +175,7 @@ public class JsonDataIO implements DataIO {
 			// TODO - JsonData - add logging
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -100,7 +188,7 @@ public class JsonDataIO implements DataIO {
 
 		try {
 			content = mapper.readValue(getFileJson(), Data.class);
-			ConsoleOut.printCons("JsonData.setEntry read from the Json");
+			ConsoleOut.printCons("Data successfully read from Json file.");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
 			// TODO - JsonData - add logging
