@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<production>
+  <project host="Maya" name="WZB_ROCKHOUSE_201806" prefix="RHS">
+    <renderer host="Maya" name="Arnold" version="5.3.0"/>
+    <asset host="maya" name="TERRAIN" version="5.0">
+      <uvset exporttype="fbx" suffix="LOD1"/>
+    </asset>
+    <asset host="maya" name="HOUSE" version="4.9">
+      <uvset exporttype="fbx" suffix=""/>
+    </asset>
+  </project>
+  <project host="Maya" name="WZB_GLOWFAIR_201905" prefix="GLF">
+    <renderer host="maya" name="arnold" version="3.2.0"/>
+    <asset host="maya" name="IDEATION" version="1.0">
+      <uvset exporttype="fbx" suffix=""/>
+    </asset>
+  </project>
+  <project host="Maya" name="WZB_MONOFAIR_201908" prefix="MON">
+    <renderer host="maya" name="arnold" version="3.2.0"/>
+  </project>
+  <project host="Maya" name="WZB_PICTREE_201909" prefix="PIC">
+    <renderer host="maya" name="arnold" version="3.2.2"/>
+    <asset host="maya" name="PIC_scene_1" version="1.0">
+      <uvset exporttype="fbx" suffix=""/>
+    </asset>
+  </project>
+  <project host="Maya" name="WZB_STILLFEEL_201910" prefix="STF">
+    <renderer host="maya" name="renderman" version="22.6"/>
+    <asset host="maya" name="tests" version="1.0">
+      <uvset exporttype="fbx" suffix=""/>
+    </asset>
+  </project>
+</production>

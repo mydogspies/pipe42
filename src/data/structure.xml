@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PIPE42 | Version 0.3a, April 27, 2019
+This is the xml that defines the folder structures and where files should be copied to as part of a defining
+a new project. In order to use your own preferred project structure you must manually adapt this file.
+NOTE! Current version of PIPE42 supports only subfolders 3 levels deep! Files and/or folders beyond that
+will not be created.-->
+<structure>
+    <project>
+        <!--The following items define the main project folder structure-->
+        <folder name="01_INCOMING">
+            <folder name="01_INTERNAL"></folder>
+            <folder name="02_FROM_VENDOR"></folder>
+            <folder name="01_FROM_CLIENT"></folder>
+        </folder>
+
+        <folder name="02_DOCUMENTS">
+            <folder name="01_LEGAL"></folder>
+            <folder name="02_BRIEF"></folder>
+            <folder name="03_BRANDING"></folder>
+            <folder name="04_SCRIPTS"></folder>
+            <folder name="10_PRODUCTION SCHEDULE"></folder>
+            <folder name="20_INVOICES"></folder>
+        </folder>
+
+        <folder name="03_RESEARCH">
+            <folder name="01_WEB"></folder>
+            <folder name="02_IMAGES"></folder>
+            <folder name="03_VIDEO"></folder>
+            <folder name="04_MUSIC"></folder>
+            <folder name="05_TALENT"></folder>
+        </folder>
+
+        <folder name="04_ASSETS">
+            <folder name="01_PURCHASED"></folder>
+            <folder name="02_IMAGES"></folder>
+            <folder name="03_VECTOR"></folder>
+            <folder name="04_LOGOS"></folder>
+            <folder name="05_FONTS"></folder>
+            <folder name="06_FOOTAGE"></folder>
+            <folder name="07_AUDIO">
+                <folder name="01_VO"></folder>
+                <folder name="02_MUSIC"></folder>
+                <folder name="03_SFX"></folder>
+                <folder name="04_MIX"></folder>
+            </folder>
+            <folder name="08_SCRIPTS"></folder>
+        </folder>
+
+        <folder name="05_DESIGN">
+            <folder name="01_TEMPLATES"></folder>
+            <folder name="02_BOARDS"></folder>
+            <folder name="03_SKETCHES"></folder>
+            <folder name="04_STYLEFRAMES"></folder>
+            <folder name="05_WORKING"></folder>
+            <folder name="06_PRODUCTION"></folder>
+        </folder>
+
+        <folder name="06_2D">
+            <folder name="01_PHOTOSHOP"></folder>
+            <folder name="02_ILLUSTRATOR"></folder>
+            <folder name="03_ACAD"></folder>
+            <folder name="04_INDESIGN"></folder>
+            <folder name="05_CPAINTER"></folder>
+            <folder name="10_PUREREF"></folder>
+        </folder>
+
+        <folder name="07_3D">
+            <folder name="01_TEXTURES">
+                <folder name="01_GENERAL">
+                    <file>modo_uv_checker.jpg</file>
+                </folder>
+                <folder name="02_BACKPLATES"></folder>
+                <folder name="03_HDR">
+                    <file>panorama.hdr</file>
+                    <file>Bonifacio_Street.exr</file>
+                    <file>3DCollective_HDRi_029_1645_32_4K.hdr</file>
+                </folder>
+                <folder name="04_HEIGHTMAPS"></folder>
+            </folder>
+            <folder name="02_MODELS">
+                <folder name="01_MAYA"></folder>
+                <folder name="02_HOUDINI"></folder>
+                <folder name="03_ZBRUSH"></folder>
+                <folder name="04_MODO"></folder>
+            </folder>
+            <folder name="03_WORKING">
+                <folder name="10_DAILIES"></folder>
+                <folder name="20_TESTS"></folder>
+            </folder>
+            <folder name="10_MASTER"></folder>
+        </folder>
+
+        <folder name="08_VIDEO">
+            <folder name="01_RESOLVE"></folder>
+            <folder name="02_NUKE"></folder>
+            <folder name="03_AF"></folder>
+            <folder name="10_DAILIES"></folder>
+            <folder name="20_WORKING"></folder>
+            <folder name="30_MASTER"></folder>
+        </folder>
+
+        <folder name="09_OUTGOING">
+            <folder name="01_INTERNAL"></folder>
+            <folder name="02_TO_VENDOR"></folder>
+            <folder name="03_TO_CLIENT"></folder>
+        </folder>
+
+        <folder name="10_RENDERS">
+            <folder name="01_PREVIS"></folder>
+            <folder name="02_MOTION_TESTS"></folder>
+            <folder name="10_MASTER"></folder>
+            <folder name="90_TESTS"></folder>
+        </folder>
+
+        <folder name="90_ARCHIVE"></folder>
+    </project>
+    <templates>
+        <!-- The items below define the folder structure for individual assets-->
+        <template type="asset" name="FILEPREFIX_ASSETNAME_VERSION" host="maya">
+            <file>UDIM_layout_template.xlsx</file>
+            <folder name="01_IMPORT"></folder>
+            <folder name="02_TEXTURES">
+                <file>modo_uv_checker.jpg</file>
+            </folder>
+            <folder name="03_MATERIALS"></folder>
+            <folder name="04_EXPORT_OBJ"></folder>
+            <folder name="05_EXPORT_ABC"></folder>
+            <folder name="06_EXPORT_FBX"></folder>
+            <folder name="10_RENDERS">
+                <folder name="01_DAILIES"></folder>
+                <folder name="02_PREVIS"></folder>
+                <folder name="10_FINAL"></folder>
+            </folder>
+            <folder name="20_DOCS"></folder>
+        </template>
+    </templates>
+</structure>
