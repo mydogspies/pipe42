@@ -2,6 +2,7 @@ package com.pipe42.gui;
 
 import com.pipe42.data.Application;
 import com.pipe42.data.JsonDataIO;
+import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,24 +37,30 @@ public class System_addProjectSoftwareC {
     @FXML
     private Button newProjectSave;
 
+
     /* INIT */
 
+    @FXML
     void initialize() {}
 
 
     /* CALL HANDLERS */
 
+    /**
+     * Action on pressing the save button
+     * @param event from save button
+     */
     @FXML
     void savedButtonPressed(ActionEvent event) {
 
-        Application app = new Application("", appName.getText(), appVersion.getText(),
+        Util util = new Util();
+        String id = util.getHash(appName.getText());
+
+        Application app = new Application(id, appName.getText(), appVersion.getText(),
                 appPathToExecutable.getText(), appExecParams.getText(), appNotes.getText());
 
         JsonDataIO io = new JsonDataIO();
-
-        // send of to json handler
         io.writeApplication(app);
-
     }
 
 }

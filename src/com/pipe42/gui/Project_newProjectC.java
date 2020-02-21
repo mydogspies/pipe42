@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import java.time.LocalDateTime;
 
 import java.util.List;
 
@@ -58,8 +59,6 @@ public class Project_newProjectC {
 	private String engineID;
 	private String appID;
 	private String ownerID;
-	private String creationTime;
-	private String modifyTime;
 	
 	@FXML
     void initialize() {
@@ -89,18 +88,22 @@ public class Project_newProjectC {
 		engine.getItems().addAll(options3);
 		ownerID = "";
 
-		// TODO define methods for this in com.pipe42.util in the Util class
-		creationTime = "";
-		modifyTime = "";
     }
 
 	
-	/* EVENT HANDLERS */
-	
+	/* CALL HANDLERS */
+
+	/**
+	 * Action on pressing the save button
+	 * @param event from save button
+	 */
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
 
-		// TODO a number of vars must be defined - see above!!!!
+		LocalDateTime creationTime = LocalDateTime.now();
+		LocalDateTime modifyTime = LocalDateTime.now();
+
+				// TODO a number of vars must be defined - see above!!!!
 		Project project = new Project("", projectName.getText(), projectPrefix.getText(), ownerID, engineID, appID,
 				creationTime, modifyTime, projectNotes.getText());
 		

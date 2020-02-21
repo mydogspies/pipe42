@@ -14,6 +14,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// TODO - Main - Build a pre-loader
+
+		// initialize stuff
+		Initialize.setObjectMapper();
 		
 		// open main GUI window
 		MainWindow.main(args);

@@ -2,6 +2,7 @@ package com.pipe42.gui;
 
 import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Renderengine;
+import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,25 +37,30 @@ public class System_addRenderengineC {
     @FXML
     private Button engineSave;
 
+
     /* INIT */
 
     @FXML
     void initialize() {}
 
+
+    /* CALL HANDLERS */
+
     /**
      * Action on pressing the save button
-     * @param event
+     * @param event from save button
      */
     @FXML
     public void savedButtonPressed(ActionEvent event) {
 
-        Renderengine engine = new Renderengine("", engineName.getText(), enginePathToExecutable.getText(),
+        Util util = new Util();
+        String id = util.getHash(engineName.getText());
+
+        Renderengine engine = new Renderengine(id, engineName.getText(), enginePathToExecutable.getText(),
                 engineExecParams.getText(), engineVersion.getText(), engineNotes.getText());
 
         JsonDataIO io = new JsonDataIO();
-
         io.writeRenderengine(engine);
-
     }
 
 }

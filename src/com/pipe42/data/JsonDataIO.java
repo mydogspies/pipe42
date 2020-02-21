@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pipe42.console.ConsoleOut;
+import com.pipe42.main.Initialize;
 
 
 /**
@@ -25,7 +26,7 @@ public class JsonDataIO implements DataIO {
 	private static String rawPath = "src/data/data.json";
 
 	// our Jackson json mapper
-	ObjectMapper mapper = new ObjectMapper();
+	//ObjectMapper mapper = new ObjectMapper();
 
 
 	/* IMPLEMENTED METHODS */
@@ -193,7 +194,8 @@ public class JsonDataIO implements DataIO {
 
 		// and write the new Data object to json.data
 		try {
-			mapper.writeValue(getFileJson(), data);
+			Initialize.mapper.writeValue(getFileJson(), data);
+			// mapper.writeValue(getFileJson(), data); // TODO delete after tests
 			ConsoleOut.printCons("Data successfully written to Json file");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
@@ -220,7 +222,7 @@ public class JsonDataIO implements DataIO {
 		Data content = null;
 
 		try {
-			content = mapper.readValue(getFileJson(), Data.class);
+			content = Initialize.mapper.readValue(getFileJson(), Data.class); // TODO delete comment after test
 			ConsoleOut.printCons("Data successfully read from Json file.");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");

@@ -2,6 +2,7 @@ package com.pipe42.gui;
 
 import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Owner;
+import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,16 +37,30 @@ public class System_addProjectOwnerC {
     @FXML
     private Button newProjectSave;
 
+
+    /* INIT */
+
+    @FXML
+    void initialize() {}
+
+
+    /* CALL HANDLERS */
+
+    /**
+     * Action on pressing the save button
+     * @param event from save button
+     */
     @FXML
     void savedButtonPressed(ActionEvent event) {
 
-        Owner project = new Owner("", ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
+        Util util = new Util();
+        String id = util.getHash(ownerName.getText());
+
+        Owner project = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
                 projectManager.getText(), ownerNotes.getText());
 
         JsonDataIO io = new JsonDataIO();
-
         io.writeOwner(project);
-
     }
 
 }
