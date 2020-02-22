@@ -53,8 +53,7 @@ public class System_addRenderengineC {
     @FXML
     public void savedButtonPressed(ActionEvent event) {
 
-        Util util = new Util();
-        String id = util.getHash(engineName.getText());
+        String id = Util.getHash(engineName.getText());
 
         Renderengine engine = new Renderengine(id, engineName.getText(), enginePathToExecutable.getText(),
                 engineExecParams.getText(), engineVersion.getText(), engineNotes.getText());

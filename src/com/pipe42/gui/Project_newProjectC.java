@@ -5,6 +5,7 @@ import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Owner;
 import com.pipe42.data.Project;
 import com.pipe42.data.Renderengine;
+import com.pipe42.util.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 public class Project_newProjectC {
@@ -100,13 +102,18 @@ public class Project_newProjectC {
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
 
-		LocalDateTime creationTime = LocalDateTime.now();
-		LocalDateTime modifyTime = LocalDateTime.now();
+		String id = Util.getHash(projectName.getText());
+
+		HashMap<String, String> creationTime = Util.getDateTime();
+		HashMap<String, String> modifyTime = Util.getDateTime();
 
 				// TODO a number of vars must be defined - see above!!!!
-		Project project = new Project("", projectName.getText(), projectPrefix.getText(), ownerID, engineID, appID,
+		Project project = new Project(id, projectName.getText(), projectPrefix.getText(), ownerID, engineID, appID,
 				creationTime, modifyTime, projectNotes.getText());
-		
+
+		JsonDataIO io = new JsonDataIO();
+		io.writeProject(project);
+
 	}
 	
 }

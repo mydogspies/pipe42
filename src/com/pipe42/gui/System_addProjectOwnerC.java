@@ -53,8 +53,7 @@ public class System_addProjectOwnerC {
     @FXML
     void savedButtonPressed(ActionEvent event) {
 
-        Util util = new Util();
-        String id = util.getHash(ownerName.getText());
+        String id = Util.getHash(ownerName.getText());
 
         Owner project = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
                 projectManager.getText(), ownerNotes.getText());

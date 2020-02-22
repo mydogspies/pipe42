@@ -53,8 +53,7 @@ public class System_addProjectSoftwareC {
     @FXML
     void savedButtonPressed(ActionEvent event) {
 
-        Util util = new Util();
-        String id = util.getHash(appName.getText());
+        String id = Util.getHash(appName.getText());
 
         Application app = new Application(id, appName.getText(), appVersion.getText(),
                 appPathToExecutable.getText(), appExecParams.getText(), appNotes.getText());

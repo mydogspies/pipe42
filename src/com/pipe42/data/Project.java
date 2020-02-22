@@ -1,6 +1,7 @@
 package com.pipe42.data;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 /**
  * The Project POJO
@@ -15,8 +16,8 @@ public final class Project {
 	private String ownerID;
 	private String engineID;
 	private String applicationID;
-	private LocalDateTime creationTime;
-	private LocalDateTime modifyTime;
+	private HashMap<String, String> creationTime;
+	private HashMap<String, String> modifyTime;
 	private String projectNotes;
 
 
@@ -26,7 +27,7 @@ public final class Project {
 
 	public Project(String id, String projectName, String projectPrefix,
 				   String ownerID, String engineID, String applicationID,
-				   LocalDateTime creationTime, LocalDateTime modifyTime, String projectnotes) {
+				   HashMap<String, String> creationTime, HashMap<String, String> modifyTime, String projectnotes) {
 
 		this.projectID = id;
 		this.projectName = projectName;
@@ -109,22 +110,23 @@ public final class Project {
 		this.projectNotes = projectNotes;
 	}
 
-	public LocalDateTime getCreationTime() {
+	public HashMap<String, String> getCreationTime() {
 
 		return creationTime;
 	}
 
-	public void setCreationTime(LocalDateTime creationTime) {
+	public void setCreationTime(HashMap<String, String> creationTime) {
 
 		this.creationTime = creationTime;
 	}
 
-	public LocalDateTime getModifyTime() {
+	public HashMap<String, String> getModifyTime() {
 
 		return modifyTime;
 	}
 
-	public void setModifyTime(LocalDateTime modifyTime) {
+	public void setModifyTime(HashMap<String, String> modifyTime) {
+
 		this.modifyTime = modifyTime;
 	}
 }

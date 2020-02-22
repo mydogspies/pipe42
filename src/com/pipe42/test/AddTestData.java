@@ -2,11 +2,11 @@ package com.pipe42.test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.pipe42.data.Application;
 import com.pipe42.data.Data;
-import com.pipe42.data.Hashids;
 import com.pipe42.data.Owner;
 import com.pipe42.data.Project;
 import com.pipe42.data.Renderengine;
@@ -16,16 +16,10 @@ public class AddTestData {
 	
 	public static Data defineTestData() {
 
-		// construct some datetime
-		LocalDateTime modifyTime = LocalDateTime.now();
-		LocalDateTime creationTime = LocalDateTime.now();
-
-		// get some utils for hashing
-		Util util = new Util();
-
+		// create a bunch of hash ids for the entries below
 		ArrayList<String> hash = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			String hashnum = util.getHash("our project");
+			String hashnum = Util.getHash("our project");
 			hash.add(hashnum);
 		}
 
@@ -53,22 +47,30 @@ public class AddTestData {
 		enginelist.add(eng2);
 
 		// add projects
+		HashMap<String, String> modifyTime = Util.getDateTime();
+		HashMap<String, String> creationTime = Util.getDateTime();
 		Project proj1 = new Project(hash.get(5), "Test Project 1", "TS1",
 				hash.get(2), hash.get(3), hash.get(0),
 				creationTime, modifyTime, "Our first test project");
+
+		HashMap<String, String> modifyTime2 = Util.getDateTime();
+		HashMap<String, String> creationTime2 = Util.getDateTime();
 		Project proj2 = new Project(hash.get(6), "Test Project 2", "TS2",
 				hash.get(2), hash.get(3), hash.get(1),
-				creationTime, modifyTime, "Second test project");
+				creationTime2, modifyTime2, "Second test project");
+
+		HashMap<String, String> modifyTime3 = Util.getDateTime();
+		HashMap<String, String> creationTime3 = Util.getDateTime();
 		Project proj3 = new Project(hash.get(7), "Test Project 3", "TS3",
 				hash.get(2), hash.get(4), hash.get(0),
-				creationTime, modifyTime, "Third test project");
+				creationTime3, modifyTime3, "Third test project");
 		List<Project> plist = new ArrayList<Project>();
+
 		plist.add(proj1);
 		plist.add(proj2);
 		plist.add(proj3);
 
 		// Add it all together in a Data POJO
-
 		return new Data(plist, applist, ownerlist, enginelist);
 	
 	}
