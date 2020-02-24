@@ -8,6 +8,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +17,6 @@ public class XmlTest {
     public static void main(String[] args) {
 
         String xmlPath = "src/data/structure.xml";
-        String folderPath = "src/test/folders";
         String writePath = "";
 
         Xml xml = new Xml();
@@ -47,6 +47,9 @@ public class XmlTest {
                 writePath += "/" + pathArray.get(j);
 
             }
+
+            new File("src/com/pipe42/test/folders" + writePath).mkdirs();
+
             System.out.println(writePath);
 
         }
