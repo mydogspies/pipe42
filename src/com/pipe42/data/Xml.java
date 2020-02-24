@@ -1,5 +1,7 @@
 package com.pipe42.data;
 
+import com.pipe42.data.FileWorks;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -12,6 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to manipulate the file/folder specific xml files
+ * @version 0.1a
+ */
 public class Xml {
 
     /**
@@ -44,7 +50,7 @@ public class Xml {
     public void writeFolderTree(String templateName) {
 
         // TODO writeLocation and xmlPath needs to move out and into whatever kind of global refs
-        String writeLocation = "src/com/pipe42/test/folders";
+        String writeLocation = "src/com/pipe42/test/folders"; // TODO this path ONLY for testing
         String xmlPath = "src/data/structure.xml";
         String writePath = "";
 
@@ -79,7 +85,8 @@ public class Xml {
             }
 
             // write to location
-            new File(writeLocation + writePath).mkdirs();
+            FileWorks fw = new FileWorks();
+            fw.writeFolder(writePath);
         }
 
     }

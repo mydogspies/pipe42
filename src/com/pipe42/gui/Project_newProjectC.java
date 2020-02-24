@@ -6,19 +6,18 @@ import com.pipe42.data.Owner;
 import com.pipe42.data.Project;
 import com.pipe42.data.Renderengine;
 import com.pipe42.util.Util;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class Project_newProjectC {
 	private TextField projectPrefix;
 
 	@FXML
-	private CheckBox preloadFiles;
+	private ComboBox<String> folderTemplate;
 
 	@FXML
 	private ComboBox<String> owner;

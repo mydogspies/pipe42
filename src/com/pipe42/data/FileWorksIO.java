@@ -7,8 +7,13 @@ import java.io.File;
  */
 public interface FileWorksIO {
 
+    // common file operations
+    void writeFolder(String path);
+
     // common file methods
     File readJsonFile(String filename);
-    File writeJsonFile(String filename); // TODO not sure we need this - review every commit
+    void writeJsonFile(String filename); // TODO not sure we need this - review every commit
+
+
 
 }
