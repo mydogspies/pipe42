@@ -1,5 +1,6 @@
 package com.pipe42.data;
 
+import com.pipe42.console.ConsoleOut;
 import com.pipe42.data.FileWorks;
 
 import org.w3c.dom.Document;
@@ -44,30 +45,30 @@ public class Xml {
     }
 
     /**
-     * Reads the structure.xml file for a folder tree template, parses file and writes the folder tree to disc
-     * @param templateName name of template as String
+     * Reads a template xml file from the data/templates folder
+     * templateName must be the file name WITHOUT the .xml extension
+     * NOTE: The parameter "name" in the <project> tag in the template file MUST be the same
+     * as the file name (without file extension).
+     * @param templateName the template file name as String without file extension
      */
-    public void writeFolderTree(String templateName) {
+    private static void writeFolderTree(String templateName) {
 
-        // TODO writeLocation and xmlPath needs to move out and into whatever kind of global refs
-        String writeLocation = "src/com/pipe42/test/folders"; // TODO this path ONLY for testing
-        String xmlPath = "src/data/structure.xml";
+        String writeLocation = "src/com/pipe42/test/folders"; // TODO this variable has to move to USER PREFS
+        String xmlPath = "src/data/templates/" + templateName + ".xml"; // TODO this variable has to move to SYSTEM VARS
         String writePath = "";
 
         Xml xml = new Xml();
         Document doc = xml.readXml(xmlPath);
-
-        // by "folder"
         NodeList nodeList = doc.getElementsByTagName("folder");
 
-        // the algo
+        // find out how far the structure is nested
         int dp = 0;
         ArrayList<String> pathArray = new ArrayList<String>();
+        for (int k = 0; k < 20; k++) {
+            pathArray.add("");
+        } // initiate the array for up to 20 nested folders
 
-        // initiate the array for up to 20 nested folders
-        for(int k=0; k<20; k++){pathArray.add("");}
-
-        for (int i=0; i<nodeList.getLength(); i++) {
+        for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
 
@@ -84,11 +85,29 @@ public class Xml {
 
             }
 
-            // write to location
-            FileWorks fw = new FileWorks();
-            fw.writeFolder(writePath);
+            new File(writeLocation + writePath).mkdirs();
+            ConsoleOut.printCons("New folder structure written to " + writeLocation);
         }
 
+    }
+
+    /**
+     * Reads all the file names of the xml files in the data/templates folder and returns
+     * an array of names minus the file extension ".xml".
+     * @return an ArrayList of template names of type String
+     */
+    private static ArrayList<String> getXmlTemplateNames() {
+
+        // test getting all file names in a folder
+        FileWorks fw = new FileWorks();
+        ArrayList<String> names = fw.getFileNames("src/data/templates", "xml");
+
+        ArrayList<String> truncNames = new ArrayList<>();
+        for (String name : names) {
+            truncNames.add(name.substring(0, name.lastIndexOf('.')));
+        }
+
+        return truncNames;
     }
 
 }

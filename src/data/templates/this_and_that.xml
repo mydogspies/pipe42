@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project template="this_and_that">
+    <!--Here are some comments in THIS AND THAT-->
+    <folder name="01_ALL_THE_THINGS" depth="0">
+        <folder name="01_THIS" depth="1"></folder>
+        <folder name="02_THAT" depth="1">
+            <folder name="01_MOREOFTHESAME" depth="2"></folder>
+        </folder>
+
+    </folder>
+</project>

@@ -44,7 +44,7 @@ public class Util {
 	 */
 	public String getLocalURL(String path) {
 			
-			URL url = this.getClass().getResource(path);
+			URL url = this.getClass().getResource(path); // TODO not sure we will use this - review for every commit
 			return url.toString();
 			
 		}
