@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <!-- The items below define the folder structure for individual assets-->
+    <template type="asset" name="FILEPREFIX_ASSETNAME_VERSION" host="maya">
+        <file>UDIM_layout_template.xlsx</file>
+        <folder name="01_IMPORT" depth="0"></folder>
+        <folder name="02_TEXTURES" depth="0">
+            <file>modo_uv_checker.jpg</file>
+        </folder>
+        <folder name="03_MATERIALS" depth="0"></folder>
+        <folder name="04_EXPORT_OBJ" depth="0"></folder>
+        <folder name="05_EXPORT_ABC" depth="0"></folder>
+        <folder name="06_EXPORT_FBX" depth="0"></folder>
+        <folder name="10_RENDERS" depth="0">
+            <folder name="01_DAILIES" depth="1"></folder>
+            <folder name="02_PREVIS" depth="1"></folder>
+            <folder name="10_FINAL" depth="1"></folder>
+        </folder>
+        <folder name="20_DOCS" depth="0"></folder>
+    </template>
+</templates>

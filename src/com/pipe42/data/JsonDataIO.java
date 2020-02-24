@@ -192,10 +192,12 @@ public class JsonDataIO implements DataIO {
 	 */
 	public void writeJsonData(Data data) { // TODO change to private when tests done
 
+		FileWorks fw = new FileWorks();
+		File jsonfile = fw.readJsonFile("data.json");
+
 		// and write the new Data object to json.data
 		try {
-			Initialize.mapper.writeValue(getFileJson(), data);
-			// mapper.writeValue(getFileJson(), data); // TODO delete after tests
+			Initialize.mapper.writeValue(jsonfile, data);
 			ConsoleOut.printCons("Data successfully written to Json file");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
@@ -220,9 +222,12 @@ public class JsonDataIO implements DataIO {
 	private Data getJsonData() {
 
 		Data content = null;
+		FileWorks fw = new FileWorks();
+
+		File jsonfile = fw.readJsonFile("data.json");
 
 		try {
-			content = Initialize.mapper.readValue(getFileJson(), Data.class); // TODO delete comment after test
+			content = Initialize.mapper.readValue(jsonfile, Data.class);
 			ConsoleOut.printCons("Data successfully read from Json file.");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
@@ -239,16 +244,6 @@ public class JsonDataIO implements DataIO {
 		}
 
 		return content;
-	}
-
-	// TODO should live in com.pipe42.util
-	/**
-	 * Get file object using a non-system specific path
-	 * @return returns a file object
-	 */
-	private File getFileJson() {
-
-		return Paths.get(JsonDataIO.rawPath).toFile();
 	}
 	
 }
