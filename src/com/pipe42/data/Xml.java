@@ -11,6 +11,11 @@ import java.io.IOException;
 
 public class Xml {
 
+    /**
+     * Reads a xml file and returns a raw Document object
+     * @param path path to xml file as relative String
+     * @return the raw Document object
+     */
     public Document readXml(String path) {
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -23,11 +28,7 @@ public class Xml {
             doc.getDocumentElement().normalize();
             return doc;
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
 
