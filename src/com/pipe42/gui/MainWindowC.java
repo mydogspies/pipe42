@@ -42,13 +42,20 @@ public class MainWindowC {
 		
 		switch (menu_id) {
 		
-		case "projects_newProject":
-			addContentNewProject();
-			break;
-			
-		case "projects_exit":
-			Platform.exit(); // TODO - WindowMainC - add confirmation dialog
-			break;
+			case "projects_newProject":
+				addContentNewProject();
+				break;
+
+			case "projects_editProject":
+				break;
+
+			case "projects_deleteProject":
+				addContentDeleteProject();
+				break;
+
+			case "projects_exit":
+				Platform.exit(); // TODO - WindowMainC - add confirmation dialog
+				break;
 		
 		}
 	}
@@ -64,12 +71,15 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
+
 			case "system_addRenderengine": // TODO - WindowMainC - populate System menu
 				addContentAddEngine();
 				break;
+
 			case "system_addProjectOwner":
 				addContentAddProjectOwner();
 				break;
+
 			case "system_addSoftwareApp":
 				addContentAddSoftware();
 				break;
@@ -87,6 +97,7 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
+
 		case "help_about": // TODO - WindowMainC - populate Help menu
 			ConsoleOut.printCons("Help-About"); // TODO remove console output
 			break;
@@ -96,8 +107,7 @@ public class MainWindowC {
 	
 	
 	/* METHODS */
-	
-	
+
 	/**
 	 * Adds the New Project UI under "Projects" menu
 	 */
@@ -107,10 +117,29 @@ public class MainWindowC {
 		
 		try {
 			// add the project menu content
-			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/Project_newProject.fxml"));
-			centerContent.getChildren().add(p1);
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Project_newProject.fxml"));
+			centerContent.getChildren().add(p);
 		} catch (IOException e) {
 			ConsoleOut.printCons("Not able to load Project_newProject.fxml");
+			e.printStackTrace();
+		}
+	}
+
+	private void addContentSearchProject() {
+
+		// TODO add the addContentSearchProject method
+	}
+
+	private void addContentDeleteProject() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Project_deleteProject.fxml"));
+			centerContent.getChildren().add(p);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load Project_deleteProject.fxml");
 			e.printStackTrace();
 		}
 	}
@@ -124,10 +153,10 @@ public class MainWindowC {
 
 		try {
 			// add the project menu content
-			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addRenderengine.fxml"));
-			centerContent.getChildren().add(p1);
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_addRenderengine.fxml"));
+			centerContent.getChildren().add(p);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load system_addRenderengine.fxml");
+			ConsoleOut.printCons("Not able to load System_addRenderengine.fxml");
 			e.printStackTrace();
 		}
 
@@ -142,10 +171,10 @@ public class MainWindowC {
 
 		try {
 			// add the project menu content
-			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addProjectSoftware.fxml"));
-			centerContent.getChildren().add(p1);
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_addProjectSoftware.fxml"));
+			centerContent.getChildren().add(p);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load system_addProjectSoftware.fxml");
+			ConsoleOut.printCons("Not able to load System_addProjectSoftware.fxml");
 			e.printStackTrace();
 		}
 
@@ -160,10 +189,10 @@ public class MainWindowC {
 
 		try {
 			// add the project menu content
-			SplitPane p1 = FXMLLoader.load(getClass().getResource("fxml/System_addProjectOwner.fxml"));
-			centerContent.getChildren().add(p1);
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_addProjectOwner.fxml"));
+			centerContent.getChildren().add(p);
 		} catch (IOException e) {
-			ConsoleOut.printCons("Not able to load system_addProjectOwner.fxml");
+			ConsoleOut.printCons("Not able to load System_addProjectOwner.fxml");
 			e.printStackTrace();
 		}
 

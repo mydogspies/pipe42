@@ -17,7 +17,7 @@ public class MainWindow extends Application {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("css/pipe42_default.css").toExternalForm()); // TODO - WindowsMain - dynamically load style sheet
 			
-			primaryStage.setTitle("PIPE42 verison 0.1 pre-alpha prototype - NOT FOR PUBLIC RELEASE -"); // TODO - WindowMain - Dynamically add title
+			primaryStage.setTitle("PIPE42 verison 0.1.0-alpha - NOT FOR PUBLIC RELEASE -"); // TODO - WindowMain - Dynamically add title
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

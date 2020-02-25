@@ -10,6 +10,9 @@
           <Menu fx:id="projects" mnemonicParsing="false" text="Projects">
             <items>
                   <MenuItem fx:id="projects_newProject" mnemonicParsing="false" onAction="#projectMenu" text="New Project" />
+                  <MenuItem fx:id="projects_editProject" mnemonicParsing="false" onAction="#projectMenu" text="Edit Project" />
+                  <MenuItem fx:id="projects_deleteProject" mnemonicParsing="false" onAction="#projectMenu" text="Delete Project" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem fx:id="projects_exit" mnemonicParsing="false" onAction="#projectMenu" text="Exit" />
             </items>
           </Menu>
