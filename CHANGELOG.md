@@ -2,7 +2,7 @@
 
 All notable changes to the PIPE42 project will be documented in this file.
 
-The latest stable production branch is [MASTER]
+The latest stable production branch will always be [MASTER] once we are out of alpha.
 
 ### [Unreleased]
 
