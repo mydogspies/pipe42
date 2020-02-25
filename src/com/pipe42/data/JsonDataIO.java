@@ -3,18 +3,17 @@ package com.pipe42.data;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pipe42.console.ConsoleOut;
+import com.pipe42.main.Initialize;
 
 
 /**
- * IO and call logic for json file as database
+ * IO and call logic for json files as database
  * @author Mydogspies
  *
  */
@@ -25,7 +24,7 @@ public class JsonDataIO implements DataIO {
 	private static String rawPath = "src/data/data.json";
 
 	// our Jackson json mapper
-	ObjectMapper mapper = new ObjectMapper();
+	//ObjectMapper mapper = new ObjectMapper();
 
 
 	/* IMPLEMENTED METHODS */
@@ -191,9 +190,12 @@ public class JsonDataIO implements DataIO {
 	 */
 	public void writeJsonData(Data data) { // TODO change to private when tests done
 
+		FileWorks fw = new FileWorks();
+		File jsonfile = fw.readJsonFile("data.json");
+
 		// and write the new Data object to json.data
 		try {
-			mapper.writeValue(getFileJson(), data);
+			Initialize.mapper.writeValue(jsonfile, data);
 			ConsoleOut.printCons("Data successfully written to Json file");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
@@ -218,9 +220,12 @@ public class JsonDataIO implements DataIO {
 	private Data getJsonData() {
 
 		Data content = null;
+		FileWorks fw = new FileWorks();
+
+		File jsonfile = fw.readJsonFile("data.json");
 
 		try {
-			content = mapper.readValue(getFileJson(), Data.class);
+			content = Initialize.mapper.readValue(jsonfile, Data.class);
 			ConsoleOut.printCons("Data successfully read from Json file.");
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
@@ -237,16 +242,6 @@ public class JsonDataIO implements DataIO {
 		}
 
 		return content;
-	}
-
-	// TODO should live in com.pipe42.util
-	/**
-	 * Get file object using a non-system specific path
-	 * @return returns a file object
-	 */
-	private File getFileJson() {
-
-		return Paths.get(JsonDataIO.rawPath).toFile();
 	}
 	
 }

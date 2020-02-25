@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<structure>
+    <project template="default">
+        <!--The following items define the main project folder structure-->
+        <folder name="01_INCOMING" depth="0">
+            <folder name="01_INTERNAL" depth="1"></folder>
+            <folder name="02_FROM_VENDOR" depth="1"></folder>
+            <folder name="01_FROM_CLIENT" depth="1"></folder>
+        </folder>
+
+        <folder name="02_DOCUMENTS" depth="0">
+            <folder name="01_LEGAL" depth="1"></folder>
+            <folder name="02_BRIEF" depth="1"></folder>
+            <folder name="03_BRANDING" depth="1"></folder>
+            <folder name="04_SCRIPTS" depth="1"></folder>
+            <folder name="10_PRODUCTION_SCHEDULE" depth="1"></folder>
+            <folder name="20_INVOICES" depth="1"></folder>
+        </folder>
+
+        <folder name="03_RESEARCH" depth="0">
+            <folder name="01_WEB" depth="1"></folder>
+            <folder name="02_IMAGES" depth="1"></folder>
+            <folder name="03_VIDEO" depth="1"></folder>
+            <folder name="04_MUSIC" depth="1"></folder>
+            <folder name="05_TALENT" depth="1"></folder>
+        </folder>
+
+        <folder name="04_ASSETS" depth="0">
+            <folder name="01_PURCHASED" depth="1"></folder>
+            <folder name="02_IMAGES" depth="1"></folder>
+            <folder name="03_VECTOR" depth="1"></folder>
+            <folder name="04_LOGOS" depth="1"></folder>
+            <folder name="05_FONTS" depth="1"></folder>
+            <folder name="06_FOOTAGE" depth="1"></folder>
+            <folder name="07_AUDIO" depth="1">
+                <folder name="01_VO" depth="2"></folder>
+                <folder name="02_MUSIC" depth="2"></folder>
+                <folder name="03_SFX" depth="2"></folder>
+                <folder name="04_MIX" depth="2"></folder>
+            </folder>
+            <folder name="08_SCRIPTS" depth="1"></folder>
+        </folder>
+
+        <folder name="05_DESIGN" depth="0">
+            <folder name="01_TEMPLATES" depth="1"></folder>
+            <folder name="02_BOARDS" depth="1"></folder>
+            <folder name="03_SKETCHES" depth="1"></folder>
+            <folder name="04_STYLEFRAMES" depth="1"></folder>
+            <folder name="05_WORKING" depth="1"></folder>
+            <folder name="06_PRODUCTION" depth="1"></folder>
+        </folder>
+
+        <folder name="06_2D" depth="0">
+            <folder name="01_PHOTOSHOP" depth="1"></folder>
+            <folder name="02_ILLUSTRATOR" depth="1"></folder>
+            <folder name="03_ACAD" depth="1"></folder>
+            <folder name="04_INDESIGN" depth="1"></folder>
+            <folder name="05_CPAINTER" depth="1"></folder>
+            <folder name="10_PUREREF" depth="1"></folder>
+        </folder>
+
+        <folder name="07_3D" depth="0">
+            <folder name="01_TEXTURES" depth="1">
+                <folder name="01_GENERAL" depth="2">
+                    <file>modo_uv_checker.jpg</file>
+                </folder>
+                <folder name="02_BACKPLATES" depth="2"></folder>
+                <folder name="03_HDR" depth="2">
+                    <file>panorama.hdr</file>
+                    <file>Bonifacio_Street.exr</file>
+                    <file>3DCollective_HDRi_029_1645_32_4K.hdr</file>
+                </folder>
+                <folder name="04_HEIGHTMAPS" depth="2"></folder>
+            </folder>
+            <folder name="02_MODELS" depth="1">
+                <folder name="01_MAYA" depth="2"></folder>
+                <folder name="02_HOUDINI" depth="2"></folder>
+                <folder name="03_ZBRUSH" depth="2"></folder>
+                <folder name="04_MODO" depth="2"></folder>
+            </folder>
+            <folder name="03_WORKING" depth="1">
+                <folder name="10_DAILIES" depth="2"></folder>
+                <folder name="20_TESTS" depth="2"></folder>
+            </folder>
+            <folder name="10_MASTER" depth="1"></folder>
+        </folder>
+
+        <folder name="08_VIDEO" depth="0">
+            <folder name="01_RESOLVE" depth="1"></folder>
+            <folder name="02_NUKE" depth="1"></folder>
+            <folder name="03_AF" depth="1"></folder>
+            <folder name="10_DAILIES" depth="1"></folder>
+            <folder name="20_WORKING" depth="1"></folder>
+            <folder name="30_MASTER" depth="1"></folder>
+        </folder>
+
+        <folder name="09_OUTGOING" depth="0">
+            <folder name="01_INTERNAL" depth="1"></folder>
+            <folder name="02_TO_VENDOR" depth="1"></folder>
+            <folder name="03_TO_CLIENT" depth="1"></folder>
+        </folder>
+
+        <folder name="10_RENDERS" depth="0">
+            <folder name="01_PREVIS" depth="1"></folder>
+            <folder name="02_MOTION_TESTS" depth="1"></folder>
+            <folder name="10_MASTER" depth="1"></folder>
+            <folder name="90_TESTS" depth="1"></folder>
+        </folder>
+
+        <folder name="90_ARCHIVE" depth="0"></folder>
+    </project>
+</structure>
