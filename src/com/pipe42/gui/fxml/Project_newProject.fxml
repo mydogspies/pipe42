@@ -35,7 +35,7 @@
                         <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
                               <ComboBox fx:id="folderTemplate" prefWidth="150.0" />
-                              <CheckBox alignment="CENTER" mnemonicParsing="false" text="Create new directory">
+                              <CheckBox fx:id="writeDirectoryCheck" alignment="CENTER" mnemonicParsing="false" text="Create new directory">
                                  <HBox.margin>
                                     <Insets left="20.0" top="4.0" />
                                  </HBox.margin></CheckBox>
