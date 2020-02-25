@@ -18,6 +18,7 @@ The latest stable production branch will always be [MASTER] once we are out of a
 #### Changed
 
 - Made some changes to the README.md file
+- General housekeeping versus Github
 
 [MASTER]: https://github.com/mydogspies/pipe42
 [unreleased]: https://github.com/mydogspies/pipe42/tree/develop
