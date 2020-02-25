@@ -5,6 +5,13 @@ import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Owner;
 import com.pipe42.data.Project;
 import com.pipe42.data.Renderengine;
+import com.pipe42.data.Xml;
+import com.pipe42.gui.custom.ComboApp;
+import com.pipe42.gui.custom.ComboAppListCell;
+import com.pipe42.gui.custom.ComboEngine;
+import com.pipe42.gui.custom.ComboEngineListCell;
+import com.pipe42.gui.custom.ComboOwner;
+import com.pipe42.gui.custom.ComboOwnerListCell;
 import com.pipe42.util.Util;
 
 import javafx.collections.FXCollections;
@@ -12,9 +19,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -22,6 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Project_newProjectC {
+
+	@FXML
+	public GridPane comboPane;
+
+	@FXML
+	public CheckBox writeDirectoryCheck;
 
 	@FXML
 	private TextField projectName;
@@ -33,17 +48,7 @@ public class Project_newProjectC {
 	private ComboBox<String> folderTemplate;
 
 	@FXML
-	private ComboBox<String> owner;
-
-	@FXML
-	private ComboBox<String> software;
-
-	@FXML
-	private ComboBox<String> engine;
-
-	@FXML
 	private TextArea projectNotes;
-
 
 	@FXML
 	private WebView htmlContent;
@@ -54,13 +59,11 @@ public class Project_newProjectC {
 
 	/* INIT */
 
+	private ComboBox<ComboOwner> ownerBox;
+	private ComboBox<ComboApp> appBox;
+	private ComboBox<ComboEngine> engineBox;
 	private WebEngine webEngine;
 
-	// TODO all the following vars must be defined below
-	private String engineID;
-	private String appID;
-	private String ownerID;
-	
 	@FXML
     void initialize() {
 
@@ -71,23 +74,51 @@ public class Project_newProjectC {
 		//
 		JsonDataIO io = new JsonDataIO();
 
+		// dynamically create the "Project owner" combobox and wrap it in ComboOwner class
 		List<Owner> ownerList = io.getAllOwners();
-		ObservableList<String> options = FXCollections.observableArrayList();
-		for (Owner owner: ownerList) { options.add(owner.getOwnerName()); }
-		owner.getItems().addAll(options);
-		ownerID = "";
+		ownerBox = new ComboBox<>();
 
+		for (Owner owner: ownerList) {
+			ownerBox.getItems().add(new ComboOwner(owner.getOwnerName(), owner.getOwnerId()));
+		}
+
+		ownerBox.setCellFactory(lv -> new ComboOwnerListCell());
+		ownerBox.setButtonCell(new ComboOwnerListCell());
+		comboPane.add(ownerBox, 1 ,2);
+		ownerBox.getSelectionModel().select(0);
+
+		// dynamically create the "Main project software" combobox and wrap it in ComboApp class
 		List<Application> appList = io.getAllApps();
-		ObservableList<String> options2 = FXCollections.observableArrayList();
-		for (Application app: appList) { options2.add(app.getAppName()); }
-		software.getItems().addAll(options2);
-		appID = "";
+		appBox = new ComboBox<>();
 
+		for (Application app: appList) {
+			appBox.getItems().add(new ComboApp(app.getAppName(), app.getAppID()));
+		}
+
+		appBox.setCellFactory(lv -> new ComboAppListCell());
+		appBox.setButtonCell(new ComboAppListCell());
+		comboPane.add(appBox, 1, 3);
+		appBox.getSelectionModel().select(0);
+
+		// dynamically create the "Main render engine" combobox and wrap it in ComboEngine class
 		List<Renderengine> engineList = io.getAllEngines();
-		ObservableList<String> options3 = FXCollections.observableArrayList();
-		for (Renderengine eng: engineList) { options3.add(eng.getEngineName()); }
-		engine.getItems().addAll(options3);
-		ownerID = "";
+		engineBox = new ComboBox<>();
+
+		for (Renderengine eng: engineList) {
+			engineBox.getItems().add(new ComboEngine(eng.getEngineName(), eng.getEngineID()));
+		}
+
+		engineBox.setCellFactory(lv -> new ComboEngineListCell());
+		engineBox.setButtonCell(new ComboEngineListCell());
+		comboPane.add(engineBox, 1, 4);
+		engineBox.getSelectionModel().select(0);
+
+		// populate the "Project folder template" combobox
+		List<String> templateList = Xml.getXmlTemplateNames();
+		ObservableList<String> options = FXCollections.observableArrayList();
+		for (String name: templateList) { options.add(name); }
+		folderTemplate.getItems().addAll(options);
+		folderTemplate.getSelectionModel().select(0);
 
     }
 
@@ -101,17 +132,31 @@ public class Project_newProjectC {
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
 
+		// TODO a) check for duplicates! Project NAME and PREFIX must be unique respectively
+		// TODO b) Confirmation window when pressing save
+
+		// get the combobox ID values from the wrapper object
+		String engineID = engineBox.getValue().getEngineID();
+		String appID = appBox.getValue().getAppID();
+		String ownerID = ownerBox.getValue().getOwnerID();
+
+		// get a unique hash ID
 		String id = Util.getHash(projectName.getText());
 
+		// get formatted datetime which both
 		HashMap<String, String> creationTime = Util.getDateTime();
 		HashMap<String, String> modifyTime = Util.getDateTime();
 
-				// TODO a number of vars must be defined - see above!!!!
 		Project project = new Project(id, projectName.getText(), projectPrefix.getText(), ownerID, engineID, appID,
 				creationTime, modifyTime, projectNotes.getText());
 
 		JsonDataIO io = new JsonDataIO();
 		io.writeProject(project);
+
+		// and then the project directory if box ticked
+		if (writeDirectoryCheck.isSelected()) {
+			Xml.writeFolderTree(folderTemplate.getValue());
+		}
 
 	}
 	

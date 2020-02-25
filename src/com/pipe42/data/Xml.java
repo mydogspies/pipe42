@@ -51,7 +51,9 @@ public class Xml {
      * as the file name (without file extension).
      * @param templateName the template file name as String without file extension
      */
-    private static void writeFolderTree(String templateName) {
+    public static void writeFolderTree(String templateName) {
+
+        // TODO IMPORTANT! Find a way of verifying folder write before program continues and also flag use that all is done
 
         String writeLocation = "src/com/pipe42/test/folders"; // TODO this variable has to move to USER PREFS
         String xmlPath = "src/data/templates/" + templateName + ".xml"; // TODO this variable has to move to SYSTEM VARS
@@ -96,7 +98,7 @@ public class Xml {
      * an array of names minus the file extension ".xml".
      * @return an ArrayList of template names of type String
      */
-    private static ArrayList<String> getXmlTemplateNames() {
+    public static ArrayList<String> getXmlTemplateNames() {
 
         // test getting all file names in a folder
         FileWorks fw = new FileWorks();
