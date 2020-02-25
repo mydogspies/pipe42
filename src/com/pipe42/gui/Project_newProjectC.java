@@ -1,18 +1,23 @@
 package com.pipe42.gui;
 
-import com.pipe42.console.ConsoleOut;
-import com.pipe42.util.Util;
-
+import com.pipe42.data.Application;
+import com.pipe42.data.JsonDataIO;
+import com.pipe42.data.Owner;
+import com.pipe42.data.Project;
+import com.pipe42.data.Renderengine;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+
+import java.util.List;
 
 public class Project_newProjectC {
 
@@ -26,121 +31,78 @@ public class Project_newProjectC {
 	private CheckBox preloadFiles;
 
 	@FXML
+	private ComboBox<String> owner;
+
+	@FXML
+	private ComboBox<String> software;
+
+	@FXML
+	private ComboBox<String> engine;
+
+	@FXML
 	private TextArea projectNotes;
 
-	@FXML
-	private TitledPane titledPane_owner;
 
-	@FXML
-	private TextField ownerName;
-
-	@FXML
-	private TextField ownerCompany;
-
-	@FXML
-	private TextField ownerDepartment;
-
-	@FXML
-	private TextField projectManager;
-
-	@FXML
-	private TextArea ownerNotes;
-
-	@FXML
-	private TextField engineName;
-
-	@FXML
-	private TextField engineVersion;
-
-	@FXML
-	private TextField engineExecParams;
-
-	@FXML
-	private TextField enginePathToExecutable;
-
-	@FXML
-	private TextArea engineNotes;
-
-	@FXML
-	private TitledPane titledPane_app;
-
-	@FXML
-	private TextField appName;
-
-	@FXML
-	private TextField appVersion;
-
-	@FXML
-	private TextField appExecParams;
-
-	@FXML
-	private TextField appPathToExecutable;
-
-	@FXML
-	private TextArea appNotes;
-
-	@FXML
-	private TitledPane titledPane_project;
-	
-	@FXML
-	private Button newProjectSave;
-	
 	@FXML
 	private WebView htmlContent;
+
+	@FXML
+	private Button newProjectSave;
 
 
 	/* INIT */
 
-	private WebEngine engine;
+	private WebEngine webEngine;
+
+	// TODO all the following vars must be defined below
+	private String engineID;
+	private String appID;
+	private String ownerID;
+	private String creationTime;
+	private String modifyTime;
 	
 	@FXML
     void initialize() {
-		engine = htmlContent.getEngine();
+
+		// grab initial content for the right hand part of the UI
+		webEngine = htmlContent.getEngine();
+
+		// populate the combo boxes
+		//
+		JsonDataIO io = new JsonDataIO();
+
+		List<Owner> ownerList = io.getAllOwners();
+		ObservableList<String> options = FXCollections.observableArrayList();
+		for (Owner owner: ownerList) { options.add(owner.getOwnerName()); }
+		owner.getItems().addAll(options);
+		ownerID = "";
+
+		List<Application> appList = io.getAllApps();
+		ObservableList<String> options2 = FXCollections.observableArrayList();
+		for (Application app: appList) { options2.add(app.getAppName()); }
+		software.getItems().addAll(options2);
+		appID = "";
+
+		List<Renderengine> engineList = io.getAllEngines();
+		ObservableList<String> options3 = FXCollections.observableArrayList();
+		for (Renderengine eng: engineList) { options3.add(eng.getEngineName()); }
+		engine.getItems().addAll(options3);
+		ownerID = "";
+
+		// TODO define methods for this in com.pipe42.util in the Util class
+		creationTime = "";
+		modifyTime = "";
     }
 
 	
 	/* EVENT HANDLERS */
 	
-	/**
-	 * Events from accordion menu in "New Project"
-	 * @param event incoming event from mouse click on top nav menu
-	 */
-	@FXML 
-	public void expandNewProject(MouseEvent event) {
-		
-		// get some utils
-		Util ut = new Util();
-		
-		TitledPane t = (TitledPane) event.getSource();
-		String url;
-		
-		switch(t.getId()) {
-		case "titledPane_project":
-			url = ut.getLocalURL("/com/pipe42/gui/html/project_project.html");
-			engine.load(url);
-			break;
-		case "titledPane_owner":
-			url = ut.getLocalURL("/com/pipe42/gui/html/project_owner.html");
-			engine.load(url);
-			break;
-		case "titledPane_engine":
-			url = ut.getLocalURL("/com/pipe42/gui/html/project_engine.html");
-			engine.load(url);
-			break;
-		case "titledPane_app":
-			url = ut.getLocalURL("/com/pipe42/gui/html/project_app.html");
-			engine.load(url);
-			break;
-		default:
-			ConsoleOut.printCons("Error in the call method of ProjectC.titledPaneExpand");
-		}
-		
-	}
-	
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
 
-		System.out.println(this.projectName.getText());
+		// TODO a number of vars must be defined - see above!!!!
+		Project project = new Project("", projectName.getText(), projectPrefix.getText(), ownerID, engineID, appID,
+				creationTime, modifyTime, projectNotes.getText());
 		
 	}
 	

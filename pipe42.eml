@@ -3,4 +3,19 @@
 	<output-test url="file://$MODULE_DIR$/out/test/pipe42"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
+<<<<<<< HEAD
+=======
+	<lib name="jackson-annotations-2.10.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/lib/jackson-annotations-2.10.2.jar!/"/>
+	</lib>
+	<lib name="jackson-core-2.10.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/lib/jackson-core-2.10.2.jar!/"/>
+	</lib>
+	<lib name="jackson-databind-2.10.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/lib/jackson-databind-2.10.2.jar!/"/>
+	</lib>
+	<lib name="jython-standalone-2.7.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/src/lib/jython-standalone-2.7.1.jar!/"/>
+	</lib>
+>>>>>>> develop
 </component>

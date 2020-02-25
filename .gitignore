@@ -3,3 +3,4 @@ docs/dev/*
 docs/archive/*
 .project
 .classpath
+.idea

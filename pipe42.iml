@@ -6,7 +6,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="module-library">
+=======
+    <orderEntry type="module-library" exported="">
+>>>>>>> 7195b143149c4730582a42cc88f51446345829d7
       <library>
         <CLASSES>
           <root url="file://$MODULE_DIR$/src/lib" />
