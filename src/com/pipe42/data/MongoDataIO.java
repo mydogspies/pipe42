@@ -28,6 +28,11 @@ public class MongoDataIO implements DataIO {
 	}
 
 	@Override
+	public String getPrefixByName(String prefix) {
+		return null;
+	}
+
+	@Override
 	public ArrayList<Owner> getAllOwners() {
 		return null;
 	}

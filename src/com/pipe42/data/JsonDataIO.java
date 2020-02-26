@@ -23,6 +23,15 @@ public class JsonDataIO implements DataIO {
 	// TODO - JsonData - Path should come from preferences and notes must be updated
 	private static String rawPath = "src/data/data.json";
 
+	// The current parse of the json file
+	// this is always set by getJsonData()
+	private static Data database;
+
+	/* CONSTRUCTORS */
+
+	public JsonDataIO() {
+		database = getJsonData();
+	}
 
 	/* IMPLEMENTED METHODS */
 
@@ -43,7 +52,6 @@ public class JsonDataIO implements DataIO {
 	@Override
 	public Project getProjectByName(String name) {
 
-		Data database = getJsonData();
 		Project result = null;
 
 		List<Project> projectList = database.getProject();
@@ -61,6 +69,22 @@ public class JsonDataIO implements DataIO {
 	public ArrayList<Project> getAllProjects() {
 		// TODO add getAllProjects method
 		return null;
+	}
+
+	@Override
+	public String getPrefixByName(String prefix) {
+
+		String result = null;
+
+		List<Project> projectList = database.getProject();
+
+		for (Project project: projectList) {
+			if (project.getProjectPrefix().equals(prefix)) {
+				result = project.getProjectPrefix();
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -99,7 +123,7 @@ public class JsonDataIO implements DataIO {
 	@Override
 	public List<Owner> getAllOwners() {
 
-		Data database = getJsonData();
+		// Data database = getJsonData();
 		return database.getOwner();
 	}
 
@@ -138,7 +162,7 @@ public class JsonDataIO implements DataIO {
 	@Override
 	public List<Application> getAllApps() {
 
-		Data database = getJsonData();
+		// Data database = getJsonData();
 		return database.getApplication();
 	}
 
@@ -177,7 +201,7 @@ public class JsonDataIO implements DataIO {
 	@Override
 	public List<Renderengine> getAllEngines() {
 
-		Data database = getJsonData();
+		// Data database = getJsonData();
 		return database.getEngine();
 	}
 
@@ -252,6 +276,7 @@ public class JsonDataIO implements DataIO {
 		try {
 			content = Initialize.mapper.readValue(jsonfile, Data.class);
 			ConsoleOut.printCons("Data successfully read from Json file.");
+			database = content;
 		} catch (JsonParseException e) {
 			ConsoleOut.printCons("Json parser failed");
 			// TODO - JsonData - add logging

@@ -14,6 +14,7 @@ public interface DataIO {
 	Project getProjectByID(String id);
 	Project getProjectByName(String name);
 	ArrayList<Project> getAllProjects();
+	String getPrefixByName(String prefix);
 
 	// Owner methods
 	List<Owner> getAllOwners();

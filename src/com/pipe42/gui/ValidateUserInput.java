@@ -28,6 +28,8 @@ public class ValidateUserInput {
      */
     public void validateNewProjectFields(AtomicBoolean bool, TextField field) {
 
+        JsonDataIO io = new JsonDataIO();
+
         ValidationSupport val = new ValidationSupport();
 
         Validator<String> validator = new Validator<String>() {
@@ -35,19 +37,17 @@ public class ValidateUserInput {
             @Override
             public ValidationResult apply(Control control, String s) {
 
-                boolean condition;
+                boolean condition = false;
 
                 // check if the field is empty
-                if (s.isEmpty()) {
-                    condition = false;
-                    bool.set(false);
-                } else {
-
-                    JsonDataIO io = new JsonDataIO();
-                    Project result = io.getProjectByName(field.getText());
-                    System.out.println(result);
+                Project res = io.getProjectByName(field.getText());
+                String res2 = io.getPrefixByName(field.getText());
+                if (res == null && res2 == null && !field.getText().isEmpty()) {
                     condition = true;
                     bool.set(true);
+                } else {
+                    condition = false;
+                    bool.set(false);
                 }
 
                 System.out.println(condition);
