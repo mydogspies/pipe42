@@ -11,9 +11,9 @@ import java.util.List;
 public interface DataIO {
 
 	// Project methods
-	Object getProjectByID(String id);
-	Object getProjectByName(String name);
-	ArrayList<Object> getAllProjects();
+	Project getProjectByID(String id);
+	Project getProjectByName(String name);
+	ArrayList<Project> getAllProjects();
 
 	// Owner methods
 	List<Owner> getAllOwners();

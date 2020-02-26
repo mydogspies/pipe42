@@ -8,8 +8,7 @@ public class TestGround {
 
     public static void main(String[] args) {
 
-        HashMap someTime = Util.getDateTime();
-        System.out.println(someTime);
+
 
     }
 

@@ -11,19 +11,19 @@ import java.util.List;
 public class MongoDataIO implements DataIO {
 
 	@Override
-	public Object getProjectByID(String id) {
+	public Project getProjectByID(String id) {
 		// TODO - MongoData - add getEntryByID
 		return null;
 	}
 
 	@Override
-	public Object getProjectByName(String name) {
+	public Project getProjectByName(String name) {
 		// TODO - MongoData - add getEntryByName
 		return null;
 	}
 
 	@Override
-	public ArrayList<Object> getAllProjects() {
+	public ArrayList<Project> getAllProjects() {
 		return null;
 	}
 

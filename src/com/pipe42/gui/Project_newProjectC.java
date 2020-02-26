@@ -13,7 +13,6 @@ import com.pipe42.gui.custom.ComboEngine;
 import com.pipe42.gui.custom.ComboEngineListCell;
 import com.pipe42.gui.custom.ComboOwner;
 import com.pipe42.gui.custom.ComboOwnerListCell;
-import com.pipe42.util.Util;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,9 +26,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import org.controlsfx.validation.Severity;
+import org.controlsfx.validation.ValidationResult;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Project_newProjectC {
 
@@ -64,9 +67,32 @@ public class Project_newProjectC {
 	private ComboBox<ComboApp> appBox;
 	private ComboBox<ComboEngine> engineBox;
 	private WebEngine webEngine;
+	AtomicBoolean projectNameValid = new AtomicBoolean(false);
 
 	@FXML
     void initialize() {
+
+		// TODO the validation must go to its own class!
+		// add validation from controlsfx
+		ValidationSupport val = new ValidationSupport();
+		Validator<String> validator = (control, s) -> {
+
+			boolean condition;
+
+			if (s.isEmpty()) {
+				condition = false;
+				projectNameValid.set(false);
+			} else {
+				condition = true;
+				projectNameValid.set(true);
+			}
+
+			System.out.println(condition);
+
+			return ValidationResult.fromMessageIf( control, "Name can not be empty", Severity.ERROR, condition);
+		};
+		val.registerValidator(projectName, true, validator);
+
 
 		// grab initial content for the right hand part of the UI
 		webEngine = htmlContent.getEngine();
@@ -133,26 +159,35 @@ public class Project_newProjectC {
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
 
-		// TODO a) check for duplicates! Project NAME and PREFIX must be unique respectively
-		// TODO b) Confirmation window when pressing save
+		if (!projectNameValid.get()) {
+
+		}
+
+		// TODO the input validation methods
 
 		// get the actual ID's from the combobox wrapper class
 		String engineID = engineBox.getValue().getEngineID();
 		String appID = appBox.getValue().getAppID();
 		String ownerID = ownerBox.getValue().getOwnerID();
 
+		// confirm dialog
+		Boolean confirm = Dialog.confirmationDialog("You are about to add a new project to the database and, if you ticked the option, add a project folder tree to your hard drive.",
+				"Are sure this is what you want to do?");
 
-		// build a POJI and send it off to writing
-		PojoConstructor pc = new PojoConstructor();
-		Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
-				appID, projectNotes.getText());
+		if (confirm) {
 
-		JsonDataIO io = new JsonDataIO();
-		io.writeProject(project);
+			// build a POJI and send it off to writing
+			PojoConstructor pc = new PojoConstructor();
+			Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
+					appID, projectNotes.getText());
 
-		// and then write the project directory if box ticked
-		if (writeDirectoryCheck.isSelected()) {
-			Xml.writeFolderTree(folderTemplate.getValue());
+			JsonDataIO io = new JsonDataIO();
+			io.writeProject(project);
+
+			// and then write the project directory if box ticked
+			if (writeDirectoryCheck.isSelected()) {
+				Xml.writeFolderTree(folderTemplate.getValue());
+			}
 		}
 
 	}

@@ -30,19 +30,35 @@ public class JsonDataIO implements DataIO {
 	//
 
 	@Override
-	public Object getProjectByID(String id) {
+	public Project getProjectByID(String id) {
 		// TODO add getProjectByID method
 		return null;
 	}
 
+	/**
+	 * Takes a string and returns a Project object if it equals the name of an existing Project
+	 * @param name name of a project with type String
+	 * @return a Project object or null when none
+	 */
 	@Override
-	public Object getProjectByName(String name) {
-		// TODO add getProjectByName method
-		return null;
+	public Project getProjectByName(String name) {
+
+		Data database = getJsonData();
+		Project result = null;
+
+		List<Project> projectList = database.getProject();
+
+		for (Project project: projectList) {
+			if (project.getProjectName().equals(name)) {
+				result = project;
+			}
+		}
+
+		return result;
 	}
 
 	@Override
-	public ArrayList<Object> getAllProjects() {
+	public ArrayList<Project> getAllProjects() {
 		// TODO add getAllProjects method
 		return null;
 	}
