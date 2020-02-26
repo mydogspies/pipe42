@@ -5,12 +5,13 @@ import com.pipe42.util.Util;
 import java.util.HashMap;
 
 /**
- * This class is the facade for our POJO objects
+ * This class is the facade for our POJO objects. Use the methods below to construct the various data object
+ * rather than doing it elsewhere or things like datetime and various validity checks will fail.
  */
 public class PojoConstructor {
 
     /**
-     * Puts together the Project object
+     * Puts together the Project object for further use elsewhere.
      * @param projectName name o project of type String
      * @param projectPrefix project prefix of type String
      * @param ownerID owner ID of type String
@@ -22,15 +23,13 @@ public class PojoConstructor {
     public Project buildProjectObject(String projectName, String projectPrefix, String ownerID, String engineID,
                                       String appID, String projectNotes) {
 
-        // TODO here will authentication of the data before processing go
-
         // get a unique hash ID
         String id = Util.getHash(projectName);
 
         // get formatted datetime
         HashMap<String, String> modifyTime = Util.getDateTime();
 
-        // check of project already exists and if not the construct a creationTime
+        // check if project already exists and if not the construct a creationTime
         JsonDataIO io = new JsonDataIO();
         Project result = null;
         HashMap<String, String> creationTime = null;

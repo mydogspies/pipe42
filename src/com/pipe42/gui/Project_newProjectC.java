@@ -26,10 +26,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import org.controlsfx.validation.Severity;
-import org.controlsfx.validation.ValidationResult;
-import org.controlsfx.validation.ValidationSupport;
-import org.controlsfx.validation.Validator;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -68,31 +64,18 @@ public class Project_newProjectC {
 	private ComboBox<ComboEngine> engineBox;
 	private WebEngine webEngine;
 	AtomicBoolean projectNameValid = new AtomicBoolean(false);
+	AtomicBoolean projectPrefixValid = new AtomicBoolean(false);
 
 	@FXML
     void initialize() {
 
-		// TODO the validation must go to its own class!
-		// add validation from controlsfx
-		ValidationSupport val = new ValidationSupport();
-		Validator<String> validator = (control, s) -> {
+		// add validation to the fields
+		//
+		ValidateUserInput vl = new ValidateUserInput();
+		vl.validateNewProjectFields(projectNameValid, projectName);
 
-			boolean condition;
-
-			if (s.isEmpty()) {
-				condition = false;
-				projectNameValid.set(false);
-			} else {
-				condition = true;
-				projectNameValid.set(true);
-			}
-
-			System.out.println(condition);
-
-			return ValidationResult.fromMessageIf( control, "Name can not be empty", Severity.ERROR, condition);
-		};
-		val.registerValidator(projectName, true, validator);
-
+		ValidateUserInput vl2 = new ValidateUserInput();
+		vl2.validateNewProjectFields(projectPrefixValid, projectPrefix);
 
 		// grab initial content for the right hand part of the UI
 		webEngine = htmlContent.getEngine();
@@ -160,7 +143,11 @@ public class Project_newProjectC {
 	public void savedButtonPressed(ActionEvent event) {
 
 		if (!projectNameValid.get()) {
-			Dialog.fieldsMissingDialog("One or more fields are empty!", "Please fill in the all the required fields.");
+			Dialog.fieldsMissingDialog("Project name is empty!", "Please fill in the all the required fields.");
+			return;
+		}
+		if (!projectPrefixValid.get()) {
+			Dialog.fieldsMissingDialog("Project prefix is empty!", "Please fill in the all the required fields.");
 			return;
 		}
 
