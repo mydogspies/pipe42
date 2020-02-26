@@ -160,7 +160,8 @@ public class Project_newProjectC {
 	public void savedButtonPressed(ActionEvent event) {
 
 		if (!projectNameValid.get()) {
-
+			Dialog.fieldsMissingDialog("One or more fields are empty!", "Please fill in the all the required fields.");
+			return;
 		}
 
 		// TODO the input validation methods
