@@ -14,7 +14,7 @@ import com.pipe42.main.Initialize;
 
 /**
  * IO and call logic for json files as database
- * @author Mydogspies
+ * @author Peter Mankowski
  *
  */
 public class JsonDataIO implements DataIO {
@@ -23,81 +23,28 @@ public class JsonDataIO implements DataIO {
 	// TODO - JsonData - Path should come from preferences and notes must be updated
 	private static String rawPath = "src/data/data.json";
 
-	// our Jackson json mapper
-	//ObjectMapper mapper = new ObjectMapper();
-
 
 	/* IMPLEMENTED METHODS */
 
+	// PROJECT METHODS
+	//
+
 	@Override
 	public Object getProjectByID(String id) {
-		// TODO - JsonData - add getEntryByID
+		// TODO add getProjectByID method
 		return null;
 	}
 
 	@Override
 	public Object getProjectByName(String name) {
-		// TODO - JsonData - add getEntryByName
+		// TODO add getProjectByName method
 		return null;
 	}
 
 	@Override
 	public ArrayList<Object> getAllProjects() {
+		// TODO add getAllProjects method
 		return null;
-	}
-
-	/**
-	 * Get all Owner objects and return a List thereof
-	 * @return returns a List of type Owner
-	 */
-	@Override
-	public List<Owner> getAllOwners() {
-
-		Data database = getJsonData();
-		return database.getOwner();
-	}
-
-	/**
-	 * Get all Application objects and return a List thereof
-	 * @return returns List of type Application
-	 */
-	@Override
-	public List<Application> getAllApps() {
-
-		Data database = getJsonData();
-		return database.getApplication();
-	}
-
-	/**
-	 * Get all Renderengine objects and return a List thereof
-	 * @return returns List of type Renderengine
-	 */
-	@Override
-	public List<Renderengine> getAllEngines() {
-
-		Data database = getJsonData();
-		return database.getEngine();
-	}
-
-	@Override
-	public void deleteProject(String id) {
-		// TODO - JsonData - add deleteEntry
-		
-	}
-
-	@Override
-	public void deleteApplication(String id) {
-
-	}
-
-	@Override
-	public void deleteQwner(String id) {
-
-	}
-
-	@Override
-	public void deleteRenderengine(String id) {
-
 	}
 
 	/**
@@ -117,27 +64,32 @@ public class JsonDataIO implements DataIO {
 		Data container = new Data(projectList, database.getApplication(), database.getOwner(), database.getEngine());
 
 		writeJsonData(container);
+	}
+
+	@Override
+	public void deleteProject(String id) {
+		// TODO add deleteProject method
 
 	}
 
+
+	// OWNER METHODS
+	//
+
 	/**
-	 * Appends an entry of type Application into the data.json file
-	 * @param appData list of entries of type Application
+	 * Get all Owner objects and return a List thereof
+	 * @return returns a List of type Owner
 	 */
 	@Override
-	public void writeApplication(Application appData) {
+	public List<Owner> getAllOwners() {
 
-		// get current database from json.data
 		Data database = getJsonData();
+		return database.getOwner();
+	}
 
-		// and then add it to current list of Application objects
-		List<Application> appList = database.getApplication();
-		appList.add(appData);
-
-		Data container = new Data(database.getProject(), appList, database.getOwner(), database.getEngine());
-
-		writeJsonData(container);
-
+	@Override
+	public void deleteQwner(String id) {
+		// TODO add deleteOwner method
 	}
 
 	/**
@@ -157,7 +109,65 @@ public class JsonDataIO implements DataIO {
 		Data container = new Data(database.getProject(), database.getApplication(), ownerList, database.getEngine());
 
 		writeJsonData(container);
+	}
 
+
+	// APPLICATION METHODS
+	//
+
+	/**
+	 * Get all Application objects and return a List thereof
+	 * @return returns List of type Application
+	 */
+	@Override
+	public List<Application> getAllApps() {
+
+		Data database = getJsonData();
+		return database.getApplication();
+	}
+
+	/**
+	 * Appends an entry of type Application into the data.json file
+	 * @param appData list of entries of type Application
+	 */
+	@Override
+	public void writeApplication(Application appData) {
+
+		// get current database from json.data
+		Data database = getJsonData();
+
+		// and then add it to current list of Application objects
+		List<Application> appList = database.getApplication();
+		appList.add(appData);
+
+		Data container = new Data(database.getProject(), appList, database.getOwner(), database.getEngine());
+
+		writeJsonData(container);
+	}
+
+	@Override
+	public void deleteApplication(String id) {
+		// TODO add deleteApplication method
+	}
+
+
+	// RENDERENGINE METHODS
+	//
+
+	/**
+	 * Get all Renderengine objects and return a List thereof
+	 * @return returns List of type Renderengine
+	 */
+	@Override
+	public List<Renderengine> getAllEngines() {
+
+		Data database = getJsonData();
+		return database.getEngine();
+	}
+
+	@Override
+	public void deleteRenderengine(String id) {
+		// TODO add deleteRenderengine method
 	}
 
 	/**
@@ -177,7 +187,6 @@ public class JsonDataIO implements DataIO {
 		Data container = new Data(database.getProject(), database.getApplication(), database.getOwner(), engineList);
 
 		writeJsonData(container);
-
 	}
 
 

@@ -3,6 +3,7 @@ package com.pipe42.gui;
 import com.pipe42.data.Application;
 import com.pipe42.data.JsonDataIO;
 import com.pipe42.data.Owner;
+import com.pipe42.data.PojoConstructor;
 import com.pipe42.data.Project;
 import com.pipe42.data.Renderengine;
 import com.pipe42.data.Xml;
@@ -135,25 +136,21 @@ public class Project_newProjectC {
 		// TODO a) check for duplicates! Project NAME and PREFIX must be unique respectively
 		// TODO b) Confirmation window when pressing save
 
-		// get the combobox ID values from the wrapper object
+		// get the actual ID's from the combobox wrapper class
 		String engineID = engineBox.getValue().getEngineID();
 		String appID = appBox.getValue().getAppID();
 		String ownerID = ownerBox.getValue().getOwnerID();
 
-		// get a unique hash ID
-		String id = Util.getHash(projectName.getText());
 
-		// get formatted datetime which both
-		HashMap<String, String> creationTime = Util.getDateTime();
-		HashMap<String, String> modifyTime = Util.getDateTime();
-
-		Project project = new Project(id, projectName.getText(), projectPrefix.getText(), ownerID, engineID, appID,
-				creationTime, modifyTime, projectNotes.getText());
+		// build a POJI and send it off to writing
+		PojoConstructor pc = new PojoConstructor();
+		Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
+				appID, projectNotes.getText());
 
 		JsonDataIO io = new JsonDataIO();
 		io.writeProject(project);
 
-		// and then the project directory if box ticked
+		// and then write the project directory if box ticked
 		if (writeDirectoryCheck.isSelected()) {
 			Xml.writeFolderTree(folderTemplate.getValue());
 		}

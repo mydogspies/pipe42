@@ -1,6 +1,5 @@
 package com.pipe42.data;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 
 /**
@@ -39,6 +38,9 @@ public final class Project {
 		this.modifyTime = modifyTime;
 		this.projectNotes = projectnotes;
 	}
+
+
+	/* GETTERS AND SETTERS */
 
 	public String getProjectID() {
 
