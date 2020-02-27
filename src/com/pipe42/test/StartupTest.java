@@ -20,6 +20,7 @@ public class StartupTest {
 		System.setProperty("python.console.encoding", "UTF-8");
 		// and preload a Jython interpreter
 		pyInterp = new PythonInterpreter();
+
 		
 		// say hello from default main start method
 		ConsoleOut.printCons("StartupTest says hello");

@@ -17,6 +17,8 @@ public class Initialize_Json {
 
 	public static void main(String[] args) {
 
+
+
 		// initiate a json db with some data
 		Data data = AddTestData.defineTestData();
 
