@@ -13,7 +13,7 @@ import com.pipe42.data.JsonDataIO;
  * @author Mydogspies
  *
  */
-public class JsonTest {
+public class Initialize_Json {
 
 	public static void main(String[] args) {
 
@@ -25,7 +25,7 @@ public class JsonTest {
 		io.writeJsonData(data);
 
 		// say hello from main start method
-		ConsoleOut.printCons("JsonTest finished");
+		ConsoleOut.printCons("Initialize_Json finished");
 		
 	}
 

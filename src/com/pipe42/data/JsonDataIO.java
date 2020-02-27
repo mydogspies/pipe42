@@ -46,6 +46,7 @@ public class JsonDataIO implements DataIO {
 
 	/**
 	 * Takes a string and returns a Project object if it equals the name of an existing Project
+	 * Note that this is case independent
 	 * @param name name of a project with type String
 	 * @return a Project object or null when none
 	 */
@@ -57,7 +58,7 @@ public class JsonDataIO implements DataIO {
 		List<Project> projectList = database.getProject();
 
 		for (Project project: projectList) {
-			if (project.getProjectName().equals(name)) {
+			if (project.getProjectName().toLowerCase().equals(name.toLowerCase())) {
 				result = project;
 			}
 		}
@@ -79,7 +80,7 @@ public class JsonDataIO implements DataIO {
 		List<Project> projectList = database.getProject();
 
 		for (Project project: projectList) {
-			if (project.getProjectPrefix().equals(prefix)) {
+			if (project.getProjectPrefix().toLowerCase().equals(prefix.toLowerCase())) {
 				result = project.getProjectPrefix();
 			}
 		}

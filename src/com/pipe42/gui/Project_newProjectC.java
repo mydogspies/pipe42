@@ -14,19 +14,28 @@ import com.pipe42.gui.custom.ComboEngineListCell;
 import com.pipe42.gui.custom.ComboOwner;
 import com.pipe42.gui.custom.ComboOwnerListCell;
 
+import com.pipe42.gui.validate.ValidateUserInput;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -54,7 +63,10 @@ public class Project_newProjectC {
 	private WebView htmlContent;
 
 	@FXML
-	private Button newProjectSave;
+	private Button setPath;
+
+	@FXML
+	private Label directoryPath;
 
 
 	/* INIT */
@@ -65,20 +77,26 @@ public class Project_newProjectC {
 	private WebEngine webEngine;
 	AtomicBoolean projectNameValid = new AtomicBoolean(false);
 	AtomicBoolean projectPrefixValid = new AtomicBoolean(false);
+	AtomicBoolean setPathValid = new AtomicBoolean(false);
 
 	@FXML
     void initialize() {
 
-		// add validation to the fields
+		// add validation
 		//
 		ValidateUserInput vl = new ValidateUserInput();
-		vl.validateNewProjectFields(projectNameValid, projectName);
+		vl.validateNewProjectName(projectNameValid, projectName);
 
 		ValidateUserInput vl2 = new ValidateUserInput();
-		vl2.validateNewProjectFields(projectPrefixValid, projectPrefix);
+		vl2.validateNewProjectPrefix(projectPrefixValid, projectPrefix);
+
+
 
 		// grab initial content for the right hand part of the UI
+		//
 		webEngine = htmlContent.getEngine();
+		URL urlHello = getClass().getResource("html/project_newProject_default.html");
+		webEngine.load(String.valueOf(urlHello));
 
 		// populate the combo boxes
 		//
@@ -130,6 +148,23 @@ public class Project_newProjectC {
 		folderTemplate.getItems().addAll(options);
 		folderTemplate.getSelectionModel().select(0);
 
+		// dynamically create the DirectoryShow object
+		//
+		setPath.setOnAction(event -> {
+
+			String path = Dialog.directoryDialog();
+			directoryPath.setText(path);
+
+			System.out.println(directoryPath.getText());
+
+			if (directoryPath.getText() != "" || directoryPath.getText() != "Set path!") {
+				setPathValid.set(true);
+			} else {
+				setPathValid.set(false);
+			}
+
+		});
+
     }
 
 	
@@ -142,16 +177,26 @@ public class Project_newProjectC {
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
 
+		// check validations
+		//
 		if (!projectNameValid.get()) {
-			Dialog.fieldsMissingDialog("Project name is empty!", "Please fill in the all the required fields.");
+			Dialog.inputErrorDialog("Project name is either empty or already exists in the database!",
+					"Field can no be empty and must be duplicate of an existing project.");
 			return;
 		}
 		if (!projectPrefixValid.get()) {
-			Dialog.fieldsMissingDialog("Project prefix is empty!", "Please fill in the all the required fields.");
+			Dialog.inputErrorDialog("Prefix is either empty, already exists in the database or is longer than the amount of characters set in the system preferences!",
+					"Field can no be empty, must contain max 6 characters and must be duplicate of an existing project.");
+			// TODO max charcters should be injected from PREFS
 			return;
 		}
 
-		// TODO the input validation methods
+		if (!setPathValid.get()) {
+			Dialog.inputErrorDialog("The path to the root of the project folder directory must be set!",
+					"Please, set the path to the root, eg. c:/somedir/root/project_folders");
+			return;
+		}
+
 
 		// get the actual ID's from the combobox wrapper class
 		String engineID = engineBox.getValue().getEngineID();
@@ -167,14 +212,14 @@ public class Project_newProjectC {
 			// build a POJI and send it off to writing
 			PojoConstructor pc = new PojoConstructor();
 			Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
-					appID, projectNotes.getText());
+					appID, projectNotes.getText(), folderTemplate.getValue(), directoryPath.getText());
 
 			JsonDataIO io = new JsonDataIO();
 			io.writeProject(project);
 
 			// and then write the project directory if box ticked
 			if (writeDirectoryCheck.isSelected()) {
-				Xml.writeFolderTree(folderTemplate.getValue());
+				Xml.writeFolderTree(folderTemplate.getValue(), directoryPath.getText());
 			}
 		}
 

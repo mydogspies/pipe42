@@ -51,11 +51,10 @@ public class Xml {
      * as the file name (without file extension).
      * @param templateName the template file name as String without file extension
      */
-    public static void writeFolderTree(String templateName) {
+    public static void writeFolderTree(String templateName, String rootPath) {
 
         // TODO IMPORTANT! Find a way of verifying folder write before program continues and also flag use that all is done
 
-        String writeLocation = "src/com/pipe42/test/folders"; // TODO this variable has to move to USER PREFS
         String xmlPath = "src/data/templates/" + templateName + ".xml"; // TODO this variable has to move to SYSTEM VARS
         String writePath = "";
 
@@ -87,8 +86,8 @@ public class Xml {
 
             }
 
-            new File(writeLocation + writePath).mkdirs();
-            ConsoleOut.printCons("New folder structure written to " + writeLocation);
+            new File(rootPath + writePath).mkdirs();
+            ConsoleOut.printCons("New folder structure written to " + rootPath);
         }
 
     }

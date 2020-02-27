@@ -51,19 +51,22 @@ public class AddTestData {
 		HashMap<String, String> creationTime = Util.getDateTime();
 		Project proj1 = new Project(hash.get(5), "Test Project 1", "TS1",
 				hash.get(2), hash.get(3), hash.get(0),
-				creationTime, modifyTime, "Our first test project");
+				creationTime, modifyTime, "Our first test project",
+				"default", "C:\\Users\\Student\\Desktop\\pipe42\\src\\com\\pipe42\\test\\folders");
 
 		HashMap<String, String> modifyTime2 = Util.getDateTime();
 		HashMap<String, String> creationTime2 = Util.getDateTime();
 		Project proj2 = new Project(hash.get(6), "Test Project 2", "TS2",
 				hash.get(2), hash.get(3), hash.get(1),
-				creationTime2, modifyTime2, "Second test project");
+				creationTime2, modifyTime2, "Second test project",
+				"default", "C:\\Users\\Student\\Desktop\\pipe42\\src\\com\\pipe42\\test\\folders");
 
 		HashMap<String, String> modifyTime3 = Util.getDateTime();
 		HashMap<String, String> creationTime3 = Util.getDateTime();
 		Project proj3 = new Project(hash.get(7), "Test Project 3", "TS3",
 				hash.get(2), hash.get(4), hash.get(0),
-				creationTime3, modifyTime3, "Third test project");
+				creationTime3, modifyTime3, "Third test project",
+				"default", "C:\\Users\\Student\\Desktop\\pipe42\\src\\com\\pipe42\\test\\folders");
 		List<Project> plist = new ArrayList<Project>();
 
 		plist.add(proj1);

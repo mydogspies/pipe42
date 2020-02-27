@@ -21,7 +21,7 @@ public class PojoConstructor {
      * @return an instance of the Project object
      */
     public Project buildProjectObject(String projectName, String projectPrefix, String ownerID, String engineID,
-                                      String appID, String projectNotes) {
+                                      String appID, String projectNotes, String folderTemplate, String folderPath) {
 
         // get a unique hash ID
         String id = Util.getHash(projectName);
@@ -41,7 +41,7 @@ public class PojoConstructor {
         }
 
         return new Project(id, projectName, projectPrefix, ownerID, engineID, appID,
-                creationTime, modifyTime, projectNotes);
+                creationTime, modifyTime, projectNotes, folderTemplate, folderPath);
     }
 
 }

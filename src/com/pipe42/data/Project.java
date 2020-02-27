@@ -1,5 +1,7 @@
 package com.pipe42.data;
 
+import org.python.antlr.ast.Str;
+
 import java.util.HashMap;
 
 /**
@@ -18,6 +20,8 @@ public final class Project {
 	private HashMap<String, String> creationTime;
 	private HashMap<String, String> modifyTime;
 	private String projectNotes;
+	private String projectTemplate;
+	private String projectPath;
 
 
 	/* CONSTRUCTORS */
@@ -26,7 +30,8 @@ public final class Project {
 
 	public Project(String id, String projectName, String projectPrefix,
 				   String ownerID, String engineID, String applicationID,
-				   HashMap<String, String> creationTime, HashMap<String, String> modifyTime, String projectnotes) {
+				   HashMap<String, String> creationTime, HashMap<String, String> modifyTime,
+				   String projectnotes, String projectTemplate, String projectPath) {
 
 		this.projectID = id;
 		this.projectName = projectName;
@@ -37,6 +42,8 @@ public final class Project {
 		this.creationTime = creationTime;
 		this.modifyTime = modifyTime;
 		this.projectNotes = projectnotes;
+		this.projectTemplate = projectTemplate;
+		this.projectPath = projectPath;
 	}
 
 
@@ -130,5 +137,21 @@ public final class Project {
 	public void setModifyTime(HashMap<String, String> modifyTime) {
 
 		this.modifyTime = modifyTime;
+	}
+
+	public String getProjectTemplate() {
+		return projectTemplate;
+	}
+
+	public void setProjectTemplate(String projectTemplate) {
+		this.projectTemplate = projectTemplate;
+	}
+
+	public String getProjectPath() {
+		return projectPath;
+	}
+
+	public void setProjectPath(String projectPath) {
+		this.projectPath = projectPath;
 	}
 }
