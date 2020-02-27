@@ -23,10 +23,11 @@ public class ValidateUserInput {
 
     /**
      * Validates the TextFields in the Project_newProjectC.java controller
-     * @param bool takes the predefined boolean of type AtomicBoolean for the specific field
+     *
+     * @param bool  takes the predefined boolean of type AtomicBoolean for the specific field
      * @param field the specific field of type TextField as defined by fxml in the controller
      */
-    public void validateNewProjectFields(AtomicBoolean bool, TextField field) {
+    public void validateNewProjectName(AtomicBoolean bool, TextField field) {
 
         JsonDataIO io = new JsonDataIO();
 
@@ -34,23 +35,33 @@ public class ValidateUserInput {
 
         Validator<String> validator = new Validator<String>() {
 
+
             @Override
             public ValidationResult apply(Control control, String s) {
 
                 boolean condition = false;
 
-                // check if the field is empty
-                Project res = io.getProjectByName(field.getText());
-                String res2 = io.getPrefixByName(field.getText());
-                if (res == null && res2 == null && !field.getText().isEmpty()) {
-                    condition = true;
-                    bool.set(true);
+                if (!field.getText().isEmpty()) {
+
+
+                    Project res = io.getProjectByName(field.getText());
+                    System.out.println(res);
+                    if (res == null) {
+                        condition = true;
+                        bool.set(true);
+                    } else {
+                        condition = false;
+                        bool.set(false);
+                    }
+                    System.out.println("project: " + bool);
+
+
                 } else {
                     condition = false;
                     bool.set(false);
                 }
 
-                System.out.println(condition);
+                System.out.println("projectName " + " : " + field.getText() + " : " + condition);
 
                 return ValidationResult.fromMessageIf(control, "This field can not be empty", Severity.ERROR, condition);
             }
