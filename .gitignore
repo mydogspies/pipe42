@@ -4,3 +4,4 @@ docs/archive/*
 .project
 .classpath
 .idea
+*.iml
