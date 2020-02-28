@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project template="SuperFamily123">
-    <folder name="FAMILY" depth="0">
-        <folder name="ALEX" depth="1"></folder>
-        <folder name="BABA" depth="1"></folder>
-        <folder name="LEONIDA" depth="1"></folder>
-    </folder>
-</project>
