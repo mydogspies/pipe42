@@ -1,7 +1,7 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.Application;
-import com.pipe42.data.JsonDataIO;
+import com.pipe42.data.pojos.Application;
+import com.pipe42.main.Main;
 import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,8 +58,7 @@ public class System_addProjectSoftwareC {
         Application app = new Application(id, appName.getText(), appVersion.getText(),
                 appPathToExecutable.getText(), appExecParams.getText(), appNotes.getText());
 
-        JsonDataIO io = new JsonDataIO();
-        io.writeApplication(app);
+        Main.factory.getIO().writeApplication(app);
     }
 
 }

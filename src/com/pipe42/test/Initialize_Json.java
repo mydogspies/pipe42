@@ -1,8 +1,8 @@
 package com.pipe42.test;
 
 import com.pipe42.console.ConsoleOut;
-import com.pipe42.data.Data;
-import com.pipe42.data.JsonDataIO;
+import com.pipe42.data.pojos.Data;
+import com.pipe42.data.DatabaseJson;
 
 /**
  * NOTE!!!! The path for the json file is for testing purposes defined
@@ -23,7 +23,8 @@ public class Initialize_Json {
 		Data data = AddTestData.defineTestData();
 
 		// call json writer
-		JsonDataIO io = new JsonDataIO();
+
+		DatabaseJson io = new DatabaseJson();
 		io.writeJsonData(data);
 
 		// say hello from main start method

@@ -1,9 +1,8 @@
 package com.pipe42.gui.validate;
 
-import com.pipe42.data.JsonDataIO;
-import com.pipe42.data.Project;
+import com.pipe42.data.pojos.Project;
+import com.pipe42.main.Main;
 import javafx.scene.control.Control;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationResult;
@@ -31,8 +30,6 @@ public class ValidateUserInput {
      */
     public void validateNewProjectName(AtomicBoolean bool, TextField field) {
 
-        JsonDataIO io = new JsonDataIO();
-
         ValidationSupport val = new ValidationSupport();
         val.setErrorDecorationEnabled(false);
 
@@ -46,7 +43,7 @@ public class ValidateUserInput {
 
                 if (!field.getText().isEmpty()) {
 
-                    Project res = io.getProjectByName(field.getText());
+                    Project res = Main.factory.getIO().getProjectByName(field.getText());
 
                     if (res == null) {
                         condition = true;
@@ -76,8 +73,6 @@ public class ValidateUserInput {
      */
     public void validateNewProjectPrefix(AtomicBoolean bool, TextField field) {
 
-        JsonDataIO io = new JsonDataIO();
-
         ValidationSupport val = new ValidationSupport();
         val.setErrorDecorationEnabled(false);
 
@@ -91,7 +86,7 @@ public class ValidateUserInput {
 
                 if (!field.getText().isEmpty() && field.getText().length() < 7) { // TODO the length must go into PREFS
 
-                    String res = io.getPrefixByName(field.getText());
+                    String res = Main.factory.getIO().getPrefixByName(field.getText());
 
                     if (res == null) {
                         condition = true;

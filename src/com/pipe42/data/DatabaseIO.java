@@ -1,5 +1,10 @@
 package com.pipe42.data;
 
+import com.pipe42.data.pojos.Application;
+import com.pipe42.data.pojos.Owner;
+import com.pipe42.data.pojos.Project;
+import com.pipe42.data.pojos.Renderengine;
+
 import java.util.ArrayList;
 import java.util.List;
 
