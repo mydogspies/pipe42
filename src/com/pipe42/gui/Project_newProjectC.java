@@ -15,6 +15,7 @@ import com.pipe42.gui.custom.ComboOwner;
 import com.pipe42.gui.custom.ComboOwnerListCell;
 
 import com.pipe42.gui.validate.ValidateUserInput;
+import com.pipe42.main.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -214,8 +215,10 @@ public class Project_newProjectC {
 			Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
 					appID, projectNotes.getText(), folderTemplate.getValue(), directoryPath.getText());
 
-			JsonDataIO io = new JsonDataIO();
-			io.writeProject(project);
+			Main.factory.getIO().writeProject(project);
+
+			// JsonDataIO io = new JsonDataIO();
+			// io.writeProject(project);
 
 			// and then write the project directory if box ticked
 			if (writeDirectoryCheck.isSelected()) {
