@@ -5,3 +5,4 @@ docs/archive/*
 .classpath
 .idea
 *.iml
+src/data/mongodb/*
