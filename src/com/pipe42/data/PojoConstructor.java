@@ -36,6 +36,7 @@ public class PojoConstructor {
         HashMap<String, String> creationTime = null;
 
         result = Main.factory.getIO().getProjectByName(projectName);
+
         if (result != null) {
             creationTime = result.getCreationTime();
         } else {

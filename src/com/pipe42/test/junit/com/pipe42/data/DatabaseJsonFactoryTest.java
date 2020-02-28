@@ -14,6 +14,8 @@ public class DatabaseJsonFactoryTest {
 
         DatabaseIO io = factory.getIO();
 
+        System.out.println("DatabaseJsonFactoryTest: Json info: " + io.getDatabaseInfo());
+
         assertEquals(io.getDatabaseInfo(), "Json");
 
     }

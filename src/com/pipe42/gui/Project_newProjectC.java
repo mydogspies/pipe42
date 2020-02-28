@@ -85,12 +85,12 @@ public class Project_newProjectC {
 		vl2.validateNewProjectPrefix(projectPrefixValid, projectPrefix);
 
 
-
 		// grab initial content for the right hand part of the UI
 		//
 		webEngine = htmlContent.getEngine();
 		URL urlHello = getClass().getResource("html/project_newProject_default.html");
 		webEngine.load(String.valueOf(urlHello));
+
 
 		// populate the combo boxes
 		//
@@ -142,6 +142,7 @@ public class Project_newProjectC {
 		folderTemplate.getItems().addAll(options);
 		folderTemplate.getSelectionModel().select(0);
 
+
 		// dynamically create the DirectoryShow object
 		//
 		setPath.setOnAction(event -> {
@@ -149,14 +150,11 @@ public class Project_newProjectC {
 			String path = Dialog.directoryDialog();
 			directoryPath.setText(path);
 
-			System.out.println(directoryPath.getText());
-
 			if (directoryPath.getText() != "" || directoryPath.getText() != "Set path!") {
 				setPathValid.set(true);
 			} else {
 				setPathValid.set(false);
 			}
-
 		});
 
     }
@@ -203,7 +201,7 @@ public class Project_newProjectC {
 
 		if (confirm) {
 
-			// build a POJI and send it off to writing
+			// build a POJO and send it off to writing
 			PojoConstructor pc = new PojoConstructor();
 			Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
 					appID, projectNotes.getText(), folderTemplate.getValue(), directoryPath.getText());

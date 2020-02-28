@@ -14,6 +14,8 @@ public class DatabaseMongoDBFactoryTest {
 
         DatabaseIO io = factory.getIO();
 
+        System.out.println("DatabaseMongoDBFactoryTest: mongoDb info: " + io.getDatabaseInfo());
+
         assertEquals(io.getDatabaseInfo(), "MongoDB");
 
     }

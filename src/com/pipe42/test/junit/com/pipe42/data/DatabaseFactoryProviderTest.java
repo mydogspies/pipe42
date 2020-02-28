@@ -11,6 +11,8 @@ public class DatabaseFactoryProviderTest {
 
         DatabaseAbstractFactory daf = DatabaseFactoryProvider.getFactory(DatabaseType.JSON);
 
+        System.out.println("DatabaseFactoryProviderTest: Json info: " + daf.getIO().getDatabaseInfo());
+
         assertEquals(daf.getIO().getDatabaseInfo(), "Json");
 
     }
