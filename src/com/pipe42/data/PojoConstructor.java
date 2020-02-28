@@ -1,5 +1,7 @@
 package com.pipe42.data;
 
+import com.pipe42.data.pojos.Project;
+import com.pipe42.main.Main;
 import com.pipe42.util.Util;
 
 import java.util.HashMap;
@@ -30,10 +32,11 @@ public class PojoConstructor {
         HashMap<String, String> modifyTime = Util.getDateTime();
 
         // check if project already exists and if not the construct a creationTime
-        JsonDataIO io = new JsonDataIO();
         Project result = null;
         HashMap<String, String> creationTime = null;
-        result = io.getProjectByName(projectName);
+
+        result = Main.factory.getIO().getProjectByName(projectName);
+
         if (result != null) {
             creationTime = result.getCreationTime();
         } else {

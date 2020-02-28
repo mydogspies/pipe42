@@ -1,7 +1,6 @@
 package com.pipe42.data;
 
 import com.pipe42.console.ConsoleOut;
-import com.pipe42.data.FileWorks;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

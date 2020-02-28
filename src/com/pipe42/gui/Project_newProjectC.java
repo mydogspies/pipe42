@@ -1,11 +1,10 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.Application;
-import com.pipe42.data.JsonDataIO;
-import com.pipe42.data.Owner;
+import com.pipe42.data.pojos.Application;
+import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.PojoConstructor;
-import com.pipe42.data.Project;
-import com.pipe42.data.Renderengine;
+import com.pipe42.data.pojos.Project;
+import com.pipe42.data.pojos.Renderengine;
 import com.pipe42.data.Xml;
 import com.pipe42.gui.custom.ComboApp;
 import com.pipe42.gui.custom.ComboAppListCell;
@@ -15,11 +14,11 @@ import com.pipe42.gui.custom.ComboOwner;
 import com.pipe42.gui.custom.ComboOwnerListCell;
 
 import com.pipe42.gui.validate.ValidateUserInput;
+import com.pipe42.main.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -27,14 +26,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -91,19 +85,19 @@ public class Project_newProjectC {
 		vl2.validateNewProjectPrefix(projectPrefixValid, projectPrefix);
 
 
-
 		// grab initial content for the right hand part of the UI
 		//
 		webEngine = htmlContent.getEngine();
 		URL urlHello = getClass().getResource("html/project_newProject_default.html");
 		webEngine.load(String.valueOf(urlHello));
 
+
 		// populate the combo boxes
 		//
-		JsonDataIO io = new JsonDataIO();
 
 		// dynamically create the "Project owner" combobox and wrap it in ComboOwner class
-		List<Owner> ownerList = io.getAllOwners();
+		List<Owner> ownerList = Main.factory.getIO().getAllOwners();
+
 		ownerBox = new ComboBox<>();
 
 		for (Owner owner: ownerList) {
@@ -116,7 +110,7 @@ public class Project_newProjectC {
 		ownerBox.getSelectionModel().select(0);
 
 		// dynamically create the "Main project software" combobox and wrap it in ComboApp class
-		List<Application> appList = io.getAllApps();
+		List<Application> appList = Main.factory.getIO().getAllApps();
 		appBox = new ComboBox<>();
 
 		for (Application app: appList) {
@@ -129,7 +123,7 @@ public class Project_newProjectC {
 		appBox.getSelectionModel().select(0);
 
 		// dynamically create the "Main render engine" combobox and wrap it in ComboEngine class
-		List<Renderengine> engineList = io.getAllEngines();
+		List<Renderengine> engineList = Main.factory.getIO().getAllEngines();
 		engineBox = new ComboBox<>();
 
 		for (Renderengine eng: engineList) {
@@ -148,6 +142,7 @@ public class Project_newProjectC {
 		folderTemplate.getItems().addAll(options);
 		folderTemplate.getSelectionModel().select(0);
 
+
 		// dynamically create the DirectoryShow object
 		//
 		setPath.setOnAction(event -> {
@@ -155,14 +150,11 @@ public class Project_newProjectC {
 			String path = Dialog.directoryDialog();
 			directoryPath.setText(path);
 
-			System.out.println(directoryPath.getText());
-
 			if (directoryPath.getText() != "" || directoryPath.getText() != "Set path!") {
 				setPathValid.set(true);
 			} else {
 				setPathValid.set(false);
 			}
-
 		});
 
     }
@@ -209,13 +201,12 @@ public class Project_newProjectC {
 
 		if (confirm) {
 
-			// build a POJI and send it off to writing
+			// build a POJO and send it off to writing
 			PojoConstructor pc = new PojoConstructor();
 			Project project = pc.buildProjectObject(projectName.getText(), projectPrefix.getText(), ownerID, engineID,
 					appID, projectNotes.getText(), folderTemplate.getValue(), directoryPath.getText());
 
-			JsonDataIO io = new JsonDataIO();
-			io.writeProject(project);
+			Main.factory.getIO().writeProject(project);
 
 			// and then write the project directory if box ticked
 			if (writeDirectoryCheck.isSelected()) {

@@ -1,5 +1,7 @@
 package com.pipe42.main;
 
+
+import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
 
 
@@ -11,12 +13,15 @@ import com.pipe42.gui.MainWindow;
  */
 public class Main {
 
+	public static DatabaseAbstractFactory factory;
+
 	public static void main(String[] args) {
 		
 		// TODO - Main - Build a pre-loader
 
 		// initialize stuff
 		Initialize.setObjectMapper();
+		factory = Initialize.DatabaseInitializer();
 		
 		// open main GUI window
 		MainWindow.main(args);

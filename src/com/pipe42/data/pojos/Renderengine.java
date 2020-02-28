@@ -1,4 +1,4 @@
-package com.pipe42.data;
+package com.pipe42.data.pojos;
 
 /**
  * The Renderengine POJO

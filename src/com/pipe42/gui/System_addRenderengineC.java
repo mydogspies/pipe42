@@ -1,7 +1,7 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.JsonDataIO;
-import com.pipe42.data.Renderengine;
+import com.pipe42.data.pojos.Renderengine;
+import com.pipe42.main.Main;
 import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,8 +58,7 @@ public class System_addRenderengineC {
         Renderengine engine = new Renderengine(id, engineName.getText(), enginePathToExecutable.getText(),
                 engineExecParams.getText(), engineVersion.getText(), engineNotes.getText());
 
-        JsonDataIO io = new JsonDataIO();
-        io.writeRenderengine(engine);
+        Main.factory.getIO().writeRenderengine(engine);
     }
 
 }

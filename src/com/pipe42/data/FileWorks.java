@@ -15,7 +15,7 @@ public class FileWorks {
      * @param path absolute or relative path to folder as String
      * @return an ArrayList of file names including file extensions
      */
-    public ArrayList<String> getFileNames(String path) {
+    public ArrayList<String> getFileNames(String path) { // TODO we are not using this?
 
         ArrayList<String> nameArray = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class FileWorks {
      * example "src/data/myfolder" will write a folder "myfolder" inside the "data" folder
      * @param path relative folder path to be written
      */
-    public void writeFolder(String path) {
+    public void writeFolder(String path) { // TODO we are not using this?
 
         new File(path).mkdirs();
     }

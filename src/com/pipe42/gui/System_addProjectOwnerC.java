@@ -1,7 +1,7 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.JsonDataIO;
-import com.pipe42.data.Owner;
+import com.pipe42.data.pojos.Owner;
+import com.pipe42.main.Main;
 import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,11 +55,10 @@ public class System_addProjectOwnerC {
 
         String id = Util.getHash(ownerName.getText());
 
-        Owner project = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
+        Owner owner = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
                 projectManager.getText(), ownerNotes.getText());
 
-        JsonDataIO io = new JsonDataIO();
-        io.writeOwner(project);
+        Main.factory.getIO().writeOwner(owner);
     }
 
 }

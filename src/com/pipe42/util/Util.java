@@ -42,9 +42,9 @@ public class Util {
 	 * @param path string with local absolute path
 	 * @return string with system-specific path
 	 */
-	public String getLocalURL(String path) {
+	public static String getLocalURL(String path) {
 			
-			URL url = this.getClass().getResource(path); // TODO not sure we will use this - review for every commit
+			URL url = Util.class.getResource(path); // TODO not sure we will use this - review for every commit
 			return url.toString();
 			
 		}
