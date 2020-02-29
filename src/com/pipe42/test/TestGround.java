@@ -1,15 +1,15 @@
 package com.pipe42.test;
 
-import com.pipe42.data.DatabaseType;
-import com.pipe42.util.Util;
 
-import java.util.HashMap;
+import com.pipe42.prefs.UserPreferences;
 
 public class TestGround {
 
     public static void main(String[] args) {
 
-        System.out.println(DatabaseType.JSON);
+        // PreferencesAPITest.setPrefs();
+
+        System.out.println(UserPreferences.getPrefs().getBoolean("TESTBOOL", false));
 
     }
 
