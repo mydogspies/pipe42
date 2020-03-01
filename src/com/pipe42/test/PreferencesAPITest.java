@@ -1,5 +1,6 @@
 package com.pipe42.test;
 
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 public class PreferencesAPITest {
@@ -22,6 +23,14 @@ public class PreferencesAPITest {
 
         System.out.println(sysPrefs.getInt("TESTINT", 0));
         System.out.println(sysPrefs.getBoolean("TESTBOOL", false));
+
+    }
+
+    public static void deletePrefs() throws BackingStoreException {
+
+        Preferences sysPrefs = Preferences.userRoot().node("/com/pipe42");
+
+        sysPrefs.clear();
 
     }
 

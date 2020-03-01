@@ -1,0 +1,11 @@
+PIPE42 SYSTEM PREFERENCE VARIABLES
+
+key(default value); comment
+
+/* DATABASE */
+database("json"); the current database used
+databaseRootPath("src/data"); the root folder of the current database
+databaseDataPath("src/data/data.json"); the path to the folder that contains the data, if applicable, otherwise NULL.
+
+/* MISC */
+testBool(false); for unit testing

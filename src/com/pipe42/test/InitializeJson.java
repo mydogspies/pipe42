@@ -13,7 +13,7 @@ import com.pipe42.data.DatabaseJson;
  * @author Mydogspies
  *
  */
-public class Initialize_Json {
+public class InitializeJson {
 
 	public static void main(String[] args) {
 
@@ -28,7 +28,7 @@ public class Initialize_Json {
 		io.writeJsonData(data);
 
 		// say hello from main start method
-		ConsoleOut.printCons("Initialize_Json finished");
+		ConsoleOut.printCons("InitializeJson finished");
 		
 	}
 

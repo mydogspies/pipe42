@@ -9,15 +9,11 @@ public class UserPreferencesTest {
     @Test
     public void getPrefs() {
 
-        boolean testBool = UserPreferences.getPrefs().getBoolean("TESTBOOL", false);
-        int testInt = UserPreferences.getPrefs().getInt("TESTINT", 50);
+        boolean testBool = UserPreferences.getPrefs().getBoolean("testBool", false);
 
-        System.out.println("prefs/UserPreferences: TESTBOOL: " +  testBool);
+        System.out.println("prefs/UserPreferences: testBool: " +  testBool);
 
         assertTrue(testBool);
-        assertEquals(testInt, 100);
-
-
 
     }
 }
