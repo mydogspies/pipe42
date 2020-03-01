@@ -2,6 +2,7 @@ package com.pipe42.data;
 
 import com.pipe42.console.ConsoleOut;
 
+import com.pipe42.prefs.UserPreferences;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -52,9 +53,10 @@ public class Xml {
      */
     public static void writeFolderTree(String templateName, String rootPath) {
 
-        // TODO IMPORTANT! Find a way of verifying folder write before program continues and also flag use that all is done
+        // TODO IMPORTANT! Find a way of verifying folder write before program continues and also flag somehow when all is done - Watchlist?
 
-        String xmlPath = "src/data/templates/" + templateName + ".xml"; // TODO this variable has to move to SYSTEM VARS
+        String xmlPath = UserPreferences.userSettings.get("xmlTemplatePath", "") + templateName + ".xml";
+
         String writePath = "";
 
         Xml xml = new Xml();

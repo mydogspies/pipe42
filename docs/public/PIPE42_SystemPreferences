@@ -2,10 +2,27 @@ PIPE42 SYSTEM PREFERENCE VARIABLES
 
 key(default value); comment
 
+// USER SETTINGS 
+//
+
+/* PROJECT SETTINGS */
+projectPrefixLength(6); the amount of characters the project prefix can have
+
 /* DATABASE */
 database("json"); the current database used
 databaseRootPath("src/data"); the root folder of the current database
 databaseDataPath("src/data/data.json"); the path to the folder that contains the data, if applicable, otherwise NULL.
 
+/* XML */
+xmlRootPath("src/data"); the root path of the folder where all xml files reside
+xmlTemplatePath("src/data/templates"); the path where the xml templates for folder structures etc. live
+
 /* MISC */
 testBool(false); for unit testing
+
+
+// SYSTEM SETTINGS
+//
+
+/* DATABASE */
+databaseInstallPath(""); the path to the install folder for MongoDB

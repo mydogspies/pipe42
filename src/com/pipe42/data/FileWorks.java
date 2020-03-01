@@ -1,5 +1,7 @@
 package com.pipe42.data;
 
+import com.pipe42.prefs.UserPreferences;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -77,7 +79,7 @@ public class FileWorks {
      */
     public File readJsonFile(String filename) {
 
-        return Paths.get("src/data/" + filename).toFile();
+        return Paths.get(UserPreferences.userSettings.get("databaseJsonDataPath", "")).toFile();
     }
 
     /**

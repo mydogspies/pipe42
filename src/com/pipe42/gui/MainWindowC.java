@@ -1,5 +1,7 @@
 package com.pipe42.gui;
 
+import com.pipe42.system.ExitApplication;
+import com.pipe42.system.StopProcess;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
@@ -54,7 +56,8 @@ public class MainWindowC {
 				break;
 
 			case "projects_exit":
-				Platform.exit(); // TODO - WindowMainC - add confirmation dialog
+				// TODO - WindowMainC - add confirmation dialog
+				ExitApplication.exitAll();
 				break;
 		
 		}

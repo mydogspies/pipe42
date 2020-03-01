@@ -2,6 +2,7 @@ package com.pipe42.gui.validate;
 
 import com.pipe42.data.pojos.Project;
 import com.pipe42.main.Main;
+import com.pipe42.prefs.UserPreferences;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import org.controlsfx.validation.Severity;
@@ -84,7 +85,8 @@ public class ValidateUserInput {
 
                 boolean condition = false;
 
-                if (!field.getText().isEmpty() && field.getText().length() < 7) { // TODO the length must go into PREFS
+                int projectInt = UserPreferences.userSettings.getInt("projectPrefixLength", 6);
+                if (!field.getText().isEmpty() && field.getText().length() < projectInt) {
 
                     String res = Main.factory.getIO().getPrefixByName(field.getText());
 

@@ -1,5 +1,7 @@
 package com.pipe42.system;
 
+import com.pipe42.prefs.UserPreferences;
+
 import java.io.IOException;
 
 public class ProcessMongoDB {
@@ -7,7 +9,9 @@ public class ProcessMongoDB {
     public static Process startMongoDB() {
 
         ProcessBuilder pb = new ProcessBuilder();
-        pb.command("C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongod", "--dbpath", "M:\\30_CODING\\01_MIXENV\\pipe42\\src\\data\\mongodb"); // TODO should be from SYSTEM VARS
+        String installPath = UserPreferences.userSettings.get("databaseMongoPath", "");
+        String installDataPath = UserPreferences.userSettings.get("databaseMongoDataPath", "");
+        pb.command(installPath, "--dbpath", installDataPath);
         Process p;
 
         try {

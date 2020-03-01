@@ -15,6 +15,7 @@ import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.data.pojos.Renderengine;
 import com.pipe42.main.Initialize;
+import com.pipe42.prefs.UserPreferences;
 
 // TODO Branch: develop-factory / this is the implementation of DatabaseIO interface - once plugged into the main code, take this notice away!
 
@@ -26,8 +27,7 @@ import com.pipe42.main.Initialize;
 public class DatabaseJson implements DatabaseIO {
 
     // NOTE: path is relative from root, eg. src/....
-    // TODO pathath should come from preferences and notes must be updated
-    private static String rawPath = "src/data/data.json";
+    private static String rawPath = UserPreferences.userSettings.get("databaseJsonDataPath", "");
 
     // The current parse of the json file
     // this is always set by getJsonData()

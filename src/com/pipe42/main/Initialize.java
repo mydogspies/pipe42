@@ -5,8 +5,10 @@ import com.pipe42.data.DatabaseFactoryProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.pipe42.prefs.UserPreferences;
 
 import static com.pipe42.data.DatabaseType.JSON;
+import static com.pipe42.data.DatabaseType.MONGODB;
 
 
 /**
@@ -23,12 +25,17 @@ public class Initialize {
 
     }
 
+    /**
+     * Looks up user preferences and returns the right factory for the current database
+     * @return returns the database specific factory
+     */
     public static DatabaseAbstractFactory DatabaseInitializer() {
 
-        // TODO which database should come from SYSTEM SETTINGS - implement asap!
-
-        return DatabaseFactoryProvider.getFactory(JSON);
-
+        if (UserPreferences.getPrefs().get("database", "json").equals("json")) {
+            return DatabaseFactoryProvider.getFactory(JSON);
+        } else {
+            return DatabaseFactoryProvider.getFactory(MONGODB);
+        }
 
     }
 
