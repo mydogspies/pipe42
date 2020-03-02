@@ -55,7 +55,7 @@ public class Xml {
 
         // TODO IMPORTANT! Find a way of verifying folder write before program continues and also flag somehow when all is done - Watchlist?
 
-        String xmlPath = UserPreferences.userSettings.get("xmlTemplatePath", "") + templateName + ".xml";
+        String xmlPath = UserPreferences.userSettings.get("xmlTemplatePath", "") + "/" + templateName + ".xml";
 
         String writePath = "";
 
