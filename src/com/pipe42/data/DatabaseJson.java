@@ -80,10 +80,14 @@ public class DatabaseJson implements DatabaseIO {
         return result;
     }
 
+    /**
+     * Returns a list of all projects
+     * @return a list of type List with all project objects of type Project
+     */
     @Override
-    public ArrayList<Project> getAllProjects() {
-        // TODO add getAllProjects method
-        return null;
+    public List<Project> getAllProjects() {
+
+        return database.getProject();
     }
 
     @Override

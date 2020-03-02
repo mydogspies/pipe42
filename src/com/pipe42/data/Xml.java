@@ -51,7 +51,7 @@ public class Xml {
      * as the file name (without file extension).
      * @param templateName the template file name as String without file extension
      */
-    public static void writeFolderTree(String templateName, String rootPath) {
+    public static void writeFolderTree(String templateName, String rootPath, String projectName) {
 
         // TODO IMPORTANT! Find a way of verifying folder write before program continues and also flag somehow when all is done - Watchlist?
 
@@ -88,8 +88,24 @@ public class Xml {
             }
 
             new File(rootPath + writePath).mkdirs();
-            ConsoleOut.printCons("New folder structure written to " + rootPath);
         }
+
+        boolean done = writeFolderCheckFile(rootPath, projectName);
+        ConsoleOut.printCons("New folder structure written to " + rootPath);
+    }
+
+    /**
+     * Write a tiny .pipe42 file into the root of the project folder tree in order
+     * to know that this particular folder tree structure is a valid project and what
+     * project it belongs to.
+     * @param filePathAndName path of type string to the root of the folder tree
+     * @param projectName the project name of type String
+     * @return true if success, otherwise false
+     */
+    public static Boolean writeFolderCheckFile(String filePathAndName, String projectName) {
+
+        FileWorks fw = new FileWorks();
+        return fw.writeTextFile(filePathAndName + "/.pipe42", "project:" + projectName);
 
     }
 

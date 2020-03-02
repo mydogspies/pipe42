@@ -210,7 +210,7 @@ public class Project_newProjectC {
 
 			// and then write the project directory if box ticked
 			if (writeDirectoryCheck.isSelected()) {
-				Xml.writeFolderTree(folderTemplate.getValue(), directoryPath.getText());
+				Xml.writeFolderTree(folderTemplate.getValue(), directoryPath.getText(), projectName.getText());
 			}
 		}
 

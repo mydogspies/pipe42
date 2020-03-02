@@ -18,7 +18,7 @@ public interface DatabaseIO {
     // Project methods
     Project getProjectByID(String id);
     Project getProjectByName(String name);
-    ArrayList<Project> getAllProjects();
+    List<Project> getAllProjects();
     String getPrefixByName(String prefix);
 
     // Owner methods

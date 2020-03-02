@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
@@ -24,7 +23,7 @@
                <children>
                   <VBox layoutX="8.0" layoutY="8.0" prefHeight="574.0" prefWidth="482.0">
                      <children>
-                        <GridPane maxWidth="444.0" prefHeight="296.0" prefWidth="375.0">
+                        <GridPane fx:id="comboPane" maxWidth="444.0" prefHeight="296.0" prefWidth="375.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="141.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="359.0" />
@@ -37,7 +36,6 @@
                           </rowConstraints>
                            <children>
                               <Label text="Select a project" />
-                              <ComboBox fx:id="projects" prefWidth="150.0" promptText="choose a project to delete" GridPane.columnIndex="1" />
                               <CheckBox mnemonicParsing="false" text="Also delete the physical folder structure on disc" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>

@@ -31,7 +31,7 @@ public class DatabaseMongoDB implements DatabaseIO {
     }
 
     @Override
-    public ArrayList<Project> getAllProjects() {
+    public List<Project> getAllProjects() {
         return null;
     }
 
