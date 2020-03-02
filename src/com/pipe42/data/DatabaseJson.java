@@ -26,8 +26,9 @@ import com.pipe42.prefs.UserPreferences;
  */
 public class DatabaseJson implements DatabaseIO {
 
+    // TODO below code is obsolete?
     // NOTE: path is relative from root, eg. src/....
-    private static String rawPath = UserPreferences.userSettings.get("databaseJsonDataPath", "");
+    // private static String rawPath = UserPreferences.userSettings.get("databaseJsonDataPath", "");
 
     // The current parse of the json file
     // this is always set by getJsonData()
@@ -125,10 +126,23 @@ public class DatabaseJson implements DatabaseIO {
         writeJsonData(container);
     }
 
+    /**
+     * Deletes a project from the database based on its hash ID
+     * @param id hash id string of type String
+     */
     @Override
     public void deleteProject(String id) {
-        // TODO add deleteProject method
 
+        // get current db from json
+        Data database = getJsonData();
+
+        // list all projects, find the right one and delete it
+        List<Project> projectList = database.getProject();
+        projectList.removeIf(project -> project.getProjectID().equals(id));
+
+        Data container = new Data(projectList, database.getApplication(), database.getOwner(), database.getEngine());
+
+        writeJsonData(container);
     }
 
 

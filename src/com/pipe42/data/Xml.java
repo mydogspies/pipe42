@@ -128,4 +128,10 @@ public class Xml {
         return truncNames;
     }
 
+    public static void makeXmlFromFolderTree() {
+
+        // TODO add this method that will make a new xml template file from an existing folder tree structure
+
+    }
+
 }
