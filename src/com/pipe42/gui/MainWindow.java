@@ -7,11 +7,15 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The main javafx window that opens on start
  */
 public class MainWindow extends Application {
+
+	private final Logger log = LoggerFactory.getLogger(MainWindow.class);
 
 	/**
 	 * The main stage for the application
@@ -34,7 +38,9 @@ public class MainWindow extends Application {
 			primaryStage.setTitle(appTitle);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			log.debug("start(): Main window has been opened ({})", appTitle);
 		} catch(Exception e) {
+			log.error("start(): Main window could not be opened: {}", e.getCause().getLocalizedMessage());
 			e.printStackTrace();
 		}
 	}

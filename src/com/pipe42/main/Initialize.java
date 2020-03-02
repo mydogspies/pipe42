@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.pipe42.prefs.UserPreferences;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.pipe42.data.DatabaseType.JSON;
 import static com.pipe42.data.DatabaseType.MONGODB;
@@ -16,6 +18,7 @@ import static com.pipe42.data.DatabaseType.MONGODB;
  */
 public class Initialize {
 
+    private static final Logger log = LoggerFactory.getLogger(Initialize.class);
     public static ObjectMapper mapper = new ObjectMapper();
 
     public static void setObjectMapper() {
@@ -29,12 +32,17 @@ public class Initialize {
      * Looks up user preferences and returns the right factory for the current database
      * @return returns the database specific factory
      */
-    public static DatabaseAbstractFactory DatabaseInitializer() {
+    public static DatabaseAbstractFactory databaseInitializer() {
 
-        if (UserPreferences.getPrefs().get("database", "json").equals("json")) {
+        if (UserPreferences.getPrefs().get("database", "").equals("json")) {
+            log.info("databaseInitializer(): json database loaded");
             return DatabaseFactoryProvider.getFactory(JSON);
-        } else {
+        } else if (UserPreferences.getPrefs().get("database", "").equals("mongo")){
+            log.info("databaseInitializer(): mongodb database loaded");
             return DatabaseFactoryProvider.getFactory(MONGODB);
+        } else {
+            log.error("databaseInitializer(): no database returned from UserPreferences");
+            return null;
         }
 
     }

@@ -16,7 +16,7 @@ import com.pipe42.system.ProcessMongoDB;
 public class Main {
 
 	public static DatabaseAbstractFactory factory;
-	public static Process mongoProcess;
+	public static Process mongoProcess = null;
 
 	public static void main(String[] args) {
 		
@@ -30,9 +30,11 @@ public class Main {
 			mongoProcess = ProcessMongoDB.startMongoDB();
 		}
 
+		mongoProcess = ProcessMongoDB.startMongoDB();
+
 		// initialize stuff
 		Initialize.setObjectMapper();
-		factory = Initialize.DatabaseInitializer();
+		factory = Initialize.databaseInitializer();
 		
 		// open main GUI window
 		MainWindow.main(args);

@@ -1,5 +1,8 @@
 package com.pipe42.prefs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.prefs.Preferences;
 
 /**
@@ -7,6 +10,7 @@ import java.util.prefs.Preferences;
  */
 public class UserPreferences {
 
+    private static final Logger log = LoggerFactory.getLogger(UserPreferences.class);
     public static Preferences userSettings;
 
     /**
@@ -28,6 +32,7 @@ public class UserPreferences {
     public static void loadPrefs() {
 
         userSettings = getPrefs();
+        log.debug("loadPrefs(): loaded user preferences into userSettings from: {}", userSettings);
 
     }
 

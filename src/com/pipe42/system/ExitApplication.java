@@ -1,9 +1,15 @@
 package com.pipe42.system;
 
+import ch.qos.logback.classic.LoggerContext;
+import com.pipe42.console.ConsoleOut;
 import com.pipe42.main.Main;
 import javafx.application.Platform;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExitApplication {
+
+    private static final Logger log = LoggerFactory.getLogger(ExitApplication.class);
 
     // TODO this class should contain proper shutdown and exit to system
     // x) save unsaved preferences
@@ -14,11 +20,17 @@ public class ExitApplication {
 
     public static void exitAll() {
 
+        log.info("exitAll(): Exit with a clean shutdown! Bye!");
+
         // stop mongoDB client
         StopProcess.stopProcess(mongop);
 
+
+        // release resources used by logback for a clean exit
+        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+        loggerContext.stop();
+
         // exit to OS
-        System.out.println("PIPE42 says bye!");
         Platform.exit();
     }
 
