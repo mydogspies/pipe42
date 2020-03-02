@@ -30,8 +30,6 @@ public class Main {
 			mongoProcess = ProcessMongoDB.startMongoDB();
 		}
 
-		mongoProcess = ProcessMongoDB.startMongoDB();
-
 		// initialize stuff
 		Initialize.setObjectMapper();
 		factory = Initialize.databaseInitializer();
