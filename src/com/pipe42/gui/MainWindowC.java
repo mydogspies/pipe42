@@ -1,7 +1,6 @@
 package com.pipe42.gui;
 
 import com.pipe42.system.ExitApplication;
-import com.pipe42.system.StopProcess;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
@@ -12,7 +11,6 @@ import java.io.IOException;
 
 import com.pipe42.console.ConsoleOut;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 public class MainWindowC {
@@ -45,14 +43,15 @@ public class MainWindowC {
 		switch (menu_id) {
 		
 			case "projects_newProject":
-				addContentNewProject();
+				addNewProject();
 				break;
 
 			case "projects_editProject":
+				addEditProject();
 				break;
 
 			case "projects_deleteProject":
-				addContentDeleteProject();
+				addDeleteProject();
 				break;
 
 			case "projects_exit":
@@ -76,15 +75,15 @@ public class MainWindowC {
 		switch (menu_id) {
 
 			case "system_addRenderengine": // TODO - WindowMainC - populate System menu
-				addContentAddEngine();
+				addAddEngine();
 				break;
 
 			case "system_addProjectOwner":
-				addContentAddProjectOwner();
+				addAddProjectOwner();
 				break;
 
 			case "system_addSoftwareApp":
-				addContentAddSoftware();
+				addAddSoftware();
 				break;
 		}
 	}
@@ -111,10 +110,13 @@ public class MainWindowC {
 	
 	/* METHODS */
 
+	// PROJECT MENU
+	//
+
 	/**
 	 * Adds the New Project UI under "Projects" menu
 	 */
-	private void addContentNewProject() {
+	private void addNewProject() {
 		
 		this.centerContent.getChildren().clear();
 		
@@ -128,12 +130,29 @@ public class MainWindowC {
 		}
 	}
 
-	private void addContentSearchProject() {
+	/**
+	 * Adds the New Project UI under "Projects" menu
+	 */
+	private void addEditProject() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Project_editProject.fxml"));
+			centerContent.getChildren().add(p);
+		} catch (IOException e) {
+			ConsoleOut.printCons("Not able to load Project_editProject.fxml");
+			e.printStackTrace();
+		}
+	}
+
+	private void addSearchProject() {
 
 		// TODO add the addContentSearchProject method
 	}
 
-	private void addContentDeleteProject() {
+	private void addDeleteProject() {
 
 		this.centerContent.getChildren().clear();
 
@@ -147,10 +166,14 @@ public class MainWindowC {
 		}
 	}
 
+
+	// SYSTEM MENU
+	//
+
 	/**
 	 * Adds the Add Renderengine UI under "Systems" menu
 	 */
-	private void addContentAddEngine() {
+	private void addAddEngine() {
 
 		this.centerContent.getChildren().clear();
 
@@ -168,7 +191,7 @@ public class MainWindowC {
 	/**
 	 * Adds the Add Project Software UI under "System" menu
 	 */
-	private void addContentAddSoftware() {
+	private void addAddSoftware() {
 
 		this.centerContent.getChildren().clear();
 
@@ -186,7 +209,7 @@ public class MainWindowC {
 	/**
 	 * Adds the Add Project Owner UI under "System" menu
 	 */
-	private void addContentAddProjectOwner() {
+	private void addAddProjectOwner() {
 
 		this.centerContent.getChildren().clear();
 

@@ -1,10 +1,12 @@
 package com.pipe42.util;
 
 import com.pipe42.data.Hashids;
+import org.w3c.dom.xpath.XPathResult;
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Util {
@@ -34,7 +36,7 @@ public class Util {
 
 		long random = (long) (Math.random() * 1000000);
 
-		return hashids.encode(random).toString();
+		return hashids.encode(random);
 	}
 
 	/**

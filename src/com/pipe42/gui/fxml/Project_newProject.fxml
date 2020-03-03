@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
@@ -48,7 +47,7 @@
                         <Label text="Main renderengine" GridPane.rowIndex="4" />
                         <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <ComboBox fx:id="folderTemplate" prefWidth="150.0" />
+                              <AnchorPane fx:id="folderComboBoxPane" />
                               <CheckBox fx:id="writeDirectoryCheck" alignment="CENTER" mnemonicParsing="false" text="Create new directory">
                                  <HBox.margin>
                                     <Insets left="20.0" top="4.0" />

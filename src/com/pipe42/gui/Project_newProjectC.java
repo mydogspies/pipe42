@@ -1,22 +1,15 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.pojos.Application;
-import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.PojoConstructor;
 import com.pipe42.data.pojos.Project;
-import com.pipe42.data.pojos.Renderengine;
 import com.pipe42.data.Xml;
 import com.pipe42.gui.custom.ComboApp;
-import com.pipe42.gui.custom.ComboAppListCell;
+import com.pipe42.gui.custom.ComboBoxFactory;
 import com.pipe42.gui.custom.ComboEngine;
-import com.pipe42.gui.custom.ComboEngineListCell;
 import com.pipe42.gui.custom.ComboOwner;
-import com.pipe42.gui.custom.ComboOwnerListCell;
 
 import com.pipe42.gui.validate.ValidateUserInput;
 import com.pipe42.main.Main;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,17 +19,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Project_newProjectC {
 
 	@FXML
-	public GridPane comboPane;
+	private GridPane comboPane;
+
+	@FXML
+	private Pane folderComboBoxPane;
 
 	@FXML
 	public CheckBox writeDirectoryCheck;
@@ -46,9 +42,6 @@ public class Project_newProjectC {
 
 	@FXML
 	private TextField projectPrefix;
-
-	@FXML
-	private ComboBox<String> folderTemplate;
 
 	@FXML
 	private TextArea projectNotes;
@@ -68,6 +61,7 @@ public class Project_newProjectC {
 	private ComboBox<ComboOwner> ownerBox;
 	private ComboBox<ComboApp> appBox;
 	private ComboBox<ComboEngine> engineBox;
+	private ComboBox<String> folderTemplate;
 	private WebEngine webEngine;
 	AtomicBoolean projectNameValid = new AtomicBoolean(false);
 	AtomicBoolean projectPrefixValid = new AtomicBoolean(false);
@@ -92,54 +86,24 @@ public class Project_newProjectC {
 		webEngine.load(String.valueOf(urlHello));
 
 
-		// populate the combo boxes
+		// construct and populate the combo boxes
 		//
+		ComboBoxFactory cbf = new ComboBoxFactory();
 
-		// dynamically create the "Project owner" combobox and wrap it in ComboOwner class
-		List<Owner> ownerList = Main.factory.getIO().getAllOwners();
-
-		ownerBox = new ComboBox<>();
-
-		for (Owner owner: ownerList) {
-			ownerBox.getItems().add(new ComboOwner(owner.getOwnerName(), owner.getOwnerId()));
-		}
-
-		ownerBox.setCellFactory(lv -> new ComboOwnerListCell());
-		ownerBox.setButtonCell(new ComboOwnerListCell());
+		ownerBox = cbf.getOwnerComboBox(ownerBox);
 		comboPane.add(ownerBox, 1 ,2);
 		ownerBox.getSelectionModel().select(0);
 
-		// dynamically create the "Main project software" combobox and wrap it in ComboApp class
-		List<Application> appList = Main.factory.getIO().getAllApps();
-		appBox = new ComboBox<>();
-
-		for (Application app: appList) {
-			appBox.getItems().add(new ComboApp(app.getAppName(), app.getAppID()));
-		}
-
-		appBox.setCellFactory(lv -> new ComboAppListCell());
-		appBox.setButtonCell(new ComboAppListCell());
+		appBox = cbf.getAppComboBox(appBox);
 		comboPane.add(appBox, 1, 3);
 		appBox.getSelectionModel().select(0);
 
-		// dynamically create the "Main render engine" combobox and wrap it in ComboEngine class
-		List<Renderengine> engineList = Main.factory.getIO().getAllEngines();
-		engineBox = new ComboBox<>();
-
-		for (Renderengine eng: engineList) {
-			engineBox.getItems().add(new ComboEngine(eng.getEngineName(), eng.getEngineID()));
-		}
-
-		engineBox.setCellFactory(lv -> new ComboEngineListCell());
-		engineBox.setButtonCell(new ComboEngineListCell());
+		engineBox = cbf.getEngineComboBox(engineBox);
 		comboPane.add(engineBox, 1, 4);
 		engineBox.getSelectionModel().select(0);
 
-		// populate the "Project folder template" combobox
-		List<String> templateList = Xml.getXmlTemplateNames();
-		ObservableList<String> options = FXCollections.observableArrayList();
-		for (String name: templateList) { options.add(name); }
-		folderTemplate.getItems().addAll(options);
+		folderTemplate = cbf.getTemplateComboBox(folderTemplate);
+		folderComboBoxPane.getChildren().add(folderTemplate);
 		folderTemplate.getSelectionModel().select(0);
 
 
@@ -150,7 +114,7 @@ public class Project_newProjectC {
 			String path = Dialog.directoryDialog();
 			directoryPath.setText(path);
 
-			if (directoryPath.getText() != "" || directoryPath.getText() != "Set path!") {
+			if (!directoryPath.getText().equals("") || !directoryPath.getText().equals("Set path!")) {
 				setPathValid.set(true);
 			} else {
 				setPathValid.set(false);

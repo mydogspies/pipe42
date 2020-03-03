@@ -1,13 +1,9 @@
 package com.pipe42.data.pojos;
 
-import org.python.antlr.ast.Str;
-
 import java.util.HashMap;
 
 /**
  * The Project POJO
- * @author Mydogspies
- *
  */
 public final class Project {
 	

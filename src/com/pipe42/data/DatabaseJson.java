@@ -53,10 +53,25 @@ public class DatabaseJson implements DatabaseIO {
     // PROJECT METHODS
     //
 
+    /**
+     * Takes an ID and returns a Project object if it equals the project ID of an existing Project
+     * @param id project ID of type String
+     * @return the Project object, otherwise NULL
+     */
     @Override
     public Project getProjectByID(String id) {
-        // TODO add getProjectByID method
-        return null;
+
+        Project result = null;
+
+        List<Project> projectList = database.getProject();
+
+        for (Project project: projectList) {
+            if (project.getProjectID().equals(id)) {
+                result = project;
+            }
+        }
+
+        return result;
     }
 
     /**
