@@ -1,6 +1,7 @@
 package com.pipe42.data;
 
 import com.pipe42.data.pojos.Application;
+import com.pipe42.data.pojos.Data;
 import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.data.pojos.Renderengine;
@@ -31,7 +32,7 @@ public class DatabaseSQLlite implements DatabaseIO {
     }
 
     @Override
-    public String getPrefixByName(String prefix) {
+    public Project getProjectByPrefix(String prefix) {
         return null;
     }
 
@@ -69,6 +70,12 @@ public class DatabaseSQLlite implements DatabaseIO {
     public void writeRenderengine(Renderengine engine) {
 
     }
+
+    @Override
+    public Boolean writeAll(Data data) {
+        return null;
+    }
+
 
     @Override
     public void deleteProject(String id) {

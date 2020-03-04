@@ -88,7 +88,7 @@ public class ValidateUserInput {
                 int projectInt = UserPreferences.userSettings.getInt("projectPrefixLength", 6);
                 if (!field.getText().isEmpty() && field.getText().length() < projectInt) {
 
-                    String res = Main.factory.getIO().getPrefixByName(field.getText());
+                    Project res = Main.factory.getIO().getProjectByPrefix(field.getText());
 
                     if (res == null) {
                         condition = true;

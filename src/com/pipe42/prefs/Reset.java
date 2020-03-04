@@ -2,6 +2,7 @@ package com.pipe42.prefs;
 
 import com.pipe42.data.DatabaseJson;
 import com.pipe42.data.pojos.Data;
+import com.pipe42.main.Main;
 
 public class Reset {
 
@@ -14,8 +15,9 @@ public class Reset {
         ResetData reset = new ResetData();
         Data dbdata = reset.defaultData();
 
-        DatabaseJson dbj = new DatabaseJson();
-        dbj.writeJsonData(dbdata);
+        // and write a new json
+        Main.factory.getIO().writeAll(dbdata);
+
 
     }
 

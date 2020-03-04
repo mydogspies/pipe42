@@ -1,13 +1,13 @@
 package com.pipe42.data;
 
 import com.pipe42.console.ConsoleOut;
-
 import com.pipe42.prefs.UserPreferences;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -16,15 +16,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Class to manipulate the file/folder specific xml files
- * @version 0.1a
+ * Class to manipulate xml file within our app
+ * @author Peter Mankowski
+ * @since 0.1.0
  */
 public class Xml {
 
+    private static final Logger log = LoggerFactory.getLogger(Xml.class);
+
     /**
-     * Reads a xml file and returns a raw Document object
-     * @param path path to xml file as relative String
-     * @return the raw Document object
+     * Reads a xml file and returns a Document object
+     * @param path path to xml file
+     * @return the Document object
      */
     public Document readXml(String path) {
 
@@ -36,20 +39,22 @@ public class Xml {
             DocumentBuilder db = dbf.newDocumentBuilder();
             doc  = db.parse(new File(path));
             doc.getDocumentElement().normalize();
+            log.info("readXml(): Returned a new Document object based on " + path + ": " + doc);
             return doc;
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
+            log.warn("readXml(): Failed to read or parse the " + path +" file.");
             e.printStackTrace();
         }
         return null;
     }
 
     /**
-     * Reads a template xml file from the data/templates folder
-     * templateName must be the file name WITHOUT the .xml extension
+     * Reads a template xml file from the data/templates folder.
+     * templateName must be the file name WITHOUT the .xml extension.
      * NOTE: The parameter "name" in the <project> tag in the template file MUST be the same
      * as the file name (without file extension).
-     * @param templateName the template file name as String without file extension
+     * @param templateName The template file name as String without file extension.
      */
     public static void writeFolderTree(String templateName, String rootPath, String projectName) {
 
@@ -84,6 +89,7 @@ public class Xml {
             for (int j = 0; j <= depth; j++) {
 
                 writePath += "/" + pathArray.get(j);
+                log.trace("writeFolderTree: " + writePath);
 
             }
 
@@ -91,7 +97,8 @@ public class Xml {
         }
 
         boolean done = writeFolderCheckFile(rootPath, projectName);
-        ConsoleOut.printCons("New folder structure written to " + rootPath);
+
+        log.info("writeFolderTree(): Wrote a new folder tree into " +  rootPath + " based on template " + templateName);
     }
 
     /**
@@ -105,6 +112,9 @@ public class Xml {
     public static Boolean writeFolderCheckFile(String filePathAndName, String projectName) {
 
         FileWorks fw = new FileWorks();
+
+        log.debug("writeFolderCheckFile(): Wrote a .pipe42 file into " +filePathAndName);
+
         return fw.writeTextFile(filePathAndName + "/.pipe42", "project:" + projectName);
 
     }
@@ -112,7 +122,7 @@ public class Xml {
     /**
      * Reads all the file names of the xml files in the data/templates folder and returns
      * an array of names minus the file extension ".xml".
-     * @return an ArrayList of template names of type String
+     * @return a list of template names
      */
     public static ArrayList<String> getXmlTemplateNames() {
 
@@ -124,6 +134,8 @@ public class Xml {
         for (String name : names) {
             truncNames.add(name.substring(0, name.lastIndexOf('.')));
         }
+
+        log.debug("getXmlTemplateNames(): Returned a list of template name: " + truncNames);
 
         return truncNames;
     }

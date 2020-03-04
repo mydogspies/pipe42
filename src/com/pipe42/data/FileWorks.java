@@ -1,23 +1,23 @@
 package com.pipe42.data;
 
-import com.pipe42.prefs.UserPreferences;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * file IO methods
+ * Some special file IO methods to fit this project
+ * @author Peter Mankowski
+ * @since 0.1.0
  */
 public class FileWorks {
+
+    private static final Logger log = LoggerFactory.getLogger(FileWorks.class);
 
 
     /* GENERAL FILE METHODS */
@@ -37,9 +37,12 @@ public class FileWorks {
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
             bufferedWriter.write(input);
             bufferedWriter.close();
+
+            log.debug("writeFileText(): Text written into file: " + filePathAndName);
             return true;
 
         } catch (IOException e) {
+            log.warn("writeFileText(): File IO error: " + filePathAndName);
             e.printStackTrace();
         }
 
@@ -49,12 +52,14 @@ public class FileWorks {
 
     /**
      * When passed an absolute path or a relative local path starting in format "src/.../destination_folder"
-     * it will return all files with the specified extension, as an ArrayList of file names.
-     * @param path absolute or relative path to folder as String
-     * @param extension filter output for files with this specific extension in String format
-     * @return an ArrayList of file names including file extensions
+     * it will return all files with the specified extension
+     * @param path absolute or relative path to source, eg /src/some/path
+     * @param extension filter output for files with this specific extension, eg. ".jpg" or ".exe"
+     * @return list of file names, otherwise NULL
      */
     public ArrayList<String> getFileNames(String path, String extension) { // TODO add wildcards possibility!!!
+
+        // TODO implement extension!!!
 
         ArrayList<String> nameArray = new ArrayList<>();
 
@@ -63,15 +68,19 @@ public class FileWorks {
 
         if (fileList.length != 0) {
 
-            for (int i = 0; i<fileList.length; i++) {
+            for (File file : fileList) {
 
-                if(fileList[i].isFile()) {
-                    nameArray.add(fileList[i].getName());
+                if (file.isFile()) {
+                    nameArray.add(file.getName());
                 }
             }
+
+            log.debug("getFileNames(): Returned a list of files in " + path + " (with extension " + extension +")");
+            return nameArray;
         }
 
-        return nameArray;
+        log.warn("getFileNames(): No files with this extension in location or no such location: " + path);
+        return null;
     }
 
     /**
@@ -88,15 +97,23 @@ public class FileWorks {
     /* JSON SPECIFIC METHODS */
 
     /**
-     * reads a .json file from the json specific directory
-     * @param filename the name of the json file including extension as String
+     * Reads a file from the disc with either absolute path or relative path from source root.
+     * Eg. /src/some/folder/data.json
+     * @param filePath path to jason file
+     * @return file object, or of not existent then NULL
      */
-    public File readJsonFile(String filename) {
+    public File readFile(String filePath) {
 
-        String filePath = UserPreferences.userSettings.get("databaseJsonRootPath", "") + "/" + filename;
+        File file = Paths.get(filePath).toFile();
 
-        // return Paths.get("src/data/data.json").toFile(); // TODO remove after bug finding
-        return Paths.get(filePath).toFile();
+        if (file.exists()) {
+
+            log.info("readFile(): Returned successfully file " + filePath);
+            return file;
+        }
+
+        log.warn("readFile(): Failed to read file in path " + filePath + " (Does file or location exist?)");
+        return null;
     }
 
     /**
