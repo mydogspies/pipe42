@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 import java.util.prefs.Preferences;
 
 /**
- * Various methods for dealing with the user preferences stored on the computer by PIPE42.
+ * Stores and manipulates the user preferences using the Preference API
+ * @author Peter Mankowski
+ * @since 0.1.0
+ *
  */
 public class UserPreferences {
 
@@ -28,11 +31,18 @@ public class UserPreferences {
 
     /**
      * Simply initializes the global static variable userSettings with the proper data
+     * @return true if userSettings are not null, otherwise false
      */
-    public static void loadPrefs() {
+    public static Boolean loadPrefs() {
 
         userSettings = getPrefs();
         log.debug("loadPrefs(): loaded user preferences into userSettings from: {}", userSettings);
+
+        if(userSettings != null) {
+            return true;
+        }
+
+        return false;
 
     }
 

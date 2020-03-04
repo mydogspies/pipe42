@@ -169,7 +169,6 @@ public class DatabaseJson implements DatabaseIO {
     @Override
     public List<Owner> getAllOwners() {
 
-        // Data database = getJsonData();
         return database.getOwner();
     }
 
@@ -283,7 +282,7 @@ public class DatabaseJson implements DatabaseIO {
      * in the path defined by getFileJson
      * @param data an object of type Data
      */
-    public void writeJsonData(Data data) { // TODO change to private when tests done
+    public Boolean writeJsonData(Data data) { // TODO change to private when tests done
 
         FileWorks fw = new FileWorks();
         File jsonfile = fw.readJsonFile("data.json");
@@ -292,6 +291,7 @@ public class DatabaseJson implements DatabaseIO {
         try {
             Initialize.mapper.writeValue(jsonfile, data);
             ConsoleOut.printCons("Data successfully written to Json file");
+            return true;
         } catch (JsonParseException e) {
             ConsoleOut.printCons("Json parser failed");
             // TODO - JsonData - add logging
@@ -306,13 +306,15 @@ public class DatabaseJson implements DatabaseIO {
             e.printStackTrace();
         }
 
+        return false;
+
     }
 
     /**
      * Reads the json.data file and returns a Data object with the entire object
      * @return an object of type Data
      */
-    private Data getJsonData() {
+    public Data getJsonData() { // TODO should not be public... fix this!
 
         Data content = null;
         FileWorks fw = new FileWorks();

@@ -32,6 +32,8 @@
                   <MenuItem fx:id="system_addRenderengine" mnemonicParsing="false" onAction="#systemMenu" text="Add renderengine" />
                   <MenuItem fx:id="system_addProjectOwner" mnemonicParsing="false" onAction="#systemMenu" text="Add project owner" />
                   <MenuItem fx:id="system_addSoftwareApp" mnemonicParsing="false" onAction="#systemMenu" text="Add project software" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Reset all" />
                </items></Menu>
           <Menu fx:id="help" mnemonicParsing="false" text="Help">
             <items>

@@ -19,7 +19,7 @@ public final class Project {
 	private String applicationID;
 	private HashMap<String, String> creationTime;
 	private HashMap<String, String> modifyTime;
-	private String projectNotes;
+	private String notes;
 	private String projectTemplate;
 	private String projectPath;
 
@@ -47,7 +47,7 @@ public final class Project {
 		this.applicationID = applicationID;
 		this.creationTime = creationTime;
 		this.modifyTime = modifyTime;
-		this.projectNotes = projectnotes;
+		this.notes = projectnotes;
 		this.projectTemplate = projectTemplate;
 		this.projectPath = projectPath;
 	}
@@ -143,18 +143,18 @@ public final class Project {
 		this.applicationID = applicationID;
 	}
 
-	public String getProjectNotes() {
+	public String getNotes() {
 
-		return projectNotes;
+		return notes;
 	}
 
 	/**
 	 * Notes or comments regarding this project
-	 * @param projectNotes Optional notes or commments
+	 * @param notes Optional notes or commments
 	 */
-	public void setProjectNotes(String projectNotes) {
+	public void setNotes(String notes) {
 
-		this.projectNotes = projectNotes;
+		this.notes = notes;
 	}
 
 	public HashMap<String, String> getCreationTime() {

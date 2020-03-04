@@ -93,8 +93,10 @@ public class FileWorks {
      */
     public File readJsonFile(String filename) {
 
-        System.out.println(UserPreferences.userSettings.get("databaseJsonDataPath", ""));
-        return Paths.get(UserPreferences.userSettings.get("databaseJsonDataPath", "")).toFile();
+        String filePath = UserPreferences.userSettings.get("databaseJsonRootPath", "") + "/" + filename;
+
+        // return Paths.get("src/data/data.json").toFile(); // TODO remove after bug finding
+        return Paths.get(filePath).toFile();
     }
 
     /**

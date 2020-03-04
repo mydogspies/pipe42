@@ -2,6 +2,7 @@ package com.pipe42.main;
 
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
+import com.pipe42.prefs.Reset;
 import com.pipe42.prefs.UserPreferences;
 
 /**
@@ -24,6 +25,10 @@ public class Main {
 		// initialize stuff
 		Initialize.setObjectMapper();
 		factory = Initialize.databaseInitializer();
+
+		// reset all
+		// Reset reset = new Reset();
+		// reset.resetAll();
 		
 		// open main GUI window
 		MainWindow.main(args);

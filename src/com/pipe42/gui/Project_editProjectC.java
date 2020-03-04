@@ -10,7 +10,6 @@ import com.pipe42.gui.custom.ComboProjectListCell;
 import com.pipe42.main.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -186,7 +185,7 @@ public class Project_editProjectC {
                     HashMap<String, String> modificationTime = project.getModifyTime();
                     modified.setText(modificationTime.get("date") + " " + modificationTime.get("time"));
 
-                    projectNotes.setText(project.getProjectNotes());
+                    projectNotes.setText(project.getNotes());
 
 
                 }

@@ -14,7 +14,8 @@ public final class Owner {
 	private String ownerCompany;
 	private String ownerDepartment;
 	private String projectManager;
-	private String ownerNotes;
+	private String notes;
+
 
 	/* CONSTRUCTORS */
 
@@ -26,13 +27,13 @@ public final class Owner {
 	/**
 	 * The default constructor for this object.
 	 */
-	public Owner(String id, String ownerName, String ownerCompany, String ownerDepartment, String projectManager, String ownerNotes) {
+	public Owner(String id, String ownerName, String ownerCompany, String ownerDepartment, String projectManager, String notes) {
 		this.ownerID = id;
 		this.ownerName = ownerName;
 		this.ownerCompany = ownerCompany;
 		this.ownerDepartment = ownerDepartment;
 		this.projectManager = projectManager;
-		this.ownerNotes = ownerNotes;
+		this.notes = notes;
 	}
 
 	/* GETTERS AND SETTERS */
@@ -98,16 +99,16 @@ public final class Owner {
 		this.projectManager = projectManager;
 	}
 
-	public String getOwnerNotes() {
-		return ownerNotes;
+	public String getNotes() {
+		return notes;
 	}
 
 	/**
 	 * Notes or comments regarding the organisation or managers/owners
-	 * @param ownerNotes Optional notes and comments
+	 * @param notes Optional notes and comments
 	 */
-	public void setOwnerNotes(String ownerNotes) {
-		this.ownerNotes = ownerNotes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 }
