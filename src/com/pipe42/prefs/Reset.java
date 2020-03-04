@@ -1,8 +1,9 @@
 package com.pipe42.prefs;
 
-import com.pipe42.data.DatabaseJson;
 import com.pipe42.data.pojos.Data;
 import com.pipe42.main.Main;
+
+// TODO still only for testing - do NOT use for production
 
 public class Reset {
 
@@ -17,7 +18,6 @@ public class Reset {
 
         // and write a new json
         Main.factory.getIO().writeAll(dbdata);
-
 
     }
 

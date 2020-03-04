@@ -363,23 +363,25 @@ public class DatabaseJson implements DatabaseIO {
      */
     private Data getJsonData() {
 
+        String pathToJson = UserPreferences.userSettings.get("databaseJsonDataPath", "");
+
         Data content = null;
         FileWorks fw = new FileWorks();
 
-        File jsonfile = fw.readFile("data.json");
+        File jsonfile = fw.readFile(pathToJson);
 
         try {
             content = Initialize.mapper.readValue(jsonfile, Data.class);
-            log.info("writeJsonData(): Data object has been successfully read from json file: " + content);
+            log.info("getJsonData(): Data object has been successfully read from json file: " + content);
             database = content;
         } catch (JsonParseException e) {
-            log.error("writeJsonData(): Json parse (Jackson) failed.");
+            log.error("getJsonData(): Json parse (Jackson) failed.");
             e.printStackTrace();
         } catch (JsonMappingException e) {
-            log.error("writeJsonData(): Json mapper (Jackson) failed.");
+            log.error("getJsonData(): Json mapper (Jackson) failed.");
             e.printStackTrace();
         } catch (IOException e) {
-            log.error("writeJsonData(): Writing to json failed.");
+            log.error("getJsonData(): Writing to json failed.");
             e.printStackTrace();
         }
 

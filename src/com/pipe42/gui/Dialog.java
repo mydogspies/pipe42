@@ -1,6 +1,5 @@
 package com.pipe42.gui;
 
-
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -10,19 +9,24 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.Optional;
 
 /**
  * Creates all types of dialog windows
+ * @author Peter Mankowski
+ * @since 0.1.0
  */
 public class Dialog {
 
+    private static final Logger log = LoggerFactory.getLogger(Dialog.class);
+
     /**
      * Shows a confirmation dialog window and returns boolean TRUE if pressed OK
-     * @param headerText header text of type String
-     * @param contentText content text of type String
+     * @param headerText header text
+     * @param contentText content text
      * @return boolean true if pressed OK, false otherwise
      */
     public static Boolean confirmationDialog(String headerText, String contentText) {
@@ -32,9 +36,12 @@ public class Dialog {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
 
+        log.debug("confirmationDialog(): Opened a separate window: " + alert);
+
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
+            log.trace("confirmationDialog(): OK button pushed");
             return true;
         } else {
             return false;
@@ -43,8 +50,8 @@ public class Dialog {
 
     /**
      * Opens a simple information window by input errors
-     * @param headerText header text of type String
-     * @param contentText content text of type String
+     * @param headerText header text
+     * @param contentText content text
      */
     public static void inputErrorDialog(String headerText, String contentText) {
 
@@ -52,6 +59,8 @@ public class Dialog {
         alert.setTitle("PIPE42 input error");
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
+
+        log.debug("inputErrorDialog(): Opened a separate window: " + alert);
 
         alert.showAndWait();
     }
@@ -73,12 +82,16 @@ public class Dialog {
         newWindow.setScene(newScene);
         newWindow.initModality(Modality.WINDOW_MODAL);
 
+        log.debug("directoryDialog(): Opened a new directory chooser: " + dir);
+
         File selectedDirectory = dir.showDialog(newWindow);
 
         if (selectedDirectory.isDirectory()) {
+            log.trace("directoryDialog(): Directory selected: " + selectedDirectory.getAbsolutePath());
             return selectedDirectory.getAbsolutePath();
         }
 
+        log.trace("directoryDialog(): Exit without choice");
         return null;
     }
 

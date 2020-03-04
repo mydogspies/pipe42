@@ -3,14 +3,16 @@ package com.pipe42.prefs;
 import com.pipe42.console.ConsoleOut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 /**
- * Initializes the user preferences via the Preferences API
+ * Initializes the user preferences via the Preferences API.
  * This specific class is only to be used by the installer to initiate a
- * fresh install of PIPE42 in its default mode
+ * fresh install of PIPE42 in its default mode.
+ * @author Peter Mankowski
+ * @since 0.1.0
+ * @see com.pipe42.prefs.UserPreferences
  */
 public class InitializeUserPreferences {
 
@@ -27,7 +29,7 @@ public class InitializeUserPreferences {
             userPreferences.clear();
             log.debug("initUserPrefs(): User Preferences have been cleared.");
         } catch (BackingStoreException e) {
-            ConsoleOut.printCons("Error: The system preferences of /com/pipe42 could not be cleared.");
+            log.warn("initUserPrefs(): User preferences could not be cleaned due to some error.");
             e.printStackTrace();
         }
 

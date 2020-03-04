@@ -1,4 +1,5 @@
 package com.pipe42.main;
+import ch.qos.logback.classic.Level;
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.data.DatabaseFactoryProvider;
 
@@ -44,6 +45,19 @@ public class Initialize {
             log.error("databaseInitializer(): no database returned from UserPreferences");
             return null;
         }
+
+    }
+
+    /**
+     * Sets the reporting level of Logback
+     * @param level the level
+     * @since 0.2.0
+     * @see <a href="http://logback.qos.ch/">Logback</a>
+     */
+    public static void logReportLevel(String level) {
+
+        ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger)LoggerFactory.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
+        rootLogger.setLevel(Level.toLevel(level));
 
     }
 

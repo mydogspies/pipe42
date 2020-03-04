@@ -1,19 +1,24 @@
 package com.pipe42.util;
 
 import com.pipe42.data.Hashids;
-import org.w3c.dom.xpath.XPathResult;
-
-import java.net.URL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This is the dreaded utility class where tiny things reside that did not find space anywhere else.
+ * @author Peter Mankowski
+ * @since 0.1.0
+ */
 public class Util {
+
+	private static final Logger log = LoggerFactory.getLogger(Util.class);
 
 	/**
 	 * Generates a HashMap with formatted day and time strings
-	 * @return a HashMap with strings
+	 * @return a map with date and time
 	 */
 	public static HashMap<String, String> getDateTime() {
 
@@ -22,33 +27,25 @@ public class Util {
 		dateData.put("date", dt.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")));
 		dateData.put("time", dt.format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS")));
 
+		log.debug("getDateTime(): Returned a date&time map: " +  dateData);
+
 		return dateData;
 	}
 
 	/**
 	 * Takes a string as salt and returns a 6 character long hash code
 	 * @param salt Any random string
-	 * @return 6 character long has code as String
+	 * @return hash code
 	 */
 	public static String getHash(String salt) {
 
 		Hashids hashids = new Hashids(salt, 6, "0123456789abcdef");
-
 		long random = (long) (Math.random() * 1000000);
+		String hashCode = hashids.encode(random);
 
-		return hashids.encode(random);
+		log.debug("getHash(): Returned a hash string: " + hashCode);
+
+		return hashCode;
 	}
-
-	/**
-	 * Sanitize those paths
-	 * @param path string with local absolute path
-	 * @return string with system-specific path
-	 */
-	public static String getLocalURL(String path) {
-			
-			URL url = Util.class.getResource(path); // TODO not sure we will use this - review for every commit
-			return url.toString();
-			
-		}
 	
 }

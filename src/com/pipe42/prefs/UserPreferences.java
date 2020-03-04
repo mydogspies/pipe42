@@ -2,14 +2,13 @@ package com.pipe42.prefs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.prefs.Preferences;
 
 /**
  * Stores and manipulates the user preferences using the Preference API
  * @author Peter Mankowski
  * @since 0.1.0
- *
+ * @see com.pipe42.prefs.InitializeUserPreferences
  */
 public class UserPreferences {
 
@@ -36,7 +35,7 @@ public class UserPreferences {
     public static Boolean loadPrefs() {
 
         userSettings = getPrefs();
-        log.debug("loadPrefs(): loaded user preferences into userSettings from: {}", userSettings);
+        log.info("loadPrefs(): loaded user preferences into userSettings from: {}", userSettings);
 
         if(userSettings != null) {
             return true;

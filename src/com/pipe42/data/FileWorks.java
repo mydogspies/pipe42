@@ -104,6 +104,8 @@ public class FileWorks {
      */
     public File readFile(String filePath) {
 
+        log.trace("readFile(): incoming path (filePath): " + filePath);
+
         File file = Paths.get(filePath).toFile();
 
         if (file.exists()) {

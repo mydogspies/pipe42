@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The main javafx window that opens on start
+ * @author Peter Mankowski
+ * @since 0.1.0
  */
 public class MainWindow extends Application {
 
@@ -19,7 +21,7 @@ public class MainWindow extends Application {
 
 	/**
 	 * The main stage for the application
-	 * @param primaryStage
+	 * @param primaryStage the main stage in this application
 	 */
 	@Override
 	public void start(Stage primaryStage) {

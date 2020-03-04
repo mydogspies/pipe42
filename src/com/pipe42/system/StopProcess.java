@@ -3,10 +3,18 @@ package com.pipe42.system;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Stops a processes forcibly and cleans up if necessary
+ */
 public class StopProcess {
 
     private static final Logger log = LoggerFactory.getLogger(StopProcess.class);
 
+    /**
+     * Stops a process
+     * @param p the process object
+     * @return true if process stops, otherwise false
+     */
     public static Boolean stopProcess(Process p) {
 
         if(p != null) {

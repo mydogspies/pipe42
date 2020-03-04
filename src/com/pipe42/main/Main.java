@@ -2,14 +2,14 @@ package com.pipe42.main;
 
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
-import com.pipe42.prefs.Reset;
 import com.pipe42.prefs.UserPreferences;
 
 /**
- * Default startup method for PIPE42
+ * Default startup class Main
+ * Initializes and number of things and in the end calls the {@MainWindow} class to open the main application window
  * @author Peter Mankowski
- * @version 0.1.0-alpha
- *
+ * @since 0.1.0
+ * @see com.pipe42.gui.MainWindow
  */
 public class Main {
 
@@ -18,6 +18,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// TODO - Main - Build a pre-loader
+
+		// set log level
+		Initialize.logReportLevel("info"); // TODO this will have to be overridden in prefs
 
 		// get stored user preferences
 		UserPreferences.loadPrefs();
@@ -34,7 +37,5 @@ public class Main {
 		MainWindow.main(args);
 
 	}
-
-
 
 }

@@ -9,12 +9,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Controller for the System/Add Rendenengine UI
- * System_addRenderengine.fxml
+ * This is the controller for the "Add Renderengine" UI in System menu
+ * @author Peter Mankowski
+ * @since 0.1.0
  */
 public class System_addRenderengineC {
+
+    private static final Logger log = LoggerFactory.getLogger(System_addRenderengineC.class);
 
     @FXML
     private TextField engineName;
@@ -41,7 +46,10 @@ public class System_addRenderengineC {
     /* INIT */
 
     @FXML
-    void initialize() {}
+    void initialize() {
+
+        log.trace("initialize(): Has been called.");
+    }
 
 
     /* CALL HANDLERS */
@@ -52,6 +60,8 @@ public class System_addRenderengineC {
      */
     @FXML
     public void savedButtonPressed(ActionEvent event) {
+
+        log.trace("savedButtonPressed(): ActionEvent called: " + event);
 
         String id = Util.getHash(engineName.getText());
 

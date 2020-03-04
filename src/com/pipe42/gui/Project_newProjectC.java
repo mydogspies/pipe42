@@ -7,7 +7,6 @@ import com.pipe42.gui.custom.ComboApp;
 import com.pipe42.gui.custom.ComboBoxFactory;
 import com.pipe42.gui.custom.ComboEngine;
 import com.pipe42.gui.custom.ComboOwner;
-
 import com.pipe42.gui.validate.ValidateUserInput;
 import com.pipe42.main.Main;
 import javafx.event.ActionEvent;
@@ -22,11 +21,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * This is the controller for the "New Project" UI in Projects menu
+ * @author Peter Mankowski
+ * @since 0.1.0
+ */
 public class Project_newProjectC {
+
+	private static final Logger log = LoggerFactory.getLogger(Project_newProjectC.class);
 
 	@FXML
 	private GridPane comboPane;
@@ -121,6 +128,7 @@ public class Project_newProjectC {
 			}
 		});
 
+		log.trace("initialize(): Has been called.");
     }
 
 	
@@ -132,6 +140,8 @@ public class Project_newProjectC {
 	 */
 	@FXML
 	public void savedButtonPressed(ActionEvent event) {
+
+		log.trace("savedButtonPressed(): ActionEvent called: " + event);
 
 		// check validations
 		//

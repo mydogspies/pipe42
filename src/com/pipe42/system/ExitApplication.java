@@ -1,12 +1,15 @@
 package com.pipe42.system;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.pipe42.console.ConsoleOut;
-import com.pipe42.main.Main;
 import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This class sees to that we have a clean and nice exit with all processes and resources freed.
+ * @author Peter Mankowski
+ * @since 0.1.0
+ */
 public class ExitApplication {
 
     private static final Logger log = LoggerFactory.getLogger(ExitApplication.class);
@@ -16,6 +19,9 @@ public class ExitApplication {
     // x) confirmation dialog for unsaved files
     // x) confirmation dialog to shut down any other 3rd party processes started from within PIPE42
 
+    /**
+     * Exits the app cleanly
+     */
     public static void exitAll() {
 
         log.info("exitAll(): Exit with a clean shutdown! Bye!");

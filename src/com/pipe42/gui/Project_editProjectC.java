@@ -1,5 +1,6 @@
 package com.pipe42.gui;
 
+import com.pipe42.data.DatabaseJson;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.gui.custom.ComboApp;
 import com.pipe42.gui.custom.ComboBoxFactory;
@@ -20,11 +21,15 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class Project_editProjectC {
+
+    private static final Logger log = LoggerFactory.getLogger(Project_editProjectC.class);
 
     @FXML
     private GridPane comboPane;
@@ -192,6 +197,8 @@ public class Project_editProjectC {
 
             }
         });
+
+        log.trace("initialize(): Has been called.");
 
     }
 

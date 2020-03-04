@@ -1,11 +1,11 @@
 package com.pipe42.console;
 
+// TODO we may end up not using this at all in favor of logback - review every major commit
+
 /**
- *
  * A set of methods to format string for outputting to console.
  * @author Peter Mankowski
  * @since 0.1.0
- *
  */
 public class ConsoleOut {
 	
