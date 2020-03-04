@@ -7,5 +7,5 @@ com.pipe42.gui.validate
 com.pipe42.main
 com.pipe42.prefs
 com.pipe42.system
-com.pipe42.test
 com.pipe42.util
+test

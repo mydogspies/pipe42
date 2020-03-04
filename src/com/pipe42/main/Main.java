@@ -6,7 +6,7 @@ import com.pipe42.prefs.UserPreferences;
 
 /**
  * Default startup class Main
- * Initializes and number of things and in the end calls the {@MainWindow} class to open the main application window
+ * Initializes a number of things and in the end calls the {@MainWindow} class to open the main application window
  * @author Peter Mankowski
  * @since 0.1.0
  * @see com.pipe42.gui.MainWindow
