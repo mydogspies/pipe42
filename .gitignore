@@ -4,4 +4,4 @@
 *.iml
 bin/
 /out/
-/src/com/pipe42/test/
+/src/test/
