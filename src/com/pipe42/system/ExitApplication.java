@@ -16,15 +16,9 @@ public class ExitApplication {
     // x) confirmation dialog for unsaved files
     // x) confirmation dialog to shut down any other 3rd party processes started from within PIPE42
 
-    private static Process mongop = Main.mongoProcess;
-
     public static void exitAll() {
 
         log.info("exitAll(): Exit with a clean shutdown! Bye!");
-
-        // stop mongoDB client
-        StopProcess.stopProcess(mongop);
-
 
         // release resources used by logback for a clean exit
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();

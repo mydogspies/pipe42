@@ -1,11 +1,8 @@
 package com.pipe42.main;
 
-
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
 import com.pipe42.prefs.UserPreferences;
-import com.pipe42.system.ProcessMongoDB;
-
 
 /**
  * Default startup method for PIPE42
@@ -16,7 +13,6 @@ import com.pipe42.system.ProcessMongoDB;
 public class Main {
 
 	public static DatabaseAbstractFactory factory;
-	public static Process mongoProcess = null;
 
 	public static void main(String[] args) {
 		
@@ -24,11 +20,6 @@ public class Main {
 
 		// get stored user preferences
 		UserPreferences.loadPrefs();
-
-		// start MongoDB if it's the default database
-		if (UserPreferences.userSettings.get("database", "").equals("mongo")) {
-			mongoProcess = ProcessMongoDB.startMongoDB();
-		}
 
 		// initialize stuff
 		Initialize.setObjectMapper();

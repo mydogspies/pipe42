@@ -4,6 +4,6 @@ package com.pipe42.data;
 
 public enum DatabaseType {
 
-    JSON, MONGODB;
+    JSON, MONGODB, SQLLITE
 
 }

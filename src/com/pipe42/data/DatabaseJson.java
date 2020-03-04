@@ -3,7 +3,6 @@ package com.pipe42.data;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -15,7 +14,6 @@ import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.data.pojos.Renderengine;
 import com.pipe42.main.Initialize;
-import com.pipe42.prefs.UserPreferences;
 
 // TODO Branch: develop-factory / this is the implementation of DatabaseIO interface - once plugged into the main code, take this notice away!
 

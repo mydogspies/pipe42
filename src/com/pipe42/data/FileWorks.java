@@ -93,6 +93,7 @@ public class FileWorks {
      */
     public File readJsonFile(String filename) {
 
+        System.out.println(UserPreferences.userSettings.get("databaseJsonDataPath", ""));
         return Paths.get(UserPreferences.userSettings.get("databaseJsonDataPath", "")).toFile();
     }
 

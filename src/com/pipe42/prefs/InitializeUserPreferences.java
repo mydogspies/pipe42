@@ -1,6 +1,8 @@
 package com.pipe42.prefs;
 
 import com.pipe42.console.ConsoleOut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
@@ -12,6 +14,8 @@ import java.util.prefs.Preferences;
  */
 public class InitializeUserPreferences {
 
+    private static final Logger log = LoggerFactory.getLogger(InitializeUserPreferences.class);
+
     /**
      * Initializes all user preferences to its initial clean install state
      */
@@ -21,6 +25,7 @@ public class InitializeUserPreferences {
 
         try {
             userPreferences.clear();
+            log.debug("initUserPrefs(): User Preferences have been cleared.");
         } catch (BackingStoreException e) {
             ConsoleOut.printCons("Error: The system preferences of /com/pipe42 could not be cleared.");
             e.printStackTrace();
@@ -33,8 +38,8 @@ public class InitializeUserPreferences {
         userPreferences.put("database", "json");
         userPreferences.put("databaseJsonRootPath", "src/data");
         userPreferences.put("databaseJsonDataPath", "src/data/data.json");
-        userPreferences.put("databaseMongoPath", "C:/Program Files/MongoDB/Server/4.2/bin/mongod");
-        userPreferences.put("databaseMongoDataPath", "M:/30_CODING/01_MIXENV/pipe42/src/data/mongodb");
+        userPreferences.put("databaseSQLPath", "");
+        userPreferences.put("databaseSQLDataPath", "");
 
         /* XML */
         userPreferences.put("xmlRootPath", "src/data");
@@ -48,6 +53,7 @@ public class InitializeUserPreferences {
         userPreferences.putBoolean("testBool", true);
         userPreferences.put("appTitle", "PIPE42 version 0.1.0-alpha - NOT FOR PUBLIC RELEASE -");
 
+        log.info("initUserPrefs(): User preferences have been cleared and replaced by default values.");
     }
 
 }

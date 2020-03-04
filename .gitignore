@@ -1,9 +1,7 @@
-bin/
-docs/dev/*
-docs/archive/*
 .project
 .classpath
 .idea
 *.iml
-src/data/mongodb/*
+bin/
 /out/
+/src/com/pipe42/test/

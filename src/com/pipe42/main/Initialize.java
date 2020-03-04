@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.pipe42.data.DatabaseType.JSON;
-import static com.pipe42.data.DatabaseType.MONGODB;
+import static com.pipe42.data.DatabaseType.SQLLITE;
 
 
 /**
@@ -37,9 +37,9 @@ public class Initialize {
         if (UserPreferences.getPrefs().get("database", "").equals("json")) {
             log.info("databaseInitializer(): json database loaded");
             return DatabaseFactoryProvider.getFactory(JSON);
-        } else if (UserPreferences.getPrefs().get("database", "").equals("mongo")){
-            log.info("databaseInitializer(): mongodb database loaded");
-            return DatabaseFactoryProvider.getFactory(MONGODB);
+        } else if (UserPreferences.getPrefs().get("database", "").equals("sqllite")){
+            log.info("databaseInitializer(): SQLlite database loaded");
+            return DatabaseFactoryProvider.getFactory(SQLLITE);
         } else {
             log.error("databaseInitializer(): no database returned from UserPreferences");
             return null;

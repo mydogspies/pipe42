@@ -1,9 +1,20 @@
 package com.pipe42.data;
 
-// TODO Branch: develop-factory / this is the concrete factory for DatabaseIO interface - once plugged into the main code, take this notice away!
-
+/**
+ * This is the actual factory method for Json access methods in com.pipe42.data.DatabaseJson.
+ * A more in-depth explanation of the process can be found under {@com.pipe42.data.DatabaseFactoryProvider}.
+ * @author Peter Mankowski
+ * @since 0.1.0
+ * @see com.pipe42.data.DatabaseJson
+ * @see com.pipe42.data.DatabaseIO
+ * @see com.pipe42.data.DatabaseAbstractFactory
+ */
 public class DatabaseJsonFactory extends DatabaseAbstractFactory {
 
+    /**
+     * Returns the set of methods specific to Json as database
+     * @return a {@com.pipe42.data.DabaseJson} object
+     */
     @Override
     public DatabaseIO getIO() {
 

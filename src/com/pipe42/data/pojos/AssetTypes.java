@@ -1,7 +1,9 @@
 package com.pipe42.data.pojos;
 
 /**
- * Types for the pathsToAsset variable in the Asset pojo
+ * Defines the asset file types for com.pipe42.data.pojos.Asset
+ * @since 0.2.0
+ * @see com.pipe42.data.pojos.Asset
  */
 public enum AssetTypes {
 
