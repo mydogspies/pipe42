@@ -25,7 +25,7 @@ import java.util.Map;
  * In this case the Main method initiates a "factory" object through which we can call any method independent
  * of the underlying database.
  * @author Peter Mankowski
- * @since 0.2.o
+ * @since 0.2.0
  * @see com.pipe42.data.DatabaseFactoryProvider
  * @see com.pipe42.data.DatabaseIO
  * @see com.pipe42.main.Main
@@ -192,6 +192,10 @@ public class DatabaseSQLite implements DatabaseIO {
         return null;
     }
 
+    /**
+     * Inserts or updates the SQlite database with an Application object
+     * @param appData an object
+     */
     @Override
     public void writeApplication(Application appData) {
 
