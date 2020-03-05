@@ -1,0 +1,11 @@
+com.pipe42.console
+com.pipe42.data
+com.pipe42.data.pojos
+com.pipe42.gui
+com.pipe42.gui.custom
+com.pipe42.gui.validate
+com.pipe42.main
+com.pipe42.prefs
+com.pipe42.system
+com.pipe42.util
+test

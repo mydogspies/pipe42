@@ -21,3 +21,24 @@ PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2
 7. Nothing in this License Agreement shall be deemed to create any relationship of agency, partnership, or joint venture between PSF and Licensee. This License Agreement does not grant permission to use PSF trademarks or trade name in a trademark sense to endorse or promote products or services of Licensee, or any third party.
 8. By copying, installing or otherwise using Jython, Licensee agrees to be bound by the terms and conditions of this License Agreement.
 ---
+ControlsFX
+https://github.com/controlsfx/controlsfx
+Licensed under BSD 3-Clause License - https://opensource.org/licenses/BSD-3-Clause
+Copyright (c) 2013, ControlsFX
+All rights reserved.
+---
+SLF4J
+http://www.slf4j.org/
+Licensed under MIT License - https://opensource.org/licenses/MIT
+Copyright (c) 2004-2017 QOS.ch
+All rights reserved.
+---
+Logback
+http://logback.qos.ch/
+Dual-licensed under the EPL v1.0 and the LGPL 2.1 - http://www.eclipse.org/legal/epl-v10.html and http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+Copyright (C) 1999-2017, QOS.ch.
+All rights reserved.
+---
+SQLite
+https://www.sqlite.org/
+Public Domain

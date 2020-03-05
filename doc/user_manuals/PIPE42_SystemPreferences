@@ -1,0 +1,36 @@
+PIPE42 SYSTEM PREFERENCE VARIABLES
+Version 0.2.0
+
+key(default value); comment
+
+
+// USER SETTINGS 
+//
+
+/* PROJECT SETTINGS */
+projectPrefixLength(6); the amount of characters the project prefix can have
+
+/* DATABASE */
+database("json"); the current database used
+databaseRootPath("src/data"); the root folder of the current database
+databaseDataPath("src/data/data.json"); the path to the folder that contains the data, if applicable, otherwise NULL.
+databaseSQLiteRootPath(""): Path to the SQl executable or root, whichever applies
+databaseSQLiteDataPath("/src/data/sqlite"); Path to the data folder if applies
+
+/* XML */
+xmlRootPath("src/data"); the root path of the folder where all xml files reside
+xmlTemplatePath("src/data/templates"); the path where the xml templates for folder structures etc. live
+
+/* CSS */
+cssPath("css"); Relative path from com.pipe42.gui to the css folder
+cssDefaultTheme("default.css"; The name of the JavaFX default css
+
+/* MISC */
+testBool(false); for unit testing
+
+
+// SYSTEM SETTINGS
+//
+
+/* DATABASE */
+databaseInstallPath(""); the path to the install folder for MongoDB

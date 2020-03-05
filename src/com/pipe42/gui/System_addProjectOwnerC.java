@@ -1,7 +1,7 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.JsonDataIO;
-import com.pipe42.data.Owner;
+import com.pipe42.data.pojos.Owner;
+import com.pipe42.main.Main;
 import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,12 +9,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Controller for the System/Add Project Owner UI
- * System_addProjectOwner.fxml
+ * This is the controller for the "Add Project Owner" UI in System menu
+ * @author Peter Mankowski
+ * @since 0.1.0
  */
 public class System_addProjectOwnerC {
+
+    private static final Logger log = LoggerFactory.getLogger(System_addProjectOwnerC.class);
 
     @FXML
     private TextField ownerName;
@@ -41,7 +46,10 @@ public class System_addProjectOwnerC {
     /* INIT */
 
     @FXML
-    void initialize() {}
+    void initialize() {
+
+        log.trace("initialize(): Has been called.");
+    }
 
 
     /* CALL HANDLERS */
@@ -53,13 +61,14 @@ public class System_addProjectOwnerC {
     @FXML
     void savedButtonPressed(ActionEvent event) {
 
+        log.trace("savedButtonPressed(): ActionEvent called: " + event);
+
         String id = Util.getHash(ownerName.getText());
 
-        Owner project = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
+        Owner owner = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
                 projectManager.getText(), ownerNotes.getText());
 
-        JsonDataIO io = new JsonDataIO();
-        io.writeOwner(project);
+        Main.factory.getIO().writeOwner(owner);
     }
 
 }

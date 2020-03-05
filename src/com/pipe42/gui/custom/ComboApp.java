@@ -2,6 +2,9 @@ package com.pipe42.gui.custom;
 
 /**
  * Defines the wrapper class for the "Main project software" combobox in Project/New Project UI
+ * @author Peter Mankowsi
+ * @since 0.1.0
+ * @see com.pipe42.gui.custom.ComboAppListCell
  */
 public class ComboApp {
 

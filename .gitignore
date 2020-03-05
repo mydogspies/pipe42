@@ -1,6 +1,7 @@
-bin/
-docs/dev/*
-docs/archive/*
 .project
 .classpath
 .idea
+*.iml
+bin/
+/out/
+/src/test/
