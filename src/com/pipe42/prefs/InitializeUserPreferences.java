@@ -40,8 +40,8 @@ public class InitializeUserPreferences {
         userPreferences.put("database", "json");
         userPreferences.put("databaseJsonRootPath", "src/data");
         userPreferences.put("databaseJsonDataPath", "src/data/data.json");
-        userPreferences.put("databaseSQLiteRootPath", "");
-        userPreferences.put("databaseSQLiteDataPath", "src/data/sql");
+        userPreferences.put("databaseSQLiteRootPath", "src/data/sqlite");
+        userPreferences.put("databaseSQLiteDataPath", "src/data/sqlite/data/pipe42.db");
 
         /* XML */
         userPreferences.put("xmlRootPath", "src/data");

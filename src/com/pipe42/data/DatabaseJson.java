@@ -12,7 +12,6 @@ import com.pipe42.data.pojos.Project;
 import com.pipe42.data.pojos.Renderengine;
 import com.pipe42.gui.Dialog;
 import com.pipe42.main.Initialize;
-import com.pipe42.main.Main;
 import com.pipe42.prefs.UserPreferences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
