@@ -26,10 +26,23 @@ public class MainWindowC {
 	@FXML
 	private Pane centerContent;
 
+	@FXML
+	private MenuItem projects_SearchDatabase;
+
+	@FXML
+	private MenuItem help_about;
+
+	@FXML
+	private MenuItem system_resetAll;
+
 	/* INIT */
 
 	@FXML
 	void initialize() {
+
+		projects_SearchDatabase.setDisable(true); // TODO delete implemented
+		help_about.setDisable(true); // TODO delete implemented
+		system_resetAll.setDisable(true); // TODO delete implemented
 		
 	}
 

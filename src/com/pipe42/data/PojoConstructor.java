@@ -19,7 +19,8 @@ public class PojoConstructor {
     private static final Logger log = LoggerFactory.getLogger(PojoConstructor.class);
 
     /**
-     * Puts together the Project object for further use elsewhere.
+     * Puts together the Project object for further use elsewhere. This particular method assumes that you want
+     * a brand new Project object with a new unique ID. If looking just to update an existing object, see updateProjectObject().
      * @param projectName name of project
      * @param projectPrefix project prefix
      * @param ownerID owner ID
@@ -53,6 +54,38 @@ public class PojoConstructor {
                 creationTime, modifyTime, projectNotes, folderTemplate, folderPath);
 
         log.debug("buildProjectObject: Returned a Project object: " + project);
+
+        return project;
+    }
+
+
+    /**
+     * This method assumes an existing Project object thus keeping project ID intact and just adding the
+     * time of modification into the output object. If you are after creating a brand new unique Project
+     * object, see buildProjectObject():
+     * @param id unique ID of this project
+     * @param projectName name of project
+     * @param projectPrefix project prefix
+     * @param ownerID owner ID
+     * @param engineID renderengine ID
+     * @param appID application ID
+     * @param projectNotes project notes and comments
+     * @param folderTemplate the name of the template
+     * @param folderPath the absolute path to the root of the project folders
+     * @param creationTime time of initial creation
+     * @return a Project object
+     */
+    public Project updateProjectObject(String id, String projectName, String projectPrefix, String ownerID,
+                                       String engineID, String appID, String projectNotes, String folderTemplate,
+                                       String folderPath, HashMap<String, String> creationTime) {
+
+        // get formatted datetime
+        HashMap<String, String> modifyTime = Util.getDateTime();
+
+        Project project = new Project(id, projectName, projectPrefix, ownerID, engineID, appID,
+                creationTime, modifyTime, projectNotes, folderTemplate, folderPath);
+
+        log.debug("updateProjectObject: Returned a Project object: " + project);
 
         return project;
     }

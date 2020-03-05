@@ -35,7 +35,7 @@ public class MainWindow extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("fxml/MainWindow.fxml"));
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource(cssPath + cssTheme).toExternalForm());
+			scene.getStylesheets().add(getClass().getResource(cssPath + "/" + cssTheme).toExternalForm());
 			
 			primaryStage.setTitle(appTitle);
 			primaryStage.setScene(scene);

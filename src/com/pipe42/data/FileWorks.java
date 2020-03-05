@@ -23,6 +23,17 @@ public class FileWorks {
     /* GENERAL FILE METHODS */
 
     /**
+     * Simple check if file or folder exists using java.nio.
+     * @param path relative or absolute path
+     * @return true if exists, otherwise false
+     */
+    public Boolean fileExists(String path) {
+
+        File file = Paths.get(path).toFile();
+        return file.exists();
+    }
+
+    /**
      * Writes a text file with an input String with no formatting
      * @param filePathAndName file path and name of type String including extension
      * @param input any input of type String
@@ -92,9 +103,6 @@ public class FileWorks {
 
         new File(path).mkdirs();
     }
-
-
-    /* JSON SPECIFIC METHODS */
 
     /**
      * Reads a file from the disc with either absolute path or relative path from source root.

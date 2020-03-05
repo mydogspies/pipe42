@@ -40,20 +40,20 @@ public class InitializeUserPreferences {
         userPreferences.put("database", "json");
         userPreferences.put("databaseJsonRootPath", "src/data");
         userPreferences.put("databaseJsonDataPath", "src/data/data.json");
-        userPreferences.put("databaseSQLPath", "");
-        userPreferences.put("databaseSQLDataPath", "");
+        userPreferences.put("databaseSQLiteRootPath", "");
+        userPreferences.put("databaseSQLiteDataPath", "src/data/sql");
 
         /* XML */
         userPreferences.put("xmlRootPath", "src/data");
         userPreferences.put("xmlTemplatePath", "src/data/templates");
 
         /* CSS */
-        userPreferences.put("cssPath", "css/");
-        userPreferences.put("cssDefaultTheme", "pipe42_default.css");
+        userPreferences.put("cssPath", "css");
+        userPreferences.put("cssDefaultTheme", "default.css");
 
         /* MISC */
         userPreferences.putBoolean("testBool", true);
-        userPreferences.put("appTitle", "PIPE42 version 0.1.0-alpha - NOT FOR PUBLIC RELEASE -");
+        userPreferences.put("appTitle", "PIPE42 version 0.2.0-alpha - NOT FOR PUBLIC RELEASE -");
 
         log.info("initUserPrefs(): User preferences have been cleared and replaced by default values.");
     }

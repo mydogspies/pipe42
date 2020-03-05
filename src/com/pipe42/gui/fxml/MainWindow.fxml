@@ -33,7 +33,7 @@
                   <MenuItem fx:id="system_addProjectOwner" mnemonicParsing="false" onAction="#systemMenu" text="Add project owner" />
                   <MenuItem fx:id="system_addSoftwareApp" mnemonicParsing="false" onAction="#systemMenu" text="Add project software" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Reset all" />
+                  <MenuItem fx:id="system_resetAll" mnemonicParsing="false" text="Reset all" />
                </items></Menu>
           <Menu fx:id="help" mnemonicParsing="false" text="Help">
             <items>

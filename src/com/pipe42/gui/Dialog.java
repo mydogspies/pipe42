@@ -65,6 +65,10 @@ public class Dialog {
         alert.showAndWait();
     }
 
+    /**
+     * Opens a separate DirectoryChooser dialog on top of the main stage.
+     * @return the new path, empty string otherwise
+     */
     public static String directoryDialog() {
 
         DirectoryChooser dir = new DirectoryChooser();
@@ -86,13 +90,31 @@ public class Dialog {
 
         File selectedDirectory = dir.showDialog(newWindow);
 
-        if (selectedDirectory.isDirectory()) {
+        if (selectedDirectory != null && selectedDirectory.isDirectory()) {
             log.trace("directoryDialog(): Directory selected: " + selectedDirectory.getAbsolutePath());
             return selectedDirectory.getAbsolutePath();
+        } else {
+            log.trace("directoryDialog(): Exit without choice");
+            return "";
         }
 
-        log.trace("directoryDialog(): Exit without choice");
-        return null;
+    }
+
+    /**
+     * Opens a simple information window by input errors
+     * @param headerText header text
+     * @param contentText content text
+     */
+    public static void systemErrorDialog(String headerText, String contentText) {
+
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("PIPE42 system error");
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+
+        log.info("systemErrorDialog(): Opened a separate window: " + alert);
+
+        alert.showAndWait();
     }
 
 }

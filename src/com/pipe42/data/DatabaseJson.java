@@ -10,7 +10,9 @@ import com.pipe42.data.pojos.Data;
 import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.data.pojos.Renderengine;
+import com.pipe42.gui.Dialog;
 import com.pipe42.main.Initialize;
+import com.pipe42.main.Main;
 import com.pipe42.prefs.UserPreferences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +48,7 @@ public class DatabaseJson implements DatabaseIO {
     }
 
 
-    /* IMPLEMENTED METHODS */
+    /* GENERAL METHODS */
 
     /**
      * Writes a Data object to the Json database.
@@ -188,6 +190,36 @@ public class DatabaseJson implements DatabaseIO {
         writeJsonData(container);
 
         log.debug("deleteProject(): A new Data object sent to writeJsonData (project id "+ id +" deleted):  " + container);
+    }
+
+    /**
+     * Updates a Project object by deleting the old then appending the new one.
+     * This method presumes that the incoming Project object has the same unique ID as the one to be replaced and
+     * will take the incoming ID to look up the current project in the Json database with this ID, delete it and then
+     * append the incoming newProject to the database.
+     * Do NOT use this methods if you want to create a new Project with a new unique ID!
+     * @param newProject the updated Project object
+     */
+    @Override
+    public void updateProject(Project newProject) {
+
+        // check that the ID already exists and if not throw error
+        String id = newProject.getProjectID();
+        Project existingProject = getProjectByID(id);
+        if (existingProject != null) {
+
+            deleteProject(id);
+            writeProject(newProject);
+            log.info("updateProject(): Existing project wth ID " +  id + " has been deleted and the updated project with the same ID added.");
+
+
+        } else {
+            log.warn("updateProject(): No such ID exists in database: Calling ID was " + id + " in object (" + newProject + ")");
+            Dialog.systemErrorDialog("Illegal method call: The ID " + id + " from object (" + newProject + ") does not exist in the Json database!",
+                    "Please, report this as a bug in Help/Report bugs");
+        }
+
+
     }
 
 

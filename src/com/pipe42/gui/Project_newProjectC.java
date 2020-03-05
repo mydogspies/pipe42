@@ -9,6 +9,7 @@ import com.pipe42.gui.custom.ComboEngine;
 import com.pipe42.gui.custom.ComboOwner;
 import com.pipe42.gui.validate.ValidateUserInput;
 import com.pipe42.main.Main;
+import com.pipe42.prefs.UserPreferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -151,9 +152,9 @@ public class Project_newProjectC {
 			return;
 		}
 		if (!projectPrefixValid.get()) {
+			String prefixLength = UserPreferences.userSettings.get("projectPrefixLength", "6");
 			Dialog.inputErrorDialog("Prefix is either empty, already exists in the database or is longer than the amount of characters set in the system preferences!",
-					"Field can no be empty, must contain max 6 characters and must be duplicate of an existing project.");
-			// TODO max charcters should be injected from PREFS
+					"Field can no be empty, must contain max "+ prefixLength + " characters and must be duplicate of an existing project.");
 			return;
 		}
 
@@ -181,10 +182,12 @@ public class Project_newProjectC {
 					appID, projectNotes.getText(), folderTemplate.getValue(), directoryPath.getText());
 
 			Main.factory.getIO().writeProject(project);
+			log.trace("savedButtonPressed(): Project object sent off to writeProject: " + project);
 
 			// and then write the project directory if box ticked
 			if (writeDirectoryCheck.isSelected()) {
 				Xml.writeFolderTree(folderTemplate.getValue(), directoryPath.getText(), projectName.getText());
+				log.trace("savedButtonPressed(): Write new folder structure request sent off to writeFolderTree: " + folderTemplate.getValue() + ": " + directoryPath.getText());
 			}
 		}
 
