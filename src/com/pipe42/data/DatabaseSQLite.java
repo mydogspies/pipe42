@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -72,6 +73,25 @@ public class DatabaseSQLite implements DatabaseIO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Simply closes the connection object and frees resources
+     * @param connectionObject a map of objects - "connection":Connection object and "statement":Statement object
+     */
+    private void closeSQliteConnection(Map<String, Object> connectionObject) {
+
+        Connection con = (Connection)connectionObject.get("connection");
+        Statement stmt = (Statement)connectionObject.get("statement");
+
+        try {
+            stmt.close();
+            con.close();
+            log.trace("closeSQliteConnection(): Connection closed.");
+        } catch (SQLException e) {
+            log.warn("closeSQliteConnection(): Connection could not be closed.");
+            e.printStackTrace();
+        }
 
     }
 
@@ -86,42 +106,97 @@ public class DatabaseSQLite implements DatabaseIO {
     private Boolean writeTable(Object pojo, Map<String, Object> connectionObject) {
 
         Connection con = (Connection)connectionObject.get("connection");
-        // Statement stmt = (Statement)connectionObject.get("statement");
+        Statement stmt = (Statement)connectionObject.get("statement");
+        String method = "insert";
 
         // parse the object and get the values
         Map<String, String> appMap = PojoParser.parsePojoToMap(pojo);
+        log.trace("writeTable(): Incoming POJO map: " + appMap);
 
-        // TODO add check if we need INSERT or UPDATE
-        // build the query string
+        // get the field names
         List<String> fieldList = PojoParser.parsePojoFieldsAndClass(pojo);
-        String query = "INSERT INTO " + fieldList.get(0).toUpperCase() + " (";
-        String append = "";
+        log.trace("writeTable(): Incoming list of fields: " + fieldList);
 
-        for (int i=1; i < fieldList.size(); i++) {
-            query = query + fieldList.get(i).toUpperCase() + ", ";
-            append = append + "?, ";
-        }
-        query = query.substring(0, query.length() - 2) + ") VALUES (" + append.substring(0, append.length() - 2) + ")";
 
-        log.trace("writeTable(): Query string constructed: " + query);
-
+        // SQL METHOD CHECK
+        //
         try {
-            PreparedStatement insertApplication = con.prepareStatement(query);
-
-            for (int j=1; j < fieldList.size(); j++) {
-                insertApplication.setString(j, appMap.get(fieldList.get(j)));
-                log.trace("writeTable(): insertApplication in PreparedStatement with parameters: " + j + ", " + appMap.get(fieldList.get(j)));
+            String q = "SELECT * FROM " + fieldList.get(0).toUpperCase() + " WHERE " + fieldList.get(1) + "='" + appMap.get(fieldList.get(1)) + "'";
+            log.trace("writeTable(): Checking existence of ID using query: " + q);
+            ResultSet rs = stmt.executeQuery(q);
+            if (rs.next()) {
+                method = "UPDATE";
+            } else {
+                method = "INSERT";
             }
-            insertApplication.executeUpdate();
-            // stmt.close();
-            con.close();
-            log.info("writeTable(): Successfully inserted in SQlite table APPLICATION: " + query);
-            return true;
+            log.debug("writeTable(): Check if exists: Method will be " + method);
         } catch (SQLException e) {
-            log.warn("writeTable(): Writing to SQlite table APPLICATION failed.");
+            log.warn("writeTable(): Error reading table " + fieldList.get(0));
             e.printStackTrace();
         }
 
+        // INSERT vs UPDATE
+        //
+        switch (method) {
+            case "INSERT":
+
+                // build a string
+                String query = "INSERT INTO " + fieldList.get(0).toUpperCase() + " (";
+                String append = "";
+
+                for (int i=1; i < fieldList.size(); i++) {
+                    query = query + fieldList.get(i).toUpperCase() + ", ";
+                    append = append + "?, ";
+                }
+                query = query.substring(0, query.length() - 2) + ") VALUES (" + append.substring(0, append.length() - 2) + ")";
+
+                log.trace("writeTable(): Query string constructed: " + query);
+
+                // put together statement
+                try {
+                    PreparedStatement insertApplication = con.prepareStatement(query);
+
+                    for (int j=1; j < fieldList.size(); j++) {
+                        insertApplication.setString(j, appMap.get(fieldList.get(j)));
+                        log.trace("writeTable(): insertApplication in PreparedStatement with parameters: " + j + ", " + appMap.get(fieldList.get(j)));
+                    }
+                    insertApplication.executeUpdate();
+                    closeSQliteConnection(connectionObject);
+                    log.info("writeTable(): Successfully inserted in SQlite table APPLICATION: " + query);
+                    return true;
+                } catch (SQLException e) {
+                    log.warn("writeTable(): Writing to SQlite table APPLICATION failed.");
+                    e.printStackTrace();
+                }
+                break;
+
+            case "UPDATE":
+
+                // build a string
+                String query2 = "UPDATE " + fieldList.get(0).toUpperCase() + " SET ";
+
+                for (int k=2; k < fieldList.size(); k++) {
+                    query2 = query2 + fieldList.get(k).toUpperCase() + "=?, ";
+                }
+                query2 = query2.substring(0, query2.length() - 2) + " WHERE " + fieldList.get(1) + "='" + appMap.get(fieldList.get(1)) + "'"; // TODO hard coded apostrophes! Not good! Fix after testing
+                log.trace("writeTable(): Query string constructed: " + query2);
+
+                // put together statement
+                try {
+                    PreparedStatement updateApplication = con.prepareStatement(query2);
+                    for (int n=1; n < fieldList.size()-1; n++) {
+                        updateApplication.setString(n, appMap.get(fieldList.get(n+1)));
+                        log.trace("writeTable(): insertApplication in PreparedStatement with parameters: " + n + ", " + appMap.get(fieldList.get(n+1)));
+                    }
+                    updateApplication.executeUpdate();
+                    closeSQliteConnection(connectionObject);
+                    log.info("writeTable(): Successfully updated SQlite table APPLICATION: " + query2);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+        }
         return null;
     }
 
@@ -202,7 +277,7 @@ public class DatabaseSQLite implements DatabaseIO {
         Map<String, Object> con = connectToSQlite();
 
         if (con != null) {
-            boolean bool = writeTable(appData, con);
+            writeTable(appData, con);
         }
 
     }
