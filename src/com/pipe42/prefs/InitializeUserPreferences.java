@@ -48,7 +48,7 @@ public class InitializeUserPreferences {
         userPreferences.put("xmlTemplatePath", "src/data/templates");
 
         /* CSS */
-        userPreferences.put("cssPath", "css");
+        userPreferences.put("cssPath", "src/com/pipe42/gui/css");
         userPreferences.put("cssDefaultTheme", "default.css");
 
         /* MISC */

@@ -20,7 +20,7 @@ public class Main {
 		// TODO - Main - Build a pre-loader
 
 		// set log level
-		Initialize.logReportLevel("debug"); // TODO this will have to be overridden in prefs
+		Initialize.logReportLevel("trace"); // TODO this will have to be overridden in prefs
 
 		// get stored user preferences
 		UserPreferences.loadPrefs();
