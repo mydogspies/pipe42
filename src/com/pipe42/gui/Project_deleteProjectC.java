@@ -1,6 +1,5 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.FileWorks;
 import com.pipe42.gui.custom.ComboBoxFactory;
 import com.pipe42.gui.custom.ComboProject;
 import com.pipe42.main.Main;

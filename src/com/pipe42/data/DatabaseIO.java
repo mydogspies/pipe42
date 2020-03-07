@@ -25,14 +25,14 @@ public interface DatabaseIO {
     Project getProjectByID(String id);
     Project getProjectByName(String name);
     Project getProjectByPrefix(String prefix);
-    void updateProject(Project newProject);
+    void updateProject(Project project);
     void writeProject(Project project);
     void deleteProject(String id);
 
     // Owner methods
     List<Owner> getAllOwners();
     void writeOwner(Owner owner);
-    void deleteQwner(String id);
+    void deleteOwner(String id);
 
     // Application methods
     List<Application> getAllApps();

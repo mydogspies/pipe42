@@ -242,7 +242,7 @@ public class DatabaseJson implements DatabaseIO {
      * @param id owner ID
      */
     @Override
-    public void deleteQwner(String id) {
+    public void deleteOwner(String id) {
 
         // TODO implement this method
         log.debug("deleteOwner(): A new Data object sent to writeJsonData (owner id "+ id +" deleted):  "); // TODO add the container to log
