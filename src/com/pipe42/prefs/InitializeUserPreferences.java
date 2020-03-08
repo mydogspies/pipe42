@@ -37,7 +37,7 @@ public class InitializeUserPreferences {
         userPreferences.putInt("projectPrefixLength", 6);
 
         /* DATABASE */
-        userPreferences.put("database", "json");
+        userPreferences.put("database", "sqlite");
         userPreferences.put("databaseJsonRootPath", "src/data");
         userPreferences.put("databaseJsonDataPath", "src/data/data.json");
         userPreferences.put("databaseSQLiteRootPath", "src/data/sqlite");

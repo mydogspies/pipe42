@@ -1,5 +1,6 @@
 package com.pipe42.data;
 
+import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.main.Main;
 import com.pipe42.util.Util;
@@ -86,6 +87,40 @@ public class PojoConstructor {
                 creationTime, modifyTime, projectNotes, folderTemplate, folderPath);
 
         log.debug("updateProjectObject: Returned a Project object: " + project);
+
+        return project;
+    }
+
+    /**
+     * Puts together the Project object for further use elsewhere. This particular method assumes that you want
+     * a brand new Project object with a new unique ID. If looking just to update an existing object, see updateProjectObject().
+     * @param projectName name of project
+     * @param projectPrefix project prefix
+     * @param ownerID owner ID
+     * @param engineID renderengine ID
+     * @param appID application ID
+     * @param projectNotes project notes and comments
+     * @return a Project object
+     */
+    /**
+     * Puts together the Owner object for further use elsewhere. This particular method assumes that you want
+     * a brand new object with a new unique ID. If looking just to update an existing object, see updateOwnerObject().
+     * @param ownerName name of the owner/company
+     * @param ownerCompany optional name of the company
+     * @param ownerDepartment optional name of the department
+     * @param projectManager optional name of a project manager
+     * @param notes notes and comments
+     * @return an Owner object
+     */
+    public Owner buildOwnerObject(String ownerName, String ownerCompany, String ownerDepartment,
+                                  String projectManager, String notes) {
+
+        // get a unique hash ID
+        String id = Util.getHash(ownerName);
+
+        Owner project = new Owner(id, ownerName, ownerCompany, ownerDepartment, projectManager, notes);
+
+        log.debug("buildOwnerObject: Returned an Owner object: " + project);
 
         return project;
     }

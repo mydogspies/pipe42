@@ -6,9 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class contains all the SQliteUtilities specific methods that are a bit too esoteric to fit into default SQliteUtilities factory.
@@ -80,6 +85,92 @@ public class SQliteUtilities {
         }
 
         return null;
+    }
+
+    public String findPrimaryKeyName(String tableName) {
+
+        Map<String, Object> con = connectToSQlite();
+
+        Statement stmt = (Statement)con.get("statement");
+        String string = "";
+        String idString = "";
+
+        String searchQuery = "SELECT sql FROM sqlite_master WHERE tbl_name ='" + tableName.toUpperCase() + "' AND type='table'";
+        log.trace("findPrimaryKeyName(): Search query: " +searchQuery);
+
+        try {
+            // we literally find the name of the ID field in the table by looking specifically
+            // for the fields that contains "(*ID" which in our case, as long as we stick to
+            // our specific POJO structure, will return the correct ID field.
+            ResultSet rs = stmt.executeQuery(searchQuery);
+            string = rs.getString(1);
+            String pattern = "(\\B\\(\\w*)";
+            Pattern pat = Pattern.compile(pattern);
+            Matcher match = pat.matcher(string);
+
+            while (match.find()) {
+                idString = match.group(1);
+            }
+
+            idString = idString.substring(1);
+            log.trace("findPrimaryKeyName(): Pattern found: " + idString);
+            closeSQliteConnection(con);
+            return idString;
+
+        } catch (SQLException e) {
+            log.warn("findPrimaryKeyName(): No pattern found for: " + tableName + " in: " + string);
+            e.printStackTrace();
+            closeSQliteConnection(con);
+        }
+
+        return null;
+
+    }
+
+    /**
+     * Makes a connection to SQlite and returns a map with the Connection and Statement objects.
+     * @return map with Connection and Statement objects, otherwise null
+     */
+    private Map<String, Object> connectToSQlite() {
+
+        String uri = UserPreferences.userSettings.get("databaseSQLiteDataPath", "");
+
+        Map<String, Object> cobj = new HashMap<>();
+
+        Connection con = null;
+        Statement stmt = null;
+
+        try {
+            con = DriverManager.getConnection("jdbc:sqlite:" + uri);
+            log.info("createTableFromPojo(): Successfully connected to SQliteUtilities: " + con);
+            stmt = con.createStatement();
+            cobj.put("connection", con);
+            cobj.put("statement", stmt);
+            return cobj;
+        } catch (SQLException e) {
+            log.warn("createTableFromPojo(): Connection to SQllite failed.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Simply closes the connection object and frees resources
+     * @param connectionObject a map of objects - "connection":Connection object and "statement":Statement object
+     */
+    private void closeSQliteConnection(Map<String, Object> connectionObject) {
+
+        Connection con = (Connection)connectionObject.get("connection");
+        Statement stmt = (Statement)connectionObject.get("statement");
+
+        try {
+            stmt.close();
+            con.close();
+            log.trace("closeSQliteConnection(): Connection closed.");
+        } catch (SQLException e) {
+            log.warn("closeSQliteConnection(): Connection could not be closed.");
+            e.printStackTrace();
+        }
     }
 
 }

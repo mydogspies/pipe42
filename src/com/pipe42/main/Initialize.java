@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.pipe42.data.DatabaseType.JSON;
-import static com.pipe42.data.DatabaseType.SQLLITE;
+import static com.pipe42.data.DatabaseType.SQLITE;
 
 
 /**
@@ -38,9 +38,9 @@ public class Initialize {
         if (UserPreferences.getPrefs().get("database", "").equals("json")) {
             log.info("databaseInitializer(): json database loaded");
             return DatabaseFactoryProvider.getFactory(JSON);
-        } else if (UserPreferences.getPrefs().get("database", "").equals("sqllite")){
-            log.info("databaseInitializer(): SQLlite database loaded");
-            return DatabaseFactoryProvider.getFactory(SQLLITE);
+        } else if (UserPreferences.getPrefs().get("database", "").equals("sqlite")){
+            log.info("databaseInitializer(): SQlite database loaded");
+            return DatabaseFactoryProvider.getFactory(SQLITE);
         } else {
             log.error("databaseInitializer(): no database returned from UserPreferences");
             return null;

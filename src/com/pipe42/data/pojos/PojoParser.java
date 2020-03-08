@@ -1,5 +1,6 @@
 package com.pipe42.data.pojos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.pipe42.main.Initialize;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +26,11 @@ public class PojoParser {
      * @param pojo pojo object
      * @return Map of key/value pairs. If map is empty then null.
      */
-    public static Map<String, String> parsePojoToMap (Object pojo) {
+    public static LinkedHashMap<String, String> parsePojoToMap (Object pojo) {
 
-        Map<String, String> map = Initialize.mapper.convertValue(pojo, new TypeReference<Map<String, String>>() {});
+        // TODO Will re-implement this with out own method without Jackson in order to force parameter order
+
+        LinkedHashMap<String, String> map = Initialize.mapper.convertValue(pojo, new TypeReference<LinkedHashMap<String, String>>() {});
 
         log.debug("parsePojoMap(): Returned a map of values from pojo (" + pojo + "): " + map);
 
