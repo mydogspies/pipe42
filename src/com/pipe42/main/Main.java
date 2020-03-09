@@ -2,6 +2,7 @@ package com.pipe42.main;
 
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
+import com.pipe42.prefs.InitializeUserPreferences;
 import com.pipe42.prefs.UserPreferences;
 
 /**
@@ -18,6 +19,10 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// TODO - Main - Build a pre-loader
+
+		// TEMPORARY
+		// TODO only for testing!
+		InitializeUserPreferences.initUserPrefs();
 
 		// set log level
 		Initialize.logReportLevel("trace"); // TODO this will have to be overridden in prefs
