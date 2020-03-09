@@ -200,14 +200,11 @@ public class DatabaseSQLite implements DatabaseIO {
 
         // parse the object and get the values
         Map<String, String> appMap = PojoParser.parsePojoToMap(pojo);
-        log.trace("writeTable(): Incoming POJO map: " + appMap);
-
-        // see to that the appMap is in the same order as the fieldList below
-        // TODO order appMap
+        log.trace("writeTableRow(): Incoming POJO map: " + appMap);
 
         // get the field names
         List<String> fieldList = PojoParser.parsePojoFieldsAndClass(pojo);
-        log.trace("writeTable(): Incoming list of fields: " + fieldList);
+        log.trace("writeTableRow(): Incoming list of fields: " + fieldList);
 
         // SQL METHOD CHECK
         //
@@ -216,15 +213,15 @@ public class DatabaseSQLite implements DatabaseIO {
             PreparedStatement checkForTable = con.prepareStatement(q);
             checkForTable.setString(1, appMap.get(fieldList.get(1)));
             ResultSet rs = checkForTable.executeQuery();
-            log.trace("writeTable(): Checking existence of ID using query: " + q);
+            log.trace("writeTableRow(): Checking existence of ID using query: " + q);
             if (rs.next()) {
                 method = "UPDATE";
             } else {
                 method = "INSERT";
             }
-            log.debug("writeTable(): Check if exists: Method will be " + method);
+            log.debug("writeTableRow(): Check if exists: Method will be " + method);
         } catch (SQLException e) {
-            log.warn("writeTable(): Error reading table " + fieldList.get(0));
+            log.warn("writeTableRow(): Error reading table " + fieldList.get(0));
             e.printStackTrace();
         }
 
@@ -243,7 +240,7 @@ public class DatabaseSQLite implements DatabaseIO {
                 }
                 query = query.substring(0, query.length() - 2) + ") VALUES (" + append.substring(0, append.length() - 2) + ")";
 
-                log.trace("writeTable(): Query string constructed: " + query);
+                log.trace("writeTableRow(): Query string constructed: " + query);
 
                 // put together statement
                 try {
@@ -251,12 +248,12 @@ public class DatabaseSQLite implements DatabaseIO {
 
                     for (int j = 1; j < fieldList.size(); j++) {
                         insertApplication.setString(j, appMap.get(fieldList.get(j)));
-                        log.trace("writeTable(): insertApplication in PreparedStatement with parameters: " + j + ", " + appMap.get(fieldList.get(j)));
+                        log.trace("writeTableRow(): insertApplication in PreparedStatement with parameters: " + j + ", " + appMap.get(fieldList.get(j)));
                     }
                     insertApplication.executeUpdate();
-                    log.info("writeTable(): Successfully inserted in SQlite table: " + query);
+                    log.info("writeTableRow(): Successfully inserted in SQlite table: " + query);
                 } catch (SQLException e) {
-                    log.warn("writeTable(): Writing to SQlite table failed.");
+                    log.warn("writeTableRow(): Writing to SQlite table failed.");
                     e.printStackTrace();
                 }
                 break;
@@ -270,19 +267,19 @@ public class DatabaseSQLite implements DatabaseIO {
                     query2 = query2 + fieldList.get(k).toUpperCase() + "=?, ";
                 }
                 query2 = query2.substring(0, query2.length() - 2) + " WHERE " + fieldList.get(1) + "='" + appMap.get(fieldList.get(1)) + "'"; // TODO hard coded apostrophes! Not good! Fix after testing
-                log.trace("writeTable(): Query string constructed: " + query2);
+                log.trace("writeTableRow(): Query string constructed: " + query2);
 
                 // put together statement
                 try {
                     PreparedStatement updateApplication = con.prepareStatement(query2);
                     for (int n = 1; n < fieldList.size() - 1; n++) {
                         updateApplication.setString(n, appMap.get(fieldList.get(n + 1)));
-                        log.trace("writeTable(): insertApplication in PreparedStatement with parameters: " + n + ", " + appMap.get(fieldList.get(n + 1)));
+                        log.trace("writeTableRow(): insertApplication in PreparedStatement with parameters: " + n + ", " + appMap.get(fieldList.get(n + 1)));
                     }
                     updateApplication.executeUpdate();
-                    log.info("writeTable(): Successfully updated SQlite table: " + query2);
+                    log.info("writeTableRow(): Successfully updated SQlite table: " + query2);
                 } catch (SQLException e) {
-                    log.warn("writeTable(): Writing to SQlite table failed:");
+                    log.warn("writeTableRow(): Writing to SQlite table failed:");
                     e.printStackTrace();
                 }
 
@@ -353,26 +350,37 @@ public class DatabaseSQLite implements DatabaseIO {
      * @param connectionObject a map with Statement and Connection objects; "connection":Connection object and "statement":Statement object
      * @return a result set
      */
-    private ResultSet searchTableForRows(String tableName, String columns, String searchTerms, Map<String, Object> connectionObject) {
+    private ResultSet searchTableForRows(String tableName, String columns, String searchTerms, String orderBy, Map<String, Object> connectionObject) {
 
         Connection con = (Connection) connectionObject.get("connection");
         Statement stmt = (Statement) connectionObject.get("statement");
 
         ResultSet rs = null;
+        String query = "";
 
-        String query = "SELECT ? FROM ? WHERE ?";
-
-        try {
-            PreparedStatement search = con.prepareStatement(query);
-            search.setString(1, columns);
-            search.setString(2, tableName);
-            search.setString(3, searchTerms);
-            rs = search.executeQuery();
-            log.trace("searchTableForRows(): Executed query: SELECT " + columns + " FROM " + tableName + " WHERE " + searchTerms);
-            System.out.println(rs.getString(1));
-        } catch (SQLException e) {
-            log.warn("searchTableForRows(): Could not execute query using string: SELECT " + columns + " FROM " + tableName + " WHERE " + searchTerms);
-            e.printStackTrace();
+        if (!searchTerms.equals("")) {
+            query = "SELECT " + columns + " FROM " + tableName + " WHERE " + searchTerms + " ORDER BY " + orderBy;
+            log.trace("searchTableForRows(): Query string constructed: " + query);
+            try {
+                PreparedStatement search = con.prepareStatement(query);
+                rs = search.executeQuery();
+                log.trace("searchTableForRows(): Executed query: SELECT " + columns + " FROM " + tableName + " WHERE " + searchTerms + " ORDER BY " + orderBy);
+                System.out.println(rs.getString(1));
+            } catch (SQLException e) {
+                log.warn("searchTableForRows(): Could not execute query using string: SELECT " + columns + " FROM " + tableName + " WHERE " + searchTerms + " ORDER BY " + orderBy);
+                e.printStackTrace();
+            }
+        } else {
+            query = "SELECT " + columns + " FROM " + tableName + " ORDER BY " + orderBy;
+            log.trace("searchTableForRows(): Query string constructed: " + query);
+            try {
+                PreparedStatement search = con.prepareStatement(query);
+                rs = search.executeQuery();
+                log.trace("searchTableForRows(): Executed query: SELECT " + columns + " FROM " + tableName + " ORDER BY " + orderBy);
+            } catch (SQLException e) {
+                log.warn("searchTableForRows(): Could not execute query using string: SELECT " + columns + " FROM " + tableName + " ORDER BY " + orderBy);
+                e.printStackTrace();
+            }
         }
 
         return rs;
@@ -383,6 +391,14 @@ public class DatabaseSQLite implements DatabaseIO {
 
     @Override
     public List<Project> getAllProjects() {
+
+        Map<String, Object> con = connectToSQlite();
+
+        if (con != null) {
+            searchTableForRows("PROJECT", "*", "", "PROJECTNAME", con);
+            closeSQliteConnection(con);
+        }
+
         return null;
     }
 
@@ -392,7 +408,7 @@ public class DatabaseSQLite implements DatabaseIO {
         Map<String, Object> con = connectToSQlite();
 
         if (con != null) {
-            searchTableForRows("PROJECT", "*", "PROJECTID='" + id + "'", con);
+            searchTableForRows("PROJECT", "*", "PROJECTID='" + id + "'", "PROJECTNAME", con);
             closeSQliteConnection(con);
         }
 
@@ -460,6 +476,7 @@ public class DatabaseSQLite implements DatabaseIO {
 
     @Override
     public List<Owner> getAllOwners() {
+
         return null;
     }
 

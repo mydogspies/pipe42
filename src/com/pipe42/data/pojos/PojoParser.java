@@ -3,6 +3,7 @@ package com.pipe42.data.pojos;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.pipe42.main.Initialize;
+import org.python.bouncycastle.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 
 /**
  * This class contains methods for parsing POJOs using the Java Reflection and Jackson
+ *
  * @author Peter Mankowski
  * @since 0.2.0
  */
@@ -23,24 +25,35 @@ public class PojoParser {
 
     /**
      * Converts a pojo into a map using Jackson.
+     *
      * @param pojo pojo object
      * @return Map of key/value pairs. If map is empty then null.
      */
-    public static LinkedHashMap<String, String> parsePojoToMap (Object pojo) {
+    public static LinkedHashMap<String, String> parsePojoToMap(Object pojo) {
 
-        // TODO Will re-implement this with out own method without Jackson in order to force parameter order
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        List<String> fieldList = parsePojoFieldsAndClass(pojo);
+        Class<?> cl = pojo.getClass();
 
-        LinkedHashMap<String, String> map = Initialize.mapper.convertValue(pojo, new TypeReference<LinkedHashMap<String, String>>() {});
 
-        log.debug("parsePojoMap(): Returned a map of values from pojo (" + pojo + "): " + map);
+        for (int i = 1; i < fieldList.size(); i++) {
 
-        if (!map.isEmpty()) {
-            return map;
-        } else {
-            log.warn("parsePojoMap(): Pojo (" + pojo + ") returned not map.");
-            return null;
+            try {
+                Field field = pojo.getClass().getDeclaredField(fieldList.get(i));
+                field.setAccessible(true);
+                String key = fieldList.get(i);
+                String value = (String)field.get(pojo);
+
+                map.put(key, value);
+
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                log.warn("parsePojoToMap(): Parsing failed. " + pojo);
+                e.printStackTrace();
+            }
         }
 
+        log.trace("parsePojoToMap(): List returned: " + map);
+        return map;
     }
 
     /**

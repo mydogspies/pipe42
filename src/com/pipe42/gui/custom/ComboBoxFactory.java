@@ -35,6 +35,7 @@ public class ComboBoxFactory {
     public ComboBox<ComboOwner> getOwnerComboBox(ComboBox<ComboOwner> ownerBox) {
 
         List<Owner> ownerList = Main.factory.getIO().getAllOwners();
+        log.trace("getOwnerComboBox(): Got a list of Owner objects: " + ownerList);
 
         ownerBox = new ComboBox<>();
 
@@ -58,6 +59,8 @@ public class ComboBoxFactory {
     public ComboBox<ComboApp> getAppComboBox(ComboBox<ComboApp> appBox) {
 
         List<Application> appList = Main.factory.getIO().getAllApps();
+        log.trace("getAppComboBox(): Got a list of Owner objects: " + appList);
+
         appBox = new ComboBox<>();
 
         for (Application app: appList) {
@@ -80,6 +83,8 @@ public class ComboBoxFactory {
     public ComboBox<ComboEngine> getEngineComboBox(ComboBox<ComboEngine> engineBox) {
 
         List<Renderengine> engineList = Main.factory.getIO().getAllEngines();
+        log.trace("getEngineComboBox(): Got a list of Owner objects: " + engineList);
+
         engineBox = new ComboBox<>();
 
         for (Renderengine eng: engineList) {
@@ -102,6 +107,7 @@ public class ComboBoxFactory {
     public ComboBox<ComboProject> getProjectComboBox(ComboBox<ComboProject> projectBox) {
 
         List<Project> projectList = Main.factory.getIO().getAllProjects();
+        log.trace("getProjectComboBox(): Got a list of Owner objects: " + projectList);
 
         projectBox = new ComboBox<>();
 
@@ -126,6 +132,7 @@ public class ComboBoxFactory {
     public ComboBox<String> getTemplateComboBox(ComboBox<String> folderTemplate) {
 
         List<String> templateList = Xml.getXmlTemplateNames();
+        log.trace("getTemplateComboBox(): Got a list of Owner objects: " + templateList);
 
         folderTemplate = new ComboBox<>();
 
