@@ -29,26 +29,25 @@ public class InitializeUserPreferences {
             userPreferences.clear();
             log.debug("initUserPrefs(): User Preferences have been cleared.");
         } catch (BackingStoreException e) {
-            log.warn("initUserPrefs(): User preferences could not be cleaned due to some error.");
-            e.printStackTrace();
+            log.warn("initUserPrefs(): User preferences could not be cleared due to some error.");
         }
 
         /* PROJECT SETTINGS */
         userPreferences.putInt("projectPrefixLength", 6);
 
         /* DATABASE */
-        userPreferences.put("database", "json");
+        userPreferences.put("database", "sqlite");
         userPreferences.put("databaseJsonRootPath", "src/data");
         userPreferences.put("databaseJsonDataPath", "src/data/data.json");
-        userPreferences.put("databaseSQLiteRootPath", "");
-        userPreferences.put("databaseSQLiteDataPath", "src/data/sql");
+        userPreferences.put("databaseSQLiteRootPath", "src/data/sqlite");
+        userPreferences.put("databaseSQLiteDataPath", "src/data/sqlite/data/pipe42.db");
 
         /* XML */
         userPreferences.put("xmlRootPath", "src/data");
         userPreferences.put("xmlTemplatePath", "src/data/templates");
 
         /* CSS */
-        userPreferences.put("cssPath", "css");
+        userPreferences.put("cssPath", "src/com/pipe42/gui/css");
         userPreferences.put("cssDefaultTheme", "default.css");
 
         /* MISC */

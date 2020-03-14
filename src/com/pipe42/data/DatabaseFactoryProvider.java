@@ -25,7 +25,7 @@ public class DatabaseFactoryProvider {
 
         if (DatabaseType.JSON == type) {
             return new DatabaseJsonFactory();
-        } else if (DatabaseType.SQLLITE == type) {
+        } else if (DatabaseType.SQLITE == type) {
             return new DatabaseSQLiteFactory();
         }
 

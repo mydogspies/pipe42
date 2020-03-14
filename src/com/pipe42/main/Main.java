@@ -2,6 +2,7 @@ package com.pipe42.main;
 
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
+import com.pipe42.prefs.InitializeUserPreferences;
 import com.pipe42.prefs.UserPreferences;
 
 /**
@@ -19,8 +20,12 @@ public class Main {
 		
 		// TODO - Main - Build a pre-loader
 
+		// TEMPORARY
+		// TODO only for testing!
+		InitializeUserPreferences.initUserPrefs();
+
 		// set log level
-		Initialize.logReportLevel("debug"); // TODO this will have to be overridden in prefs
+		Initialize.logReportLevel("trace"); // TODO this will have to be overridden in prefs
 
 		// get stored user preferences
 		UserPreferences.loadPrefs();
@@ -29,6 +34,7 @@ public class Main {
 		Initialize.setObjectMapper();
 		factory = Initialize.databaseInitializer();
 
+		// TODO below only for testing! Delete when done
 		// reset all
 		// Reset reset = new Reset();
 		// reset.resetAll();

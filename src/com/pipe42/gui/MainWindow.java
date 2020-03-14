@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * The main javafx window that opens on start
  * @author Peter Mankowski
@@ -28,14 +29,17 @@ public class MainWindow extends Application {
 
 		// get the current Javafx css theme
 		String appTitle = UserPreferences.userSettings.get("appTitle", "");
-		String cssPath = UserPreferences.userSettings.get("cssPath", "");
-		String cssTheme = UserPreferences.userSettings.get("cssDefaultTheme", "");
+		// String cssPath = UserPreferences.userSettings.get("cssPath", "");
+		// String cssTheme = UserPreferences.userSettings.get("cssDefaultTheme", "");
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("fxml/MainWindow.fxml"));
+			log.trace("start(): Seems we loaded MainWindow.fxml successfully.");
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource(cssPath + "/" + cssTheme).toExternalForm());
+			log.trace("start(): New scene instantiated: " + scene);
+			scene.getStylesheets().add(getClass().getResource("css/default.css").toExternalForm()); // TODO hard coded until we find a platform independent solution
+			log.trace("start(): Seems we loaded the default css file successfully.");
 			
 			primaryStage.setTitle(appTitle);
 			primaryStage.setScene(scene);

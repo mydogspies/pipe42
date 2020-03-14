@@ -132,7 +132,7 @@ public class ValidateUserInput {
      */
     public void validateEditProjectName(AtomicBoolean bool, TextField field, String id) {
 
-        log.debug("validateNewProjectName(): Entered validation method");
+        log.trace("validateNewProjectName(): Entered validation method");
 
         ValidationSupport val = new ValidationSupport();
         val.setErrorDecorationEnabled(false);
@@ -178,7 +178,7 @@ public class ValidateUserInput {
      */
     public void validateEditProjectPrefix(AtomicBoolean bool, TextField field, String id) {
 
-        log.debug("validateNewProjectPrefix(): Entered validation method");
+        log.trace("validateNewProjectPrefix(): Entered validation method");
 
         ValidationSupport val = new ValidationSupport();
         val.setErrorDecorationEnabled(false);

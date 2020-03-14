@@ -1,6 +1,5 @@
 package com.pipe42.gui;
 
-import com.pipe42.data.FileWorks;
 import com.pipe42.gui.custom.ComboBoxFactory;
 import com.pipe42.gui.custom.ComboProject;
 import com.pipe42.main.Main;
@@ -51,7 +50,7 @@ public class Project_deleteProjectC {
 
         // dynamically create the projects combobox
         ComboBoxFactory cbf = new ComboBoxFactory();
-        projectBox = cbf.getProjectComboBox(projectBox);
+        projectBox = cbf.getProjectComboBox();
         comboPane.add(projectBox, 1 ,0);
         projectBox.getSelectionModel().select(0);
 

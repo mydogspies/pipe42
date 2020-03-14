@@ -79,7 +79,8 @@ public class Project_editProjectC {
     private ComboBox<ComboEngine> engine;
     private ComboBox<ComboApp> app;
     private ComboBox<String> folderTemplate;
-    private Label folderPath;
+    private String originalFolderPath; // this is the the root from which we will move if the option is chosen
+    private Label folderPath; // this is always current value of the path variable
     private Tooltip folderPathTip;
     private Tooltip invalidPathTextTip;
     private Label created;
@@ -94,6 +95,8 @@ public class Project_editProjectC {
      */
     @FXML
     void initialize() {
+
+        log.trace("initialize(): Started.");
 
         // PROJECT FIELDS
         //
@@ -139,6 +142,8 @@ public class Project_editProjectC {
             @Override
             public void changed(ObservableValue<? extends ComboProject> observable, ComboProject oldValue, ComboProject newValue) {
 
+                log.trace("initialize(): changed(): Project combobox (" + projectBox + ") has been accessed.");
+
                 if (newValue != null) {
 
                     invalidPathText.setVisible(false); // reset this label between calls
@@ -155,7 +160,7 @@ public class Project_editProjectC {
                     ComboBoxFactory cbf = new ComboBoxFactory();
 
                     // the Owner combobox
-                    ownerBox = cbf.getOwnerComboBox(ownerBox);
+                    ownerBox = cbf.getOwnerComboBox();
                     String ownerID = project.getOwnerID();
                     int index = 0;
                     int count = 0;
@@ -170,7 +175,7 @@ public class Project_editProjectC {
                     ownerBox.getSelectionModel().select(index);
 
                     // the Application combobox
-                    app = cbf.getAppComboBox(app);
+                    app = cbf.getAppComboBox();
                     String appID = project.getApplicationID();
                     int index2 = 0;
                     int count2 = 0;
@@ -185,7 +190,7 @@ public class Project_editProjectC {
                     app.getSelectionModel().select(index2);
 
                     // the Renderengine combobox
-                    engine = cbf.getEngineComboBox(engine);
+                    engine = cbf.getEngineComboBox();
                     String engineID = project.getEngineID();
                     int index3 = 0;
                     int count3 = 0;
@@ -200,7 +205,7 @@ public class Project_editProjectC {
                     engine.getSelectionModel().select(index3);
 
                     // the folder template combobox
-                    folderTemplate = cbf.getTemplateComboBox(folderTemplate);
+                    folderTemplate = cbf.getTemplateComboBox();
                     String folder = project.getProjectTemplate();
                     int index4 = 0;
                     int count4 = 0;
@@ -219,6 +224,7 @@ public class Project_editProjectC {
                     //
                     folderPath.setText(project.getProjectPath());
                     folderPathTip.setText(project.getProjectPath());
+                    originalFolderPath = folderPath.getText();
 
                     creationTime = project.getCreationTime(); // also passed on in the event handler
                     created.setText(creationTime.get("date") + " " + creationTime.get("time"));
@@ -274,7 +280,7 @@ public class Project_editProjectC {
             }
         });
 
-        log.trace("initialize(): Has been called.");
+        log.trace("initialize(): Finished initializing.");
 
     }
 
@@ -332,13 +338,16 @@ public class Project_editProjectC {
                     ownerBox.getValue().getOwnerID(), engine.getValue().getEngineID(), app.getValue().getAppID(),
                     projectNotes.getText(), folderTemplate.getValue(), folderPath.getText(), creationTime);
 
-            // Main.factory.getIO().updateProject(updatedProject);
+            Main.factory.getIO().updateProject(updatedProject);
             log.trace("updateButtonPressed(): Project object sent off to updateProject: " + updatedProject);
 
             // and move folder structure if it is a valid location and the checkbox has been ticked
             if (moveFoldersCheckBox.isSelected() && setPathValid.get()) {
 
-                // TODO implement move folder method
+                FileWorks fw = new FileWorks();
+                fw.moveDirectory(originalFolderPath, folderPath.getText());
+
+                log.trace("updateButtonPressed(): Request to move directory sent off.");
 
             }
 

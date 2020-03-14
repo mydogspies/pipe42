@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Some special file IO methods to fit this project
@@ -54,7 +55,6 @@ public class FileWorks {
 
         } catch (IOException e) {
             log.warn("writeFileText(): File IO error: " + filePathAndName);
-            e.printStackTrace();
         }
 
         return false;
@@ -131,6 +131,31 @@ public class FileWorks {
      * @param filename the name of the json file including extension as String
      */
     public void writeJsonFile(String filename) { // TODO not sure we use this - review with every commit
+
+    }
+
+    /**
+     * Simply moves a directory and its contents to a new root
+     * @param oldRoot source directory route
+     * @param newRoot destination directory root
+     */
+    public void moveDirectory(String oldRoot, String newRoot) {
+
+        File oldPath = Paths.get(oldRoot).toFile();
+        File newPath= Paths.get(newRoot).toFile();
+
+        if (oldPath.isDirectory()) {
+            try {
+                FileUtils.moveDirectory(oldPath, newPath);
+                log.info("moveDirectory(): Directory (" + oldRoot + ") moved to: " + newRoot);
+            } catch (IOException e) {
+                log.warn("moveDirectory(): Error trying to move directory (" + oldRoot + ") to: " + newRoot);
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            log.warn("moveDirectory(): No such root directory exists!");
+        }
 
     }
 

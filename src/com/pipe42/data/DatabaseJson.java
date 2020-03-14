@@ -12,7 +12,6 @@ import com.pipe42.data.pojos.Project;
 import com.pipe42.data.pojos.Renderengine;
 import com.pipe42.gui.Dialog;
 import com.pipe42.main.Initialize;
-import com.pipe42.main.Main;
 import com.pipe42.prefs.UserPreferences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -243,7 +242,7 @@ public class DatabaseJson implements DatabaseIO {
      * @param id owner ID
      */
     @Override
-    public void deleteQwner(String id) {
+    public void deleteOwner(String id) {
 
         // TODO implement this method
         log.debug("deleteOwner(): A new Data object sent to writeJsonData (owner id "+ id +" deleted):  "); // TODO add the container to log
@@ -377,13 +376,10 @@ public class DatabaseJson implements DatabaseIO {
             return true;
         } catch (JsonParseException e) {
             log.error("writeJsonData(): Json parse (Jackson) failed.");
-            e.printStackTrace();
         } catch (JsonMappingException e) {
             log.error("writeJsonData(): Json mapper (Jackson) failed.");
-            e.printStackTrace();
         } catch (IOException e) {
             log.error("writeJsonData(): Writing to json failed.");
-            e.printStackTrace();
         }
 
         return false;
@@ -408,13 +404,10 @@ public class DatabaseJson implements DatabaseIO {
             database = content;
         } catch (JsonParseException e) {
             log.error("getJsonData(): Json parse (Jackson) failed.");
-            e.printStackTrace();
         } catch (JsonMappingException e) {
             log.error("getJsonData(): Json mapper (Jackson) failed.");
-            e.printStackTrace();
         } catch (IOException e) {
             log.error("getJsonData(): Writing to json failed.");
-            e.printStackTrace();
         }
 
         return content;

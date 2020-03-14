@@ -1,5 +1,6 @@
 package com.pipe42.gui;
 
+import com.pipe42.data.PojoConstructor;
 import com.pipe42.data.pojos.Owner;
 import com.pipe42.main.Main;
 import com.pipe42.util.Util;
@@ -63,12 +64,13 @@ public class System_addProjectOwnerC {
 
         log.trace("savedButtonPressed(): ActionEvent called: " + event);
 
-        String id = Util.getHash(ownerName.getText());
+        PojoConstructor pc = new PojoConstructor();
 
-        Owner owner = new Owner(id, ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
+        Owner owner = pc.buildOwnerObject(ownerName.getText(), ownerCompany.getText(), ownerDepartment.getText(),
                 projectManager.getText(), ownerNotes.getText());
 
         Main.factory.getIO().writeOwner(owner);
+        log.debug("savedButtonPressed(): Project object sent off to writeProject: " + owner);
     }
 
 }
