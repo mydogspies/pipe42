@@ -34,6 +34,7 @@ public class Main {
 		Initialize.setObjectMapper();
 		factory = Initialize.databaseInitializer();
 
+		// TODO below only for testing! Delete when done
 		// reset all
 		// Reset reset = new Reset();
 		// reset.resetAll();

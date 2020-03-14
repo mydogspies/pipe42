@@ -44,7 +44,6 @@ public class Xml {
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
             log.warn("readXml(): Failed to read or parse the " + path +" file.");
-            e.printStackTrace();
         }
         return null;
     }

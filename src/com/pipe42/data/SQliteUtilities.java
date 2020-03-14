@@ -1,19 +1,13 @@
 package com.pipe42.data;
 
 import com.pipe42.data.pojos.PojoParser;
-import com.pipe42.prefs.UserPreferences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * This class contains all the SQliteUtilities specific methods that are a bit too esoteric to fit into default SQliteUtilities factory.
@@ -33,13 +27,12 @@ public class SQliteUtilities {
      * @param pojo a pojo object
      * @return true if success, otherwise null
      */
-    public static Boolean createTableFromPojo(Object pojo) {
+    public static void createTableFromPojo(Object pojo) {
 
         // parse the object, get fields and class name
         //
         List<String> fieldList =  PojoParser.parsePojoFieldsAndClass(pojo);
-        String uri = UserPreferences.userSettings.get("databaseSQLiteDataPath", "");
-        String query;
+        String query = "";
 
         // create the query
         //
@@ -61,33 +54,30 @@ public class SQliteUtilities {
             log.trace("createTableFromPojo(): Table created from pojo (" + pojo +"): " + fieldList);
         } else {
             log.warn("createTableFromPojo(): List returned is empty.");
-            return null;
         }
 
 
         // open connection and execute query
         //
 
-        Connection con = null;
-        Statement stmt = null;
+        DatabaseSQLite db = new DatabaseSQLite();
+
+        Map<String, Object> connectionObject = db.connectToSQlite();
+
+        Connection con = (Connection) connectionObject.get("connection");
+        Statement stmt = (Statement) connectionObject.get("statement");
 
         try {
-            con = DriverManager.getConnection("jdbc:sqlite:" + uri);
-            log.info("createTableFromPojo(): Successfully connected to SQliteUtilities: " + con);
-            stmt = con.createStatement();
+            // con = DriverManager.getConnection("jdbc:sqlite:" + uri);
+            log.info("createTableFromPojo(): Successfully connected to database: " + con);
             stmt.executeUpdate(query);
-            stmt.close();
-            con.close();
-            return true;
+            db.closeSQliteConnection(connectionObject);
         } catch (SQLException e) {
-            log.warn("createTableFromPojo(): Connection to SQliteUtilities failed.");
-            e.printStackTrace();
+            log.warn("createTableFromPojo(): Connection to database failed.");
         }
-
-        return null;
     }
 
-    public String findPrimaryKeyName(String tableName) {
+    /*public String findPrimaryKeyName(String tableName) {
 
         Map<String, Object> con = connectToSQlite();
 
@@ -119,19 +109,18 @@ public class SQliteUtilities {
 
         } catch (SQLException e) {
             log.warn("findPrimaryKeyName(): No pattern found for: " + tableName + " in: " + string);
-            e.printStackTrace();
             closeSQliteConnection(con);
         }
 
         return null;
 
-    }
+    }*/
 
     /**
      * Makes a connection to SQlite and returns a map with the Connection and Statement objects.
      * @return map with Connection and Statement objects, otherwise null
      */
-    private Map<String, Object> connectToSQlite() {
+    /*private Map<String, Object> connectToSQlite() {
 
         String uri = UserPreferences.userSettings.get("databaseSQLiteDataPath", "");
 
@@ -149,15 +138,14 @@ public class SQliteUtilities {
             return cobj;
         } catch (SQLException e) {
             log.warn("createTableFromPojo(): Connection to SQllite failed.");
-            e.printStackTrace();
             return null;
         }
     }
 
-    /**
+    *//**
      * Simply closes the connection object and frees resources
      * @param connectionObject a map of objects - "connection":Connection object and "statement":Statement object
-     */
+     *//*
     private void closeSQliteConnection(Map<String, Object> connectionObject) {
 
         Connection con = (Connection)connectionObject.get("connection");
@@ -169,8 +157,7 @@ public class SQliteUtilities {
             log.trace("closeSQliteConnection(): Connection closed.");
         } catch (SQLException e) {
             log.warn("closeSQliteConnection(): Connection could not be closed.");
-            e.printStackTrace();
         }
-    }
+    }*/
 
 }

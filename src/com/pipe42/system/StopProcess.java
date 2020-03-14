@@ -23,8 +23,7 @@ public class StopProcess {
                 log.debug("stopProcess(): Process {} has been terminated.", p);
                 return true;
             } catch (Exception e) {
-                log.warn("stopProcess(): Process {} could not be terminated.", p);
-                e.printStackTrace();
+                log.info("stopProcess(): Process {} could not be terminated.", p);
             }
         }
 

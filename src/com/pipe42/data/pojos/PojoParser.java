@@ -42,13 +42,12 @@ public class PojoParser {
                 Field field = pojo.getClass().getDeclaredField(fieldList.get(i));
                 field.setAccessible(true);
                 String key = fieldList.get(i);
-                String value = (String)field.get(pojo);
+                String value = String.valueOf(field.get(pojo));
 
                 map.put(key, value);
 
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 log.warn("parsePojoToMap(): Parsing failed. " + pojo);
-                e.printStackTrace();
             }
         }
 

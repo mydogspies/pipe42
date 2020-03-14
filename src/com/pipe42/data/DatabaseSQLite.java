@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,8 +63,7 @@ public class DatabaseSQLite implements DatabaseIO {
             result = rs.getString(1);
             log.trace("getDatabaseInfo(): Info found: " + result);
         } catch (SQLException e) {
-            log.warn("getDatabaseInfo(): No info found.");
-            e.printStackTrace();
+            log.info("getDatabaseInfo(): No info found.");
         }
 
         return result;
@@ -95,8 +95,8 @@ public class DatabaseSQLite implements DatabaseIO {
      * Makes a connection to SQlite and returns a map with the Connection and Statement objects.
      *
      * @return map with Connection and Statement objects, otherwise null
-     */
-    private Map<String, Object> connectToSQlite() {
+     */ // TODO make private after testing
+    public Map<String, Object> connectToSQlite() {
 
         String uri = UserPreferences.userSettings.get("databaseSQLiteDataPath", "");
 
@@ -107,14 +107,15 @@ public class DatabaseSQLite implements DatabaseIO {
 
         try {
             con = DriverManager.getConnection("jdbc:sqlite:" + uri);
-            log.info("createTableFromPojo(): Successfully connected to SQliteUtilities: " + con);
+            log.info("connectToSQlite(): Successfully connected to SQlite: " + con);
             stmt = con.createStatement();
             cobj.put("connection", con);
             cobj.put("statement", stmt);
+            log.trace("connectToSQlite(): Connection object returned: " + cobj);
             return cobj;
         } catch (SQLException e) {
-            log.warn("createTableFromPojo(): Connection to SQllite failed.");
-            e.printStackTrace();
+            log.warn("connectToSQlite(): Connection to SQlite failed.");
+            ;
             return null;
         }
     }
@@ -123,8 +124,8 @@ public class DatabaseSQLite implements DatabaseIO {
      * Simply closes the connection object and frees resources
      *
      * @param connectionObject a map of objects - "connection":Connection object and "statement":Statement object
-     */
-    private void closeSQliteConnection(Map<String, Object> connectionObject) {
+     */ // TODO make private after testing
+    public void closeSQliteConnection(Map<String, Object> connectionObject) {
 
         Connection con = (Connection) connectionObject.get("connection");
         Statement stmt = (Statement) connectionObject.get("statement");
@@ -132,10 +133,9 @@ public class DatabaseSQLite implements DatabaseIO {
         try {
             stmt.close();
             con.close();
-            log.trace("closeSQliteConnection(): Connection closed.");
+            log.trace("closeSQliteConnection(): Connection closed: " + connectionObject);
         } catch (SQLException e) {
             log.warn("closeSQliteConnection(): Connection could not be closed.");
-            e.printStackTrace();
         }
     }
 
@@ -178,7 +178,6 @@ public class DatabaseSQLite implements DatabaseIO {
 
         } catch (SQLException e) {
             log.warn("findPrimaryKeyName(): No pattern found for: " + tableName + " in: " + string);
-            e.printStackTrace();
         }
 
         return null;
@@ -222,7 +221,6 @@ public class DatabaseSQLite implements DatabaseIO {
             log.debug("writeTableRow(): Check if exists: Method will be " + method);
         } catch (SQLException e) {
             log.warn("writeTableRow(): Error reading table " + fieldList.get(0));
-            e.printStackTrace();
         }
 
         // INSERT vs UPDATE
@@ -253,8 +251,8 @@ public class DatabaseSQLite implements DatabaseIO {
                     insertApplication.executeUpdate();
                     log.info("writeTableRow(): Successfully inserted in SQlite table: " + query);
                 } catch (SQLException e) {
+                    System.out.println(e.getMessage());
                     log.warn("writeTableRow(): Writing to SQlite table failed.");
-                    e.printStackTrace();
                 }
                 break;
 
@@ -280,7 +278,6 @@ public class DatabaseSQLite implements DatabaseIO {
                     log.info("writeTableRow(): Successfully updated SQlite table: " + query2);
                 } catch (SQLException e) {
                     log.warn("writeTableRow(): Writing to SQlite table failed:");
-                    e.printStackTrace();
                 }
 
                 break;
@@ -306,7 +303,6 @@ public class DatabaseSQLite implements DatabaseIO {
             log.info("deleteTable(): The table " + tableName.toUpperCase() + " has been deleted: " + query);
         } catch (SQLException e) {
             log.warn("deleteTable(): The table could not be deleted: " + tableName);
-            e.printStackTrace();
         }
     }
 
@@ -335,7 +331,6 @@ public class DatabaseSQLite implements DatabaseIO {
             log.info("deleteRow(): The row with id " + id + " has been deleted from " + tableName);
         } catch (SQLException e) {
             log.warn("deleteRow(): Could not delete " + id + " from " + tableName);
-            e.printStackTrace();
         }
 
     }
@@ -349,8 +344,8 @@ public class DatabaseSQLite implements DatabaseIO {
      * @param searchTerms      a SQL syntax term, eg. "appOnwer='Michael' AND appName='Maya'".
      * @param connectionObject a map with Statement and Connection objects; "connection":Connection object and "statement":Statement object
      * @return a result set
-     */
-    private ResultSet searchTableForRows(String tableName, String columns, String searchTerms, String orderBy, Map<String, Object> connectionObject) {
+     */ // TODO make this private after test!!!
+    public ResultSet searchTableForRows(String tableName, String columns, String searchTerms, String orderBy, Map<String, Object> connectionObject) {
 
         Connection con = (Connection) connectionObject.get("connection");
         Statement stmt = (Statement) connectionObject.get("statement");
@@ -368,7 +363,6 @@ public class DatabaseSQLite implements DatabaseIO {
                 System.out.println(rs.getString(1));
             } catch (SQLException e) {
                 log.warn("searchTableForRows(): Could not execute query using string: SELECT " + columns + " FROM " + tableName + " WHERE " + searchTerms + " ORDER BY " + orderBy);
-                e.printStackTrace();
             }
         } else {
             query = "SELECT " + columns + " FROM " + tableName + " ORDER BY " + orderBy;
@@ -379,7 +373,6 @@ public class DatabaseSQLite implements DatabaseIO {
                 log.trace("searchTableForRows(): Executed query: SELECT " + columns + " FROM " + tableName + " ORDER BY " + orderBy);
             } catch (SQLException e) {
                 log.warn("searchTableForRows(): Could not execute query using string: SELECT " + columns + " FROM " + tableName + " ORDER BY " + orderBy);
-                e.printStackTrace();
             }
         }
 
@@ -389,13 +382,46 @@ public class DatabaseSQLite implements DatabaseIO {
     // PROJECT METHODS
     //
 
+    /**
+     * List all rows in table PROJECT
+     *
+     * @return a list of Project objects
+     */
     @Override
     public List<Project> getAllProjects() {
 
         Map<String, Object> con = connectToSQlite();
+        PojoConstructor pc = new PojoConstructor();
+
+        ResultSet rs;
+        List<Project> projectList = new ArrayList<>();
 
         if (con != null) {
-            searchTableForRows("PROJECT", "*", "", "PROJECTNAME", con);
+            rs = searchTableForRows("PROJECT", "*", "", "PROJECTNAME", con);
+
+            while (true) {
+
+                try {
+                    if (!rs.next()) break;
+
+                    // construct the a project object using our PojoConstructor for the sake of consistency
+                    Project project = pc.listProjectObject(rs.getString("PROJECTID"), rs.getString("PROJECTNAME"),
+                            rs.getString("PROJECTPREFIX"),
+                            rs.getString("OWNERID"), rs.getString("ENGINEID"),
+                            rs.getString("APPLICATIONID"), rs.getString("NOTES"),
+                            rs.getString("PROJECTTEMPLATE"), rs.getString("PROJECTPATH"),
+                            rs.getString("CREATIONTIME"), rs.getString("MODIFYTIME"));
+                    projectList.add(project);
+                    log.debug("getAllProjects(): Returned a list of Project objects: " + rs);
+                    closeSQliteConnection(con);
+                    return projectList;
+                } catch (SQLException e) {
+
+                    log.warn("getAllProjects(): Could not read the result file: " + rs);
+                }
+
+            }
+
             closeSQliteConnection(con);
         }
 
@@ -406,9 +432,30 @@ public class DatabaseSQLite implements DatabaseIO {
     public Project getProjectByID(String id) {
 
         Map<String, Object> con = connectToSQlite();
+        PojoConstructor pc = new PojoConstructor();
+
+        ResultSet rs;
 
         if (con != null) {
-            searchTableForRows("PROJECT", "*", "PROJECTID='" + id + "'", "PROJECTNAME", con);
+            rs = searchTableForRows("PROJECT", "*", "PROJECTID='" + id + "'", "''", con);
+
+            try {
+
+                // construct the a project object using our PojoConstructor for the sake of consistency
+                Project project = pc.listProjectObject(rs.getString("PROJECTID"), rs.getString("PROJECTNAME"),
+                        rs.getString("PROJECTPREFIX"),
+                        rs.getString("OWNERID"), rs.getString("ENGINEID"),
+                        rs.getString("APPLICATIONID"), rs.getString("NOTES"),
+                        rs.getString("PROJECTTEMPLATE"), rs.getString("PROJECTPATH"),
+                        rs.getString("CREATIONTIME"), rs.getString("MODIFYTIME"));
+                log.debug("ProjectByID(): Returned a list of Project objects: " + rs);
+                closeSQliteConnection(con);
+                return project;
+            } catch (SQLException e) {
+
+                log.warn("ProjectByID(): Could not read the result file: " + rs);
+            }
+
             closeSQliteConnection(con);
         }
 
@@ -435,6 +482,8 @@ public class DatabaseSQLite implements DatabaseIO {
     @Override
     public void updateProject(Project project) {
 
+        log.trace("updateProject(): Forwarded project object: " + project + "");
+
         writeProject(project);
     }
 
@@ -449,6 +498,7 @@ public class DatabaseSQLite implements DatabaseIO {
         Map<String, Object> con = connectToSQlite();
 
         if (con != null) {
+            log.trace("writeProject(): Sent of object to writing: " + project + " - with connection object: " + con);
             writeTableRow(project, con);
             closeSQliteConnection(con);
         }
@@ -474,9 +524,42 @@ public class DatabaseSQLite implements DatabaseIO {
     // OWNER METHODS
     //
 
+    /**
+     * Lists all rows in the table OWNER
+     *
+     * @return A list of Owner objects
+     */
     @Override
     public List<Owner> getAllOwners() {
 
+        Map<String, Object> con = connectToSQlite();
+
+        ResultSet rs = null;
+        List<Owner> ownerList = new ArrayList<>();
+
+        if (con != null) {
+            rs = searchTableForRows("OWNER", "*", "", "OWNERNAME", con);
+            while (true) {
+                try {
+                    if (!rs.next()) break;
+                    Owner owner = new Owner();
+                    owner.setOwnerId(rs.getString("OWNERID"));
+                    owner.setOwnerName(rs.getString("OWNERNAME"));
+                    owner.setOwnerCompany(rs.getString("OWNERCOMPANY"));
+                    owner.setOwnerDepartment(rs.getString("OWNERDEPARTMENT"));
+                    owner.setProjectManager(rs.getString("PROJECTMANAGER"));
+                    owner.setNotes(rs.getString("NOTES"));
+                    ownerList.add(owner);
+                    log.warn("getAllOwners(): Returned a list of Owner objects: " + rs);
+                    closeSQliteConnection(con);
+                    return ownerList;
+                } catch (SQLException e) {
+                    log.warn("getAllOwners(): Could not read the result file: " + rs);
+                }
+
+            }
+            closeSQliteConnection(con);
+        }
         return null;
     }
 
@@ -516,8 +599,42 @@ public class DatabaseSQLite implements DatabaseIO {
     // APPLICATION METHODS
     //
 
+    /**
+     * List all rows in table APPLICATION
+     *
+     * @return list of Application objects
+     */
     @Override
     public List<Application> getAllApps() {
+
+        Map<String, Object> con = connectToSQlite();
+
+        ResultSet rs = null;
+        List<Application> appList = new ArrayList<>();
+
+        if (con != null) {
+            rs = searchTableForRows("APPLICATION", "*", "", "APPNAME", con);
+            while (true) {
+                try {
+                    if (!rs.next()) break;
+                    Application app = new Application();
+                    app.setAppID(rs.getString("APPID"));
+                    app.setAppName(rs.getString("APPNAME"));
+                    app.setAppVersion(rs.getString("APPVERSION"));
+                    app.setAppPathToExecutable(rs.getString("APPPATHTOEXECUTABLE"));
+                    app.setAppExecParams(rs.getString("APPEXECPARAMS"));
+                    app.setNotes(rs.getString("NOTES"));
+                    appList.add(app);
+                    log.warn("getAllApps(): Returned a list of Application objects: " + rs);
+                    closeSQliteConnection(con);
+                    return appList;
+                } catch (SQLException e) {
+                    log.warn("getAllApps(): Could not read the result file: " + rs);
+                }
+
+            }
+            closeSQliteConnection(con);
+        }
         return null;
     }
 
@@ -557,9 +674,44 @@ public class DatabaseSQLite implements DatabaseIO {
     // RENDERENGINE METHODS
     //
 
+    /**
+     * List all rows in the table RENDERENGINE
+     *
+     * @return a list of Renderengine objects
+     */
     @Override
     public List<Renderengine> getAllEngines() {
+
+        Map<String, Object> con = connectToSQlite();
+
+        ResultSet rs = null;
+        List<Renderengine> renderList = new ArrayList<>();
+
+        if (con != null) {
+            rs = searchTableForRows("RENDERENGINE", "*", "", "ENGINENAME", con);
+            while (true) {
+                try {
+                    if (!rs.next()) break;
+                    Renderengine rend = new Renderengine();
+                    rend.setEngineID(rs.getString("ENGINEID"));
+                    rend.setEngineName(rs.getString("ENGINENAME"));
+                    rend.setEnginePathToExecutable(rs.getString("ENGINEPATHTOEXECUTABLE"));
+                    rend.setEngineExecParams(rs.getString("ENGINEEXECPARAMS"));
+                    rend.setEngineVersion(rs.getString("ENGINEVERSION"));
+                    rend.setNotes(rs.getString("NOTES"));
+                    renderList.add(rend);
+                    log.warn("getAllEngines(): Returned a list of Renderengine objects: " + rs);
+                    closeSQliteConnection(con);
+                    return renderList;
+                } catch (SQLException e) {
+                    log.warn("getAllEngines(): Could not read the result file: " + rs);
+                }
+
+            }
+            closeSQliteConnection(con);
+        }
         return null;
+
     }
 
     /**
@@ -580,6 +732,7 @@ public class DatabaseSQLite implements DatabaseIO {
 
     /**
      * Deletes a row with the unique row ID
+     *
      * @param id unique ID of row
      */
     @Override

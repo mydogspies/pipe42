@@ -29,8 +29,7 @@ public class InitializeUserPreferences {
             userPreferences.clear();
             log.debug("initUserPrefs(): User Preferences have been cleared.");
         } catch (BackingStoreException e) {
-            log.warn("initUserPrefs(): User preferences could not be cleaned due to some error.");
-            e.printStackTrace();
+            log.warn("initUserPrefs(): User preferences could not be cleared due to some error.");
         }
 
         /* PROJECT SETTINGS */

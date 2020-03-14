@@ -50,7 +50,7 @@ public class Project_deleteProjectC {
 
         // dynamically create the projects combobox
         ComboBoxFactory cbf = new ComboBoxFactory();
-        projectBox = cbf.getProjectComboBox(projectBox);
+        projectBox = cbf.getProjectComboBox();
         comboPane.add(projectBox, 1 ,0);
         projectBox.getSelectionModel().select(0);
 

@@ -16,7 +16,7 @@ public class ComboProjectListCell extends ListCell<ComboProject> {
 
     @Override
     public void updateItem(ComboProject comboProject, boolean empty) {
-        log.trace("updateItem(): Wrapping combobox ID item with name");
+        log.trace("updateItem(): Wrapping combobox ID item with project name");
         super.updateItem(comboProject, empty);
         if (empty) {
             setText(null);

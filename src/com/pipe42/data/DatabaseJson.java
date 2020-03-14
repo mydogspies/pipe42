@@ -376,13 +376,10 @@ public class DatabaseJson implements DatabaseIO {
             return true;
         } catch (JsonParseException e) {
             log.error("writeJsonData(): Json parse (Jackson) failed.");
-            e.printStackTrace();
         } catch (JsonMappingException e) {
             log.error("writeJsonData(): Json mapper (Jackson) failed.");
-            e.printStackTrace();
         } catch (IOException e) {
             log.error("writeJsonData(): Writing to json failed.");
-            e.printStackTrace();
         }
 
         return false;
@@ -407,13 +404,10 @@ public class DatabaseJson implements DatabaseIO {
             database = content;
         } catch (JsonParseException e) {
             log.error("getJsonData(): Json parse (Jackson) failed.");
-            e.printStackTrace();
         } catch (JsonMappingException e) {
             log.error("getJsonData(): Json mapper (Jackson) failed.");
-            e.printStackTrace();
         } catch (IOException e) {
             log.error("getJsonData(): Writing to json failed.");
-            e.printStackTrace();
         }
 
         return content;

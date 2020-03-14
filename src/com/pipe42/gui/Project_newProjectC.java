@@ -98,19 +98,19 @@ public class Project_newProjectC {
 		//
 		ComboBoxFactory cbf = new ComboBoxFactory();
 
-		ownerBox = cbf.getOwnerComboBox(ownerBox);
+		ownerBox = cbf.getOwnerComboBox();
 		comboPane.add(ownerBox, 1 ,2);
 		ownerBox.getSelectionModel().select(0);
 
-		appBox = cbf.getAppComboBox(appBox);
+		appBox = cbf.getAppComboBox();
 		comboPane.add(appBox, 1, 3);
 		appBox.getSelectionModel().select(0);
 
-		engineBox = cbf.getEngineComboBox(engineBox);
+		engineBox = cbf.getEngineComboBox();
 		comboPane.add(engineBox, 1, 4);
 		engineBox.getSelectionModel().select(0);
 
-		folderTemplate = cbf.getTemplateComboBox(folderTemplate);
+		folderTemplate = cbf.getTemplateComboBox();
 		folderComboBoxPane.getChildren().add(folderTemplate);
 		folderTemplate.getSelectionModel().select(0);
 

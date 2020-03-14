@@ -1,6 +1,7 @@
 package com.pipe42.console;
 
-// TODO we may end up not using this at all in favor of logback - review every major commit
+// TODO we will end up not using this at all in favor of logback - review every major commit
+// Any messages should be logged rather than sent to console
 
 /**
  * A set of methods to format string for outputting to console.

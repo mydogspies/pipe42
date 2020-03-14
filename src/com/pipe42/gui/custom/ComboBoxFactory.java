@@ -29,15 +29,14 @@ public class ComboBoxFactory {
 
     /**
      * Takes a Combobox of type ComboOwner and returns a populated combobox object with owner ID wrapped to it
-     * @param ownerBox a combobox object
      * @return a combobox object
      */
-    public ComboBox<ComboOwner> getOwnerComboBox(ComboBox<ComboOwner> ownerBox) {
+    public ComboBox<ComboOwner> getOwnerComboBox() {
 
         List<Owner> ownerList = Main.factory.getIO().getAllOwners();
         log.trace("getOwnerComboBox(): Got a list of Owner objects: " + ownerList);
 
-        ownerBox = new ComboBox<>();
+        ComboBox<ComboOwner> ownerBox = new ComboBox<>();
 
         for (Owner owner: ownerList) {
             ownerBox.getItems().add(new ComboOwner(owner.getOwnerName(), owner.getOwnerId()));
@@ -53,15 +52,14 @@ public class ComboBoxFactory {
 
     /**
      * Takes a Combobox of type ComboApp and returns a populated combobox object with application ID wrapped to it
-     * @param appBox a combobox object
      * @return a combobox object
      */
-    public ComboBox<ComboApp> getAppComboBox(ComboBox<ComboApp> appBox) {
+    public ComboBox<ComboApp> getAppComboBox() {
 
         List<Application> appList = Main.factory.getIO().getAllApps();
-        log.trace("getAppComboBox(): Got a list of Owner objects: " + appList);
+        log.trace("getAppComboBox(): Got a list of Application objects: " + appList);
 
-        appBox = new ComboBox<>();
+        ComboBox<ComboApp> appBox = new ComboBox<>();
 
         for (Application app: appList) {
             appBox.getItems().add(new ComboApp(app.getAppName(), app.getAppID()));
@@ -77,15 +75,14 @@ public class ComboBoxFactory {
 
     /**
      * Takes a Combobox of type ComboEngine and returns a populated combobox object with renderengine ID wrapped to it
-     * @param engineBox a combobox object
      * @return a combobox object
      */
-    public ComboBox<ComboEngine> getEngineComboBox(ComboBox<ComboEngine> engineBox) {
+    public ComboBox<ComboEngine> getEngineComboBox() {
 
         List<Renderengine> engineList = Main.factory.getIO().getAllEngines();
-        log.trace("getEngineComboBox(): Got a list of Owner objects: " + engineList);
+        log.trace("getEngineComboBox(): Got a list of Renderengine objects: " + engineList);
 
-        engineBox = new ComboBox<>();
+        ComboBox<ComboEngine> engineBox = new ComboBox<>();
 
         for (Renderengine eng: engineList) {
             engineBox.getItems().add(new ComboEngine(eng.getEngineName(), eng.getEngineID()));
@@ -101,15 +98,14 @@ public class ComboBoxFactory {
 
     /**
      * Takes a Combobox of type ComboProject and returns a populated combobox object with project ID wrapped to it
-     * @param projectBox a combobox object
      * @return a combobox object
      */
-    public ComboBox<ComboProject> getProjectComboBox(ComboBox<ComboProject> projectBox) {
+    public ComboBox<ComboProject> getProjectComboBox() {
 
         List<Project> projectList = Main.factory.getIO().getAllProjects();
-        log.trace("getProjectComboBox(): Got a list of Owner objects: " + projectList);
+        log.trace("getProjectComboBox(): Got a list of Project objects: " + projectList);
 
-        projectBox = new ComboBox<>();
+        ComboBox<ComboProject> projectBox = new ComboBox<>();
 
         for (Project project: projectList) {
             projectBox.getItems().add(new ComboProject(project.getProjectName(), project.getProjectID()));
@@ -126,15 +122,14 @@ public class ComboBoxFactory {
 
     /**
      * Takes a Combobox of type String and returns a populated combobox object with folder templates
-     * @param folderTemplate a combobox object
      * @return a combobox object
      */
-    public ComboBox<String> getTemplateComboBox(ComboBox<String> folderTemplate) {
+    public ComboBox<String> getTemplateComboBox() {
 
         List<String> templateList = Xml.getXmlTemplateNames();
-        log.trace("getTemplateComboBox(): Got a list of Owner objects: " + templateList);
+        log.trace("getTemplateComboBox(): Got a list of Template names: " + templateList);
 
-        folderTemplate = new ComboBox<>();
+        ComboBox<String> folderTemplate = new ComboBox<>();
 
         ObservableList<String> options = FXCollections.observableArrayList();
         options.addAll(templateList);
