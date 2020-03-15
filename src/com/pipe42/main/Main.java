@@ -28,7 +28,7 @@ public class Main {
 		Initialize.logReportLevel("trace"); // TODO this will have to be overridden in prefs
 
 		// get stored user preferences
-		UserPreferences.loadPrefs();
+		UserPreferences.loadPrefsIntoProgram();
 
 		// initialize stuff
 		Initialize.setObjectMapper();

@@ -35,6 +35,9 @@ public class MainWindowC {
 	@FXML
 	private MenuItem system_resetAll;
 
+	@FXML
+	private MenuItem system_settings;
+
 	/* INIT */
 
 	@FXML
@@ -107,6 +110,10 @@ public class MainWindowC {
 
 			case "system_addSoftwareApp":
 				addAddSoftware();
+				break;
+
+			case "system_settings":
+				settings();
 				break;
 		}
 	}
@@ -250,6 +257,25 @@ public class MainWindowC {
 			log.debug("addAddProjectOwner(): System_addProjectOwner.fxml added to centerContent");
 		} catch (IOException e) {
 			log.warn("addAddProjectOwner(): Unable to load System_addProjectOwner.fxml");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Adds the Settings UI under "System" menu
+	 */
+	private void settings() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_settings.fxml"));
+			centerContent.getChildren().add(p);
+			log.debug("settings(): System_settings.fxml added to centerContent");
+		} catch (IOException e) {
+			log.warn("settings(): Unable to load System_settings.fxml");
 			e.printStackTrace();
 		}
 

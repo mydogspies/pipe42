@@ -1,9 +1,11 @@
 package com.pipe42.data;
 
+import com.pipe42.data.pojos.Application;
 import com.pipe42.data.pojos.Owner;
 import com.pipe42.data.pojos.Project;
 import com.pipe42.main.Main;
 import com.pipe42.util.Util;
+import org.python.antlr.ast.Str;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -166,6 +168,29 @@ public class PojoConstructor {
         log.debug("buildOwnerObject(): Returned an Owner object: " + project);
 
         return project;
+    }
+
+    /**
+     * Puts together the Application object for further use elsewhere. This particular method assumes that you want
+     * a brand new object with a new unique ID.
+     * @param appName name of the software application
+     * @param appVersion version of the software application
+     * @param appPathToExecutable absolute path to executable file
+     * @param appExecParams optional startup parameters passed to executable, eg. "myapp.exe --help"
+     * @param notes optional notes and comments
+     * @return an Application object
+     */
+    public Application buildApplicationObject(String appName, String appVersion, String appPathToExecutable,
+                                              String appExecParams, String notes) {
+
+        // get a unique hash ID
+        String id = Util.getHash(appName);
+
+        Application app = new Application(id, appName, appVersion, appPathToExecutable, appExecParams, notes);
+
+        log.debug("buildApplicationObject(): Returned an Application object: " + app);
+
+        return app;
     }
 
     /**

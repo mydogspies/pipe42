@@ -22,7 +22,7 @@ public class WritePojoToSQL {
         Initialize.logReportLevel("debug");
 
         // get stored user preferences
-        UserPreferences.loadPrefs();
+        UserPreferences.loadPrefsIntoProgram();
 
         // initialize stuff
         Initialize.setObjectMapper();

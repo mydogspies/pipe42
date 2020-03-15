@@ -4,7 +4,6 @@ import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.data.DatabaseSQLite;
 import com.pipe42.data.SQliteUtilities;
 import com.pipe42.data.pojos.Application;
-import com.pipe42.data.pojos.PojoParser;
 import com.pipe42.main.Initialize;
 import com.pipe42.prefs.UserPreferences;
 
@@ -19,7 +18,7 @@ public class WriteToSQliteTEst {
         Initialize.logReportLevel("trace");
 
         // get stored user preferences
-        UserPreferences.loadPrefs();
+        UserPreferences.loadPrefsIntoProgram();
 
         // initialize stuff
         Initialize.setObjectMapper();

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<SplitPane dividerPositions="0.5" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pipe42.gui.System_settingsC">
+   <items>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0">
+         <children>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+               <children>
+                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="683.0" prefWidth="472.0">
+                     <children>
+                        <GridPane prefHeight="683.0" prefWidth="472.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="146.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="326.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Database" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="dbComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Paths to Json" GridPane.rowIndex="2" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button fx:id="setJsonRootPath" mnemonicParsing="false" text="set root path" />
+                                    <Button fx:id="setJsonDataPath" mnemonicParsing="false" text="set data path" />
+                                 </children>
+                              </HBox>
+                              <Label text="Paths to SQlite" GridPane.rowIndex="3" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Button fx:id="setSQliteRootPath" mnemonicParsing="false" text="set root path" />
+                                    <Button fx:id="setSQliteDbFile" mnemonicParsing="false" text="set database file" />
+                                 </children>
+                              </HBox>
+                              <Label text="Paths to xml" GridPane.rowIndex="4" />
+                              <Label text="Paths to css" GridPane.rowIndex="5" />
+                              <Label text="Database">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                              <Label text="Project" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                              <HBox GridPane.rowIndex="7">
+                                 <children>
+                                    <Label text="Prefix length" />
+                                    <TextField fx:id="prefixLength" prefHeight="25.0" prefWidth="40.0" promptText="6" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="setXmlRootFolder" mnemonicParsing="false" text="set folder root" />
+                                    <Button fx:id="setXmlTemplateFolder" mnemonicParsing="false" text="set templates folder" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <children>
+                                    <Button fx:id="setCssRoot" mnemonicParsing="false" text="set xml root" />
+                                    <Button fx:id="setCssDefaultTheme" mnemonicParsing="false" text="set default css theme" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="Info_pane" prefHeight="634.0" prefWidth="492.0">
+         <children>
+            <VBox>
+               <children>
+                  <WebView fx:id="htmlContent" prefHeight="665.0" prefWidth="492.0" />
+                  <ButtonBar prefHeight="32.0" prefWidth="492.0">
+                    <buttons>
+                      <Button fx:id="saveSettings" mnemonicParsing="false" onAction="#savedButtonPressed" text="Save settings" />
+                    </buttons>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </items>
+</SplitPane>

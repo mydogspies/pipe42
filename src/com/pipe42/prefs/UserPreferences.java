@@ -24,24 +24,24 @@ public class UserPreferences {
      */
     public static Preferences getPrefs() {
 
-        return Preferences.userRoot().node("/com/pipe42");
+        Preferences prefs = Preferences.userRoot().node("/com/pipe42");
 
+        if (prefs != null) {
+            log.debug("getPrefs(): Successfully read system preferences.");
+            return prefs;
+        } else {
+            log.error("getPrefs(): Could not read system preferences! (Is this first time this program runs?)");
+            return null;
+        }
     }
 
     /**
      * Simply initializes the global static variable userSettings with the proper data
-     * @return true if userSettings are not null, otherwise false
      */
-    public static Boolean loadPrefs() {
+    public static void loadPrefsIntoProgram() {
 
         userSettings = getPrefs();
         log.info("loadPrefs(): loaded user preferences into userSettings from: {}", userSettings);
-
-        if(userSettings != null) {
-            return true;
-        }
-
-        return false;
 
     }
 

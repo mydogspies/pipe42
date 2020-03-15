@@ -54,6 +54,8 @@ public class InitializeUserPreferences {
         userPreferences.putBoolean("testBool", true);
         userPreferences.put("appTitle", "PIPE42 version 0.2.0-alpha - NOT FOR PUBLIC RELEASE -");
 
+        /* GUI LOCATIONS */
+
         log.info("initUserPrefs(): User preferences have been cleared and replaced by default values.");
     }
 

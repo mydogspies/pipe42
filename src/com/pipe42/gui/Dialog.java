@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -69,7 +70,7 @@ public class Dialog {
      * Opens a separate DirectoryChooser dialog on top of the main stage.
      * @return the new path, empty string otherwise
      */
-    public static String directoryDialog() {
+    public static String chooseDirectoryDialog() {
 
         DirectoryChooser dir = new DirectoryChooser();
 
@@ -86,7 +87,7 @@ public class Dialog {
         newWindow.setScene(newScene);
         newWindow.initModality(Modality.WINDOW_MODAL);
 
-        log.debug("directoryDialog(): Opened a new directory chooser: " + dir);
+        log.debug("chooseDirectoryDialog(): Opened a new directory chooser: " + dir);
 
         File selectedDirectory = dir.showDialog(newWindow);
 
@@ -94,7 +95,42 @@ public class Dialog {
             log.trace("directoryDialog(): Directory selected: " + selectedDirectory.getAbsolutePath());
             return selectedDirectory.getAbsolutePath();
         } else {
-            log.trace("directoryDialog(): Exit without choice");
+            log.trace("chooseDirectoryDialog(): Exit without choice");
+            return "";
+        }
+
+    }
+
+    /**
+     * Opens a separate FileChooser dialog on top of the main stage.
+     * @return the new path, empty string otherwise
+     */
+    public static String chooseFileDialog() {
+
+        FileChooser dir = new FileChooser();
+
+        // Construct a new window
+        Label label = new Label("pane");
+
+        StackPane pane = new StackPane();
+        pane.getChildren().add(label);
+
+        Scene newScene = new Scene(pane, 400, 400);
+
+        Stage newWindow = new Stage();
+        newWindow.setTitle("PIPE42 Choose a directory");
+        newWindow.setScene(newScene);
+        newWindow.initModality(Modality.WINDOW_MODAL);
+
+        log.debug("chooseFileDialog(): Opened a new directory chooser: " + dir);
+
+        File selectedFile = dir.showOpenDialog(newWindow);
+
+        if (selectedFile != null && selectedFile.isFile()) {
+            log.trace("directoryDialog(): File selected: " + selectedFile.getAbsolutePath());
+            return selectedFile.getAbsolutePath();
+        } else {
+            log.trace("chooseFileDialog(): Exit without choice");
             return "";
         }
 

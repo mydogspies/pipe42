@@ -29,10 +29,16 @@
           </Menu>
           <Menu fx:id="system" mnemonicParsing="false" text="System">
                <items>
-                  <MenuItem fx:id="system_addRenderengine" mnemonicParsing="false" onAction="#systemMenu" text="Add renderengine" />
-                  <MenuItem fx:id="system_addProjectOwner" mnemonicParsing="false" onAction="#systemMenu" text="Add project owner" />
-                  <MenuItem fx:id="system_addSoftwareApp" mnemonicParsing="false" onAction="#systemMenu" text="Add project software" />
+                  <Menu mnemonicParsing="false" text="Database">
+                     <items>
+                        <MenuItem fx:id="system_addSoftwareApp" mnemonicParsing="false" onAction="#systemMenu" text="Add project software" />
+                        <MenuItem fx:id="system_addProjectOwner" mnemonicParsing="false" onAction="#systemMenu" text="Add project owner" />
+                        <MenuItem fx:id="system_addRenderengine" mnemonicParsing="false" onAction="#systemMenu" text="Add renderengine" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                     </items>
+                  </Menu>
                   <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="system_settings" mnemonicParsing="false" onAction="#systemMenu" text="Settings" />
                   <MenuItem fx:id="system_resetAll" mnemonicParsing="false" text="Reset all" />
                </items></Menu>
           <Menu fx:id="help" mnemonicParsing="false" text="Help">

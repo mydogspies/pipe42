@@ -269,7 +269,7 @@ public class Project_editProjectC {
                                 "Are sure this is what you want to do?");
 
                         if (confirm) {
-                            String path = Dialog.directoryDialog();
+                            String path = Dialog.chooseDirectoryDialog();
                             folderPath.setText(path);
                         }
 

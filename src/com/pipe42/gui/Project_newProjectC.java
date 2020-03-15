@@ -119,7 +119,7 @@ public class Project_newProjectC {
 		//
 		setPath.setOnAction(event -> {
 
-			String path = Dialog.directoryDialog();
+			String path = Dialog.chooseDirectoryDialog();
 			directoryPath.setText(path);
 
 			if (!directoryPath.getText().equals("") || !directoryPath.getText().equals("Set path!")) {
