@@ -56,16 +56,16 @@ public class MainWindowC {
 	 * Handles all the calls from "Projects" top menu
 	 * @param event call from menu item
 	 */
-	@FXML 
+	@FXML
 	private void projectMenu(ActionEvent event) {
 
 		log.trace("projectMenu(): ActionEvent called: " + event);
-		
+
 		MenuItem m = (MenuItem) event.getSource();
 		String menu_id = m.getId();
-		
+
 		switch (menu_id) {
-		
+
 			case "projects_newProject":
 				addNewProject();
 				break;
@@ -82,7 +82,39 @@ public class MainWindowC {
 				// TODO - WindowMainC - add confirmation dialog
 				ExitApplication.exitAll();
 				break;
-		
+
+		}
+	}
+
+	/**
+	 * Handles all the calls from "Database" top menu
+	 * @param event call from menu item
+	 */
+	@FXML
+	private void databaseMenu(ActionEvent event) {
+
+		log.trace("databaseMenu(): ActionEvent called: " + event);
+
+		MenuItem m = (MenuItem) event.getSource();
+		String menu_id = m.getId();
+
+		switch (menu_id) {
+
+			case "system_addRenderengine":
+				addAddEngine();
+				break;
+
+			case "system_addProjectOwner":
+				addAddProjectOwner();
+				break;
+
+			case "system_addSoftwareApp":
+				addAddSoftware();
+				break;
+
+			case "system_addAsset":
+				addAsset();
+				break;
 		}
 	}
 	
@@ -99,18 +131,6 @@ public class MainWindowC {
 		String menu_id = m.getId();
 		
 		switch (menu_id) {
-
-			case "system_addRenderengine": // TODO - WindowMainC - populate System menu
-				addAddEngine();
-				break;
-
-			case "system_addProjectOwner":
-				addAddProjectOwner();
-				break;
-
-			case "system_addSoftwareApp":
-				addAddSoftware();
-				break;
 
 			case "system_settings":
 				settings();
@@ -214,11 +234,11 @@ public class MainWindowC {
 
 		try {
 			// add the project menu content
-			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_addRenderengine.fxml"));
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Database_addRenderengine.fxml"));
 			centerContent.getChildren().add(p);
-			log.debug("addAddEngine(): System_addRenderengine.fxml added to centerContent");
+			log.debug("addAddEngine(): Database_addRenderengine.fxml added to centerContent");
 		} catch (IOException e) {
-			log.warn("addAddEngine(): Unable to load System_addRenderengine.fxml");
+			log.warn("addAddEngine(): Unable to load Database_addRenderengine.fxml");
 			e.printStackTrace();
 		}
 
@@ -233,11 +253,11 @@ public class MainWindowC {
 
 		try {
 			// add the project menu content
-			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_addProjectSoftware.fxml"));
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Database_addProjectSoftware.fxml"));
 			centerContent.getChildren().add(p);
-			log.debug("addAddSoftware(): System_addProjectSoftware.fxml added to centerContent");
+			log.debug("addAddSoftware(): Database_addProjectSoftware.fxml added to centerContent");
 		} catch (IOException e) {
-			log.warn("addAddSoftware(): Unable to load System_addProjectSoftware.fxml");
+			log.warn("addAddSoftware(): Unable to load Database_addProjectSoftware.fxml");
 			e.printStackTrace();
 		}
 
@@ -252,11 +272,30 @@ public class MainWindowC {
 
 		try {
 			// add the project menu content
-			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/System_addProjectOwner.fxml"));
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Database_addProjectOwner.fxml"));
 			centerContent.getChildren().add(p);
-			log.debug("addAddProjectOwner(): System_addProjectOwner.fxml added to centerContent");
+			log.debug("addAddProjectOwner(): Database_addProjectOwner.fxml added to centerContent");
 		} catch (IOException e) {
-			log.warn("addAddProjectOwner(): Unable to load System_addProjectOwner.fxml");
+			log.warn("addAddProjectOwner(): Unable to load Database_addProjectOwner.fxml");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Adds the Add Project Owner UI under "System" menu
+	 */
+	private void addAsset() {
+
+		this.centerContent.getChildren().clear();
+
+		try {
+			// add the project menu content
+			SplitPane p = FXMLLoader.load(getClass().getResource("fxml/Database_addAsset.fxml"));
+			centerContent.getChildren().add(p);
+			log.debug("addAsset(): Database_addAsset.fxml added to centerContent");
+		} catch (IOException e) {
+			log.warn("addAsset(): Unable to load Database_addAsset.fxml");
 			e.printStackTrace();
 		}
 

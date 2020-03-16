@@ -3,24 +3,26 @@ package com.pipe42.gui;
 import com.pipe42.data.PojoConstructor;
 import com.pipe42.data.pojos.Owner;
 import com.pipe42.main.Main;
-import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.URL;
 
 /**
  * This is the controller for the "Add Project Owner" UI in System menu
  * @author Peter Mankowski
  * @since 0.1.0
  */
-public class System_addProjectOwnerC {
+public class Database_addProjectOwnerC {
 
-    private static final Logger log = LoggerFactory.getLogger(System_addProjectOwnerC.class);
+    private static final Logger log = LoggerFactory.getLogger(Database_addProjectOwnerC.class);
 
     @FXML
     private TextField ownerName;
@@ -46,8 +48,16 @@ public class System_addProjectOwnerC {
 
     /* INIT */
 
+    private WebEngine webEngine;
+
     @FXML
     void initialize() {
+
+        // grab initial content for the right hand part of the UI
+        //
+        webEngine = htmlContent.getEngine();
+        URL url = getClass().getResource("html/database_addProjectOwner.html");
+        webEngine.load(String.valueOf(url));
 
         log.trace("initialize(): Has been called.");
     }

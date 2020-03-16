@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 /**
  * Class to manipulate xml file within our app
@@ -125,9 +126,11 @@ public class Xml {
      */
     public static ArrayList<String> getXmlTemplateNames() {
 
+        Preferences prefs = UserPreferences.getPrefs();
+
         // test getting all file names in a folder
         FileWorks fw = new FileWorks();
-        ArrayList<String> names = fw.getFileNames("src/data/templates", "xml");
+        ArrayList<String> names = fw.getFileNames(prefs.get("xmlTemplatePath", ""), "xml");
 
         ArrayList<String> truncNames = new ArrayList<>();
         for (String name : names) {

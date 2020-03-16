@@ -27,8 +27,8 @@
                      <children>
                         <GridPane prefHeight="683.0" prefWidth="472.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="146.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="326.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="129.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="343.0" />
                           </columnConstraints>
                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,7 +61,7 @@
                                     <Button fx:id="setJsonDataPath" mnemonicParsing="false" text="set data path" />
                                  </children>
                               </HBox>
-                              <Label text="Paths to SQlite" GridPane.rowIndex="3" />
+                              <Label text="Paths to SQLite" GridPane.rowIndex="3" />
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <Button fx:id="setSQliteRootPath" mnemonicParsing="false" text="set root path" />
@@ -86,16 +86,25 @@
                               </HBox>
                               <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <Button fx:id="setXmlRootFolder" mnemonicParsing="false" text="set folder root" />
+                                    <Button fx:id="setXmlRootFolder" mnemonicParsing="false" text="set root folder" />
                                     <Button fx:id="setXmlTemplateFolder" mnemonicParsing="false" text="set templates folder" />
                                  </children>
                               </HBox>
                               <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
-                                    <Button fx:id="setCssRoot" mnemonicParsing="false" text="set xml root" />
+                                    <Button fx:id="setCssRoot" mnemonicParsing="false" text="set root folder" />
                                     <Button fx:id="setCssDefaultTheme" mnemonicParsing="false" text="set default css theme" />
                                  </children>
                               </HBox>
+                              <Label text="System" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Log level" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="logComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="logPathComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                              <Label text="Send logs to" GridPane.rowIndex="10" />
                            </children>
                         </GridPane>
                      </children>

@@ -3,17 +3,18 @@ package com.pipe42.gui;
 import com.pipe42.data.PojoConstructor;
 import com.pipe42.data.pojos.Application;
 import com.pipe42.main.Main;
-import com.pipe42.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -21,9 +22,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author Peter Mankowski
  * @since 0.1.0
  */
-public class System_addProjectSoftwareC {
+public class Database_addProjectSoftwareC {
 
-    private static final Logger log = LoggerFactory.getLogger(System_addProjectSoftwareC.class);
+    private static final Logger log = LoggerFactory.getLogger(Database_addProjectSoftwareC.class);
 
     @FXML
     private TextField appName;
@@ -52,10 +53,17 @@ public class System_addProjectSoftwareC {
 
     /* INIT */
 
+    private WebEngine webEngine;
     AtomicBoolean setPathValid = new AtomicBoolean(false);
 
     @FXML
     void initialize() {
+
+        // grab initial content for the right hand part of the UI
+        //
+        webEngine = htmlContent.getEngine();
+        URL url = getClass().getResource("html/database_addProjectSoftware.html");
+        webEngine.load(String.valueOf(url));
 
         // dynamically create the DirectoryShow object
         //

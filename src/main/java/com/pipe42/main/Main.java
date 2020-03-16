@@ -3,6 +3,7 @@ package com.pipe42.main;
 import com.pipe42.data.DatabaseAbstractFactory;
 import com.pipe42.gui.MainWindow;
 import com.pipe42.prefs.InitializeUserPreferences;
+import com.pipe42.prefs.Reset;
 import com.pipe42.prefs.UserPreferences;
 
 /**
@@ -36,8 +37,8 @@ public class Main {
 
 		// TODO below only for testing! Delete when done
 		// reset all
-		// Reset reset = new Reset();
-		// reset.resetAll();
+		Reset reset = new Reset();
+		reset.resetAll();
 		
 		// open main GUI window
 		MainWindow.main(args);

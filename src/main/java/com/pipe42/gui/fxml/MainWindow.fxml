@@ -27,16 +27,16 @@
               <MenuItem fx:id="projects_exit" mnemonicParsing="false" onAction="#projectMenu" text="Exit" />
             </items>
           </Menu>
+            <Menu fx:id="database" mnemonicParsing="false" text="Database">
+              <items>
+                  <MenuItem fx:id="system_addSoftwareApp" mnemonicParsing="false" onAction="#databaseMenu" text="Add project software" />
+                  <MenuItem fx:id="system_addProjectOwner" mnemonicParsing="false" onAction="#databaseMenu" text="Add project owner" />
+                  <MenuItem fx:id="system_addRenderengine" mnemonicParsing="false" onAction="#databaseMenu" text="Add renderengine" />
+                  <MenuItem fx:id="system_addAsset" mnemonicParsing="false" onAction="#databaseMenu" text="Add asset" />
+              </items>
+            </Menu>
           <Menu fx:id="system" mnemonicParsing="false" text="System">
                <items>
-                  <Menu mnemonicParsing="false" text="Database">
-                     <items>
-                        <MenuItem fx:id="system_addSoftwareApp" mnemonicParsing="false" onAction="#systemMenu" text="Add project software" />
-                        <MenuItem fx:id="system_addProjectOwner" mnemonicParsing="false" onAction="#systemMenu" text="Add project owner" />
-                        <MenuItem fx:id="system_addRenderengine" mnemonicParsing="false" onAction="#systemMenu" text="Add renderengine" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                     </items>
-                  </Menu>
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="system_settings" mnemonicParsing="false" onAction="#systemMenu" text="Settings" />
                   <MenuItem fx:id="system_resetAll" mnemonicParsing="false" text="Reset all" />

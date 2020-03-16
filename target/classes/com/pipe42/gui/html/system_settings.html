@@ -3,8 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript">
+        function setInnerHtmlValues(node, value) {
+            document.getElementById(node).innerHTML = value;
+        }
+    </script>
+    <link rel="stylesheet" href="../css/webengine.css">
 </head>
 <body>
-<div>hello</div>
+<div class="values">
+    <h3>PIPE42 system settings</h3>
+</div>
+<div class="values">
+    <h5>Software version: <span id="appVersion" ></span></h5>
+</div>
+<div class="values">
+    <h4>Database, XML and CSS</h4>
+</div>
+<div class="values">
+    <h5>Json root path: <span id="jsonRoot" ></span></h5>
+</div>
+<div class="values">
+    <h5>Json data path: <span id="jsonData" ></span></h5>
+</div>
+<div class="values">
+    <h5>SQLite root path: <span id="sqliteRoot" ></span></h5>
+</div>
+<div class="values">
+    <h5>SQLite database file: <span id="sqliteData" ></span></h5>
+</div>
+<div class="values">
+    <h5>XML root path: <span id="xmlRoot" ></span></h5>
+</div>
+<div class="values">
+    <h5>XML templates path: <span id="xmlTemplates" ></span></h5>
+</div>
+<div class="values">
+    <h5>CSS root path: <span id="cssRoot" ></span></h5>
+</div>
+<div class="values">
+    <h5>Default CSS theme: <span id="cssDefault" ></span></h5>
+</div>
+
+
 </body>
 </html>

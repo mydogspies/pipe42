@@ -37,22 +37,23 @@ public class InitializeUserPreferences {
 
         /* DATABASE */
         userPreferences.put("database", "sqlite");
-        userPreferences.put("databaseJsonRootPath", "src/data");
-        userPreferences.put("databaseJsonDataPath", "src/data/data.json");
-        userPreferences.put("databaseSQLiteRootPath", "src/data/sqlite");
-        userPreferences.put("databaseSQLiteDataPath", "src/data/sqlite/data/pipe42.db");
+        userPreferences.put("databaseJsonRootPath", "src/main/java/data");
+        userPreferences.put("databaseJsonDataPath", "src/main/java/data/data.json");
+        userPreferences.put("databaseSQLiteRootPath", "src/main/java/data/sqlite");
+        userPreferences.put("databaseSQLiteDataPath", "src/main/java/data/sqlite/data/pipe42.db");
 
         /* XML */
-        userPreferences.put("xmlRootPath", "src/data");
-        userPreferences.put("xmlTemplatePath", "src/data/templates");
+        userPreferences.put("xmlRootPath", "src/main/java/data");
+        userPreferences.put("xmlTemplatePath", "src/main/java/data/templates");
 
         /* CSS */
-        userPreferences.put("cssPath", "src/com/pipe42/gui/css");
+        userPreferences.put("cssPath", "src/main/java/com/pipe42/gui/css");
         userPreferences.put("cssDefaultTheme", "default.css");
 
-        /* MISC */
+        /* SYSTEM */
         userPreferences.putBoolean("testBool", true);
-        userPreferences.put("appTitle", "PIPE42 version 0.2.0-alpha - NOT FOR PUBLIC RELEASE -");
+        userPreferences.put("appVersion", "0.2.0-alpha");
+        userPreferences.put("logLevel", "info");
 
         /* GUI LOCATIONS */
 

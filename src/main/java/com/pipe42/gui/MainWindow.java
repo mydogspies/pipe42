@@ -28,7 +28,7 @@ public class MainWindow extends Application {
 	public void start(Stage primaryStage) {
 
 		// get the current Javafx css theme
-		String appTitle = UserPreferences.userSettings.get("appTitle", "");
+		String appTitle = "PIPE42 version" + UserPreferences.userSettings.get("appVersion", "") + " - NOT FOR PUBLIC USE -";
 		// String cssPath = UserPreferences.userSettings.get("cssPath", "");
 		// String cssTheme = UserPreferences.userSettings.get("cssDefaultTheme", "");
 

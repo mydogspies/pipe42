@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.values {
+    padding: 4px 4px;
+}
+
+.values > h5 {
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+}
