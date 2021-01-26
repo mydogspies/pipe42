@@ -1,4 +1,4 @@
-## pipe42
+## pipe42 (this project is no longer maintained - see new project "")
 A simple project pipeline for 3D/VFX software using JSON or SQLlite as database. 
 
 Among the planned abilities are a database of projects, automatic folder structure creation and maintenance and software specific file manipulation. Planned is direct interaction for now with Maya, Houdini and Arnold. Also in sometimes in early releases comes file versioning hopefully. 
